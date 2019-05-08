@@ -1,0 +1,343 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "AccountingCode": {
+                            "description": "The accounting code for the charge. Accounting codes group transactions that contain similar accounting attributes. **Character limit**: 100 **Values**: an active accounting code in your Zuora Chart of Accounts ",
+                            "type": "string"
+                        },
+                        "ApplyDiscountTo": {
+                            "description": "Specifies the type of charges that you want a specific discount to apply to. All field values are case sensitive: note that these values are in all-caps. **Character limit**: 21 **Values**: one of the following:\n\n- `ONETIME (1)`\n- `RECURRING (2)`\n- `USAGE (4)`\n- `ONETIMERECURRING (3)`\n- `ONETIMEUSAGE (5)`\n- `RECURRINGUSAGE (6)`\n- `ONETIMERECURRINGUSAGE (7)`\n",
+                            "type": "string"
+                        },
+                        "BillCycleDay": {
+                            "description": " Sets the bill cycle day (BCD) for the charge. The BCD determines which day of the month customer is billed. The BCD value in the account can override the BCD in this object.\n**Character limit**: 2 **Values**: a valid BCD integer, 1 - 31 ",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "BillCycleType": {
+                            "description": " Specifies how to determine the billing day for the charge. **Character limit**: 20 **Values**: one of the following:\n\n- `DefaultFromCustomer`\n- `SpecificDayofMonth:`\n- `SubscriptionStartDay`\n- `ChargeTriggerDay`\n- `SpecificDayofWeek`\n**Note**:\n\n- If you set this field to `SpecificDayofMonth`, you must specify which day of the month as the billing day for the charge in the BillCycleDay field.\n- If you set this field to `SpecificDayofWeek`, you must specify which day of the week as the billing day for the charge in the WeeklyBillCycleDay field.\n",
+                            "type": "string"
+                        },
+                        "BillingPeriod": {
+                            "description": " The billing period for the charge. The start day of the billing period is also called the bill cycle day (BCD).\n**Character limit**: 15 **Values**: one of the following\n\n- `Month`\n- `Quarter`\n- `Annual`\n- `Semi-Annual`\n- `Specific Months`\n- `Subscription Term` (This value is in **Limited Availability**.)\n- `Week`\n- `Specific Weeks`\n**Note**: Specify the number of months or weeks in the SpecificBillingPeriod field if you set this field to `Specific Months` or `Specific Weeks`. ",
+                            "type": "string"
+                        },
+                        "BillingPeriodAlignment": {
+                            "description": " Aligns charges within the same subscription if multiple charges begin on different dates.\n**Character limit**: 24 **Values**: one of the following:\n\n- `AlignToCharge`\n- `AlignToSubscriptionStart`\n- `AlignToTermStart`\n",
+                            "type": "string"
+                        },
+                        "BillingTiming": {
+                            "description": " The billing timing for the charge. You can choose to bill in advance or in arrears for recurring charge types. This field is not used in one-time or usage based charge types.\n**Character limit**: **Values**: one of the following:\n\n- `In Advance`\n- `In Arrears`\n\nThis feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\n",
+                            "type": "string"
+                        },
+                        "ChargeModel": {
+                            "description": " Determines how to calculate charges. Charge models must be individually activated in Zuora Billing administration.\n**Character limit**: 27 **Values**: one of the following:\n\n- `Discount-Fixed Amount`\n- `Discount-Percentage`\n- `Flat Fee Pricing`\n- `Per Unit Pricing`\n- `Overage Pricing`\n- `Tiered Pricing`\n- `Tiered with Overage Pricing`\n- `Volume Pricing`\n",
+                            "type": "string"
+                        },
+                        "DefaultQuantity": {
+                            "description": " The default quantity of units, such as the number of authors in a hosted wiki service. This field is required if you use a per-unit pricing model.\n**Character limit**: 16 **Values**: a valid quantity value ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "DeferredRevenueAccount": {
+                            "description": " The name of the deferred revenue account for this charge.\n**Character limit**: 100 **Values**: an active accounting code in your Zuora Chart of Accounts\nThis feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\n",
+                            "type": "string"
+                        },
+                        "Description": {
+                            "description": "A description of the charge. **Character limit**: 500 **Values**: a string of 500 characters or fewer ",
+                            "type": "string"
+                        },
+                        "DiscountLevel": {
+                            "description": " Specifies if the discount applies to just the product rate plan, the entire subscription, or to any activity in the account.\n**Character limit**: 12 **Values**: one of the following:\n\n- `rateplan`\n- `subscription`, `account`\n",
+                            "type": "string"
+                        },
+                        "EndDateCondition": {
+                            "description": " Defines when the charge ends after the charge trigger date.\n**Values**: one of the following:\n\n- `SubscriptionEnd`: The charge ends on the subscription end date after a specified period based on the trigger date of the charge. This is the default value.\n- `FixedPeriod`: The charge ends after a specified period based on the trigger date of the charge. If you set this field to `FixedPeriod`, you must specify the length of the period and a period type by defining the `UpToPeriods` and `UpToPeriodsType` fields.\n**Note**: If the subscription ends before the charge end date, the charge ends when the subscription ends. But if the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge will end on the charge end date. ",
+                            "type": "string"
+                        },
+                        "IncludedUnits": {
+                            "description": "Specifies the number of units in the base set of units. **Character limit**: 16 **Values**: a positive decimal value ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "LegacyRevenueReporting": {
+                            "description": "",
+                            "type": "boolean"
+                        },
+                        "ListPriceBase": {
+                            "description": "The list price base for the product rate plan charge. **Values**: one of the following:\n\n- `Per Month`\n- `Per Billing Period`\n- `Per Week`\n",
+                            "type": "string"
+                        },
+                        "MaxQuantity": {
+                            "description": " Specifies the maximum number of units for this charge. Use this field and the `MinQuantity` field to create a range of units allowed in a product rate plan charge.\n**Character limit**: 16 **Values**: a positive decimal value ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "MinQuantity": {
+                            "description": "Specifies the minimum number of units for this charge. Use this field and the `MaxQuantity` field to create a range of units allowed in a product rate plan charge. **Character limit**: 16 **Values**: a positive decimal value ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "Name": {
+                            "description": "The name of the product rate plan charge. **Character limit**: 100 **Values**: a string of 100 characters or fewer ",
+                            "type": "string"
+                        },
+                        "NumberOfPeriod": {
+                            "description": "Specifies the number of periods to use when calculating charges in an overage smoothing charge model. **Character limit**: **Values**: a positive whole number ",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "OverageCalculationOption": {
+                            "description": "Determines when to calculate overage charges. If the value of the SmoothingMode field is not specified, the value of this field is ignored. **Character limit**: 20 **Values**: one of the following:\n\n- `EndOfSmoothingPeriod`: This option is used by default. The overage is charged at the end of the smoothing period.\n- `PerBillingPeriod`: The overage is charged on-demand rather than waiting until the end of the smoothing period.\n",
+                            "type": "string"
+                        },
+                        "OverageUnusedUnitsCreditOption": {
+                            "description": " Determines whether to credit the customer with unused units of usage.\n**Character limit**: 20 **Values**: one of the following:\n\n- `NoCredit`\n- `CreditBySpecificRate`\n",
+                            "type": "string"
+                        },
+                        "PriceChangeOption": {
+                            "description": " Applies an automatic price change when a termed subscription is renewed.\n**Character limit**: **Values**: one of the following:\n\n- `NoChange` (default)\n- `SpecificPercentageValue`\n- `UseLatestProductCatalogPricing`\n",
+                            "type": "string"
+                        },
+                        "PriceIncreaseOption": {
+                            "description": "Applies an automatic price change when a termed subscription is renewed.\n",
+                            "enum": [
+                                "FromTenantPercentageValue",
+                                "SpecificPercentageValue"
+                            ],
+                            "type": "string"
+                        },
+                        "PriceIncreasePercentage": {
+                            "description": " Specifies the percentage to increase or decrease the price of a termed subscription's renewal. Use this field if you set the value to `SpecificPercentageValue`.\n**Character limit**: 16 **Values**: a decimal value between -100 and 100 ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "ProductRatePlanId": {
+                            "description": " The ID of the product rate plan associated with this product rate plan charge.\n**Character limit**: 32 **Values**: a valid product rate plan ID ",
+                            "type": "string"
+                        },
+                        "RatingGroup": {
+                            "description": "Specifies a rating group based on which usage records are rated.\n\n**Note:** This feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\nPossible values:\n\n- `ByBillingPeriod` (default): The rating is based on all the usages in a billing period.\n- `ByUsageStartDate`: The rating is based on all the usages on the same usage start date. \n- `ByUsageRecord`: The rating is based on each usage record.\n- `ByUsageUpload`: The rating is based on all the  usages in a uploaded usage file (`.xls` or `.csv`).\n- `ByGroupId`: The rating is based on all the usages in a custom group.\n\n**Note:** \n- The `ByBillingPeriod` value can be applied for all charge models. \n- The `ByUsageStartDate`, `ByUsageRecord`, and `ByUsageUpload` values can only be applied for per unit, volume pricing, and tiered pricing charge models. \n- The `ByGroupId` value is only available if you have [Active Rating](https://knowledgecenter.zuora.com/CB_Billing/J_Billing_Operations/H_Active_Rating) feature enabled.\n- Use this field only for Usage charges. One-Time Charges and Recurring Charges return `NULL`.\n",
+                            "type": "string"
+                        },
+                        "RecognizedRevenueAccount": {
+                            "description": " The name of the recognized revenue account for this charge.\n\n- Required when the Allow Blank Accounting Code setting is No.\n- Optional when the Allow Blank Accounting Code setting is Yes.\n\n**Character limit**: 100 **Values**: an active accounting code in your Zuora Chart of Accounts\nThis feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\n",
+                            "type": "string"
+                        },
+                        "RevRecCode": {
+                            "description": "Associates this product rate plan charge with a specific revenue recognition code. **Character limit**: 70 **Values**: a valid revenue recognition code ",
+                            "type": "string"
+                        },
+                        "RevRecTriggerCondition": {
+                            "description": " Specifies when revenue recognition begins.\n**Character limit**: 22 **Values**: one of the following:\n\n- `ContractEffectiveDate`\n- `ServiceActivationDate`\n- `CustomerAcceptanceDate`\n",
+                            "type": "string"
+                        },
+                        "RevenueRecognitionRuleName": {
+                            "description": "Determines when to recognize the revenue for this charge. **Character limit**: 25 **Values**: one of the following:\n\n- `Recognize upon invoicing`\n- `Recognize daily over time`\n",
+                            "type": "string"
+                        },
+                        "SmoothingModel": {
+                            "description": " Specifies the smoothing model for an overage smoothing charge model.\n**Character limit**: 22 **Values**: one of the following:\n\n- `RollingWindow`\n- `Rollover`\n",
+                            "type": "string"
+                        },
+                        "SpecificBillingPeriod": {
+                            "description": " Customizes the number of months or weeks for the charges billing period. This field is required if you set the value of the BillingPeriod field to `Specific Months` or `Specific Weeks`.\n**Values**: a positive integer ",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "TaxCode": {
+                            "description": " Specifies the tax code for taxation rules. Required when the Taxable field is set to `True`.\n\n**Character limit**: 64\n\n**Values**: a valid tax code\n\n**Note**: This value affects the tax calculation of rate plan charges that come from the `ProductRatePlanCharge`. ",
+                            "type": "string"
+                        },
+                        "TaxMode": {
+                            "description": " Determines how to define taxation for the charge. Required when the Taxable field is set to `True`.\n\n**Character limit**: 12\n\n**Values**: one of the following:\n\n- `TaxExclusive`\n- `TaxInclusive`\n\n**Note**: This value affects the tax calculation of rate plan charges that come from the `ProductRatePlanCharge`. ",
+                            "type": "string"
+                        },
+                        "Taxable": {
+                            "description": " Determines whether the charge is taxable. When set to `True`, the TaxMode and TaxCode fields are required when creating or updating th ProductRatePlanCharge object.\n\n**Character limit**: 5\n\n**Values**: `True`, `False`\n\n**Note**: This value affects the tax calculation of rate plan charges that come from the `ProductRatePlanCharge`. ",
+                            "type": "boolean"
+                        },
+                        "TriggerEvent": {
+                            "description": " Specifies when to start billing the customer for the charge.\n**Character limit**: 18 **Values**: one of the following:\n\n- `ContractEffective` is the date when the subscription's contract goes into effect and the charge is ready to be billed.\n- `ServiceActivation` is the date when the services or products for a subscription have been activated and the customers have access.\n- `CustomerAcceptance` is when the customer accepts the services or products for a subscription.\n",
+                            "type": "string"
+                        },
+                        "UOM": {
+                            "description": " Specifies the units to measure usage.\n**Character limit**: 25 **Values**: a configured unit of measure **Note**: You must specify this field when creating the following charge models:\n\n- Per Unit Pricing\n- Volume Pricing\n- Overage Pricing\n- Tiered Pricing\n- Tiered with Overage Pricing\n",
+                            "type": "string"
+                        },
+                        "UpToPeriods": {
+                            "description": " Specifies the length of the period during which the charge is active. If this period ends before the subscription ends, the charge ends when this period ends.\n**Character limit**: 5 **Values**: a whole number between 0 and 65535, exclusive **Note**:\n\n- You must use this field together with the `UpToPeriodsType` field to specify the time period. This field is applicable only when the `EndDateCondition` field is set to `FixedPeriod`.\n- If the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge end date will change accordingly up to the original period end.\n",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "UpToPeriodsType": {
+                            "description": " The period type used to define when the charge ends.\n**Character limit**: -- **Values**: one of the following:\n\n- `Billing Periods` (default)\n- `Days`\n- `Weeks`\n- `Months`\n- Years\n**Note**:\n\n- You must use this field together with the `UpToPeriods` field to specify the time period.\n- This field is applicable only when the `EndDateCondition` field is set to `FixedPeriod`.\n",
+                            "type": "string"
+                        },
+                        "UsageRecordRatingOption": {
+                            "default": "EndOfBillingPeriod",
+                            "description": "Determines how Zuora processes usage records for per-unit usage charges. \n",
+                            "enum": [
+                                "EndOfBillingPeriod",
+                                "OnDemand"
+                            ],
+                            "type": "string"
+                        },
+                        "UseDiscountSpecificAccountingCode": {
+                            "description": "Determines whether to define a new accounting code for the new discount charge. **Character limit**: 5 **Values**: `True`, `False` ",
+                            "type": "boolean"
+                        },
+                        "UseTenantDefaultForPriceChange": {
+                            "description": " Applies the tenant-level percentage uplift value for an automatic price change to a termed subscription's renewal. **Character limit**: 5 **Values**: `true`, `false` ",
+                            "type": "boolean"
+                        },
+                        "WeeklyBillCycleDay": {
+                            "description": " Specifies which day of the week as the bill cycle day (BCD) for the charge.\nThis feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\n**Values**: one of the following:\n\n- `Sunday`\n- `Monday`\n- `Tuesday`\n- `Wednesday`\n- `Thursday`\n- `Friday`\n- `Saturday`\n",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Product Rate Plan Charge fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "Class__NS": {
+                            "description": "Class associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "DeferredRevAccount__NS": {
+                            "description": "Deferrred revenue account associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Department__NS": {
+                            "description": "Department associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IncludeChildren__NS": {
+                            "description": "Specifies whether the corresponding item in NetSuite is visible under child subsidiaries. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Yes",
+                                "No"
+                            ],
+                            "type": "string"
+                        },
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the product rate plan charge's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "ItemType__NS": {
+                            "description": "Type of item that is created in NetSuite for the product rate plan charge. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Inventory",
+                                "Non Inventory",
+                                "Service"
+                            ],
+                            "type": "string"
+                        },
+                        "Location__NS": {
+                            "description": "Location associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "RecognizedRevAccount__NS": {
+                            "description": "Recognized revenue account associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "RevRecEnd__NS": {
+                            "description": "End date condition of the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Charge Period Start",
+                                "Rev Rec Trigger Date",
+                                "Use NetSuite Rev Rec Template"
+                            ],
+                            "type": "string"
+                        },
+                        "RevRecStart__NS": {
+                            "description": "Start date condition of the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Charge Period Start",
+                                "Rev Rec Trigger Date",
+                                "Use NetSuite Rev Rec Template"
+                            ],
+                            "type": "string"
+                        },
+                        "RevRecTemplateType__NS": {
+                            "description": "Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Subsidiary__NS": {
+                            "description": "Subsidiary associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the product rate plan charge was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "productRatePlanChargeFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Product Rate Plan Charge object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Product Rate Plan Charge object.\n",
+                    "title": "productRatePlanChargeFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "AccountingCode": "Deferred Revenue",
+                "BillCycleType": "DefaultFromCustomer",
+                "BillingPeriod": "Month",
+                "ChargeModel": "Flat fee Pricing",
+                "DeferredRevenueAccount": "Deferred Revenue",
+                "Name": "Recurring flat fee",
+                "ProductRatePlanChargeTierData": {
+                    "ProductRatePlanChargeTier": [
+                        {
+                            "Active": true,
+                            "Currency": "USD",
+                            "Price": 10
+                        }
+                    ]
+                },
+                "ProductRatePlanId": "2c92c0f8628e007901628f1dc06a453d",
+                "RecognizedRevenueAccount": "Accounts Receivable",
+                "TriggerEvent": "ContractEffective",
+                "UOM": "each",
+                "UseDiscountSpecificAccountingCode": false
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

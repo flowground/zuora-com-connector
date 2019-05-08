@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "client_id": {
+                    "description": "The Client ID of the OAuth client.\n",
+                    "type": "string",
+                    "minLength": 36,
+                    "maxLength": 36
+                },
+                "client_secret": {
+                    "description": "The Client Secret that was displayed when the OAuth client was created.\n",
+                    "type": "string",
+                    "maxLength": 42
+                },
+                "grant_type": {
+                    "description": "The OAuth grant type that will be used to generate the token. The value of this parameter must be `client_credentials`.\n",
+                    "type": "string",
+                    "enum": [
+                        "client_credentials"
+                    ]
+                }
+            },
+            "required": [
+                "client_id"
+            ]
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

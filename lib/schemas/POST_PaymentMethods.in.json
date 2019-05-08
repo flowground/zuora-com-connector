@@ -1,0 +1,84 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "type": {
+                            "description": "Type of payment method. The following types of the payment method are supported:\n\n* `PayPalEC` - PayPal Express Checkout payment method. Use this type if you are using a [PayPal Payflow Pro Gateway](https://knowledgecenter.zuora.com/CB_Billing/M_Payment_Gateways/Supported_Payment_Gateways/PayPal_Payflow_Pro%2C_Website_Payments_Payflow_Edition%2C_Website_Pro_Payment_Gateway) instance.\n* `PayPalNativeEC` - PayPal Native Express Checkout payment method. Use this type if you are using a [PayPal Express Checkout Gateway](https://knowledgecenter.zuora.com/CB_Billing/M_Payment_Gateways/Supported_Payment_Gateways/PayPal_Express_Checkout_Gateway) instance.\n* `PayPalAdaptive` - PayPal Adaptive payment method. Use this type if you are using a [PayPal Adaptive Payment Gateway](https://knowledgecenter.zuora.com/CB_Billing/M_Payment_Gateways/Supported_Payment_Gateways/PayPal_Adaptive_Payments_Gateway) instance.\n",
+                            "enum": [
+                                "PayPalEC",
+                                "PayPalNativeEC",
+                                "PayPalAdaptive"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "type"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "BAID": {
+                            "description": "ID of a PayPal billing agreement. For example, I-1TJ3GAGG82Y9.\n",
+                            "type": "string"
+                        },
+                        "email": {
+                            "description": "Email address associated with the payment method. This field is required if you want to create a PayPal Express Checkout payment method or a PayPal Adaptive payment method.\n",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "preapprovalKey": {
+                            "description": "The PayPal preapproval key.\n",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "accountKey": {
+                            "description": "Internal ID of the customer account that will own the payment method.\n",
+                            "type": "string"
+                        },
+                        "authGateway": {
+                            "description": "Internal ID of the payment gateway that Zuora will use to authorize the payments that are made with the payment method.\n\nIf you do not set this field, Zuora will use one of the following payment gateways instead:\n\n* The default payment gateway of the customer account that owns the payment method, if the `accountKey` field is set.\n* The default payment gateway of your Zuora tenant, if the `accountKey` field is not set.\n",
+                            "type": "string"
+                        },
+                        "makeDefault": {
+                            "default": false,
+                            "description": "Specifies whether the payment method will be the default payment method of the customer account that owns the payment method. Only applicable if the `accountKey` field is set.\n",
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the payment method. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a payment method object.\n",
+                    "title": "paymentMethodFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "BAID": "I-1TJ3GAGG82Y9",
+                "accountKey": "2c92c0f95be68649015bf14e001f2760",
+                "email": "customer@example.com",
+                "type": "PayPalEC"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

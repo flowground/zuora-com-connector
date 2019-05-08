@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "amendment_key": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

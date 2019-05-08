@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "description": {
+            "required": false,
+            "type": "string"
+        },
+        "associatedObjectType": {
+            "required": true,
+            "type": "string"
+        },
+        "associatedObjectKey": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "type": "string",
+            "format": "binary"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

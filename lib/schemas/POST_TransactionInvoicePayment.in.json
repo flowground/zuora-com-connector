@@ -1,0 +1,58 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "accountKey": "4028925a4cb74ec9014cb7520fc00005",
+                "invoiceId": "4028925a4cb74ec9014cb7540988002e",
+                "paymentGateway": "TestGateway"
+            },
+            "properties": {
+                "accountKey": {
+                    "description": "Customer account ID or account number.\n",
+                    "type": "string"
+                },
+                "documentDate": {
+                    "description": "The date that should appear on the invoice and credit memo being generated,\nin `yyyy-mm-dd` format. If this field is omitted\nand `invoiceId` is not specified, the current date is used by default. \n\n\n**Note:** The credit memo is only available if you have the Invoice Settlement feature enabled.\n\n\nThis field is in Zuora REST API version control. Supported minor\nversions are `215.0` and later. To use this field in the method, you\nmust set the  `zuora-version` parameter to the minor version number in\nthe request header.\n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "invoiceDate": {
+                    "description": "**Note:** This field has been replaced by the `documentDate` field in Zuora REST API version `215.0` and later. The\n`invoiceDate` field is only available for backward\ncompatibility.\n\nThe date that should appear on the invoice being generated,\nin `yyyy-mm-dd` format. If this field is omitted\nand `invoiceId` is not specified, the current date is used by default. \n\nThis field is in Zuora REST API version control. Supported minor\nversions are `214.0` and earlier.\n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "invoiceId": {
+                    "description": "The ID of an existing invoice for which to collect payment using\nthe account's default payment method. If this value is specified, no new\ninvoice is generated, and the following fields are ignored:\n  - `invoiceDate` and `invoiceTargetDate` (if the Zuora REST API version is 214.0 or earlier)\n  - `documentDate` and `targetDate` (if the Zuora REST API version is 215.0 or later)\n",
+                    "type": "string"
+                },
+                "invoiceTargetDate": {
+                    "description": "**Note:** This field has been replaced by the `targetDate` field in Zuora REST API version `215.0` and later. The\n`invoiceTargetDate` field is only available for backward\ncompatibility.\n\n\nThe date through which to calculate charges on this account if an invoice is generated, in `yyyy-mm-dd` format. If this field is omitted\nand `invoiceId` is not specified, the current date is used by default. \n\n\nThis field is in Zuora REST API version control. Supported minor\nversions are `214.0` and earlier.  \n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "paymentGateway": {
+                    "description": "The name of the gateway that will be used for the payment. Must be a valid gateway name and the gateway must support the specific payment method. If a value is not specified, the default gateway on the Account will be used.\n",
+                    "type": "string"
+                },
+                "targetDate": {
+                    "description": "The date through which to calculate charges on this account if an invoice or a credit memo is generated, \nin `yyyy-mm-dd` format. If this field is omitted\nand `invoiceId` is not specified, the current date is used by default. \n\n\n**Note:** The credit memo is only available if you have the Invoice Settlement feature enabled.\n\n\nThis field is in Zuora REST API version control. Supported minor\nversions are `215.0` and later. To use this field in the method, you\nmust set the  `zuora-version` parameter to the minor version number in\nthe request header.\n",
+                    "format": "date",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountKey"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "zuora_version": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

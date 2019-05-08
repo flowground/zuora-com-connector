@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "customFileName": "testCreditMemo",
+                "documentId": "40288af1614cee0b01614cf2ec25000a",
+                "documentType": "CreditMemo"
+            },
+            "properties": {
+                "customFileName": {
+                    "description": "The custom file name to use to generate new Word or PDF files for the billing document.\n",
+                    "type": "string"
+                },
+                "documentId": {
+                    "description": "The unique ID of a billing document that you want to create document properties for.\n",
+                    "type": "string"
+                },
+                "documentType": {
+                    "description": "The type of the billing document. \n",
+                    "enum": [
+                        "Invoice",
+                        "CreditMemo",
+                        "DebitMemo"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

@@ -1,0 +1,279 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "accountId": {
+                            "description": "The ID of the customer account that the payment is created for.\n",
+                            "type": "string"
+                        },
+                        "amount": {
+                            "description": "The total amount of the payment.\n",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "comment": {
+                            "description": "Additional information related to the payment.\n",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "currency": {
+                            "description": "A currency defined in the web-based UI administrative settings.\n",
+                            "type": "string"
+                        },
+                        "debitMemos": {
+                            "description": "Container for debit memos.\n",
+                            "items": {
+                                "properties": {
+                                    "amount": {
+                                        "description": "The amount of the payment associated with the debit memo.\n",
+                                        "format": "double",
+                                        "type": "number"
+                                    },
+                                    "debitMemoId": {
+                                        "description": "The unique ID of the debit memo that the payment is created on.\n",
+                                        "type": "string"
+                                    },
+                                    "items": {
+                                        "description": "Container for debit memo items.\n\n**Note:** The Invoice Item Settlement feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n",
+                                        "items": {
+                                            "properties": {
+                                                "amount": {
+                                                    "description": "The amount of the payment associated with the specific debit memo or taxation item.\n",
+                                                    "format": "double",
+                                                    "type": "number"
+                                                },
+                                                "debitMemoItemId": {
+                                                    "description": "The ID of the specific debit memo item.\n",
+                                                    "type": "string"
+                                                },
+                                                "taxItemId": {
+                                                    "description": "The ID of the specific taxation item.\n",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "amount"
+                                            ],
+                                            "title": "items",
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "amount"
+                                ],
+                                "title": "debitMemos",
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "effectiveDate": {
+                            "description": "The date when the payment takes effect, in `yyyy-mm-dd` format.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "financeInformation": {
+                            "description": "Container for the finance information related to the payment.\n",
+                            "properties": {
+                                "bankAccountAccountingCode": {
+                                    "description": "The accounting code that maps to a bank account in your accounting system.\n",
+                                    "maxLength": 100,
+                                    "minLength": 0,
+                                    "type": "string"
+                                },
+                                "transferredToAccounting": {
+                                    "description": "Whether the payment was transferred to an external accounting system. Use this field for integration with accounting systems, such as NetSuite. \n",
+                                    "enum": [
+                                        "Processing",
+                                        "Yes",
+                                        "No",
+                                        "Error",
+                                        "Ignore"
+                                    ],
+                                    "type": "string"
+                                },
+                                "unappliedPaymentAccountingCode": {
+                                    "description": "The accounting code for the unapplied payment.\n",
+                                    "maxLength": 100,
+                                    "minLength": 0,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "gatewayId": {
+                            "description": "The ID of the gateway instance that processes the payment. The ID must be a valid gateway instance ID and this gateway must support the specific payment method. \n\n- When creating electronic payments, this field is required. \n- When creating external payments, this field is optional.\n",
+                            "type": "string"
+                        },
+                        "invoices": {
+                            "description": "Container for invoices.\n",
+                            "items": {
+                                "properties": {
+                                    "amount": {
+                                        "description": "The amount of the payment associated with the invoice.\n",
+                                        "format": "double",
+                                        "type": "number"
+                                    },
+                                    "invoiceId": {
+                                        "description": "The unique ID of the invoice that the payment is created on.\n",
+                                        "type": "string"
+                                    },
+                                    "items": {
+                                        "description": "Container for invoice items.\n\n**Note:** The Invoice Item Settlement feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n",
+                                        "items": {
+                                            "properties": {
+                                                "amount": {
+                                                    "description": "The amount of the payment associated with the specific invoice or taxation item.\n",
+                                                    "format": "double",
+                                                    "type": "number"
+                                                },
+                                                "invoiceItemId": {
+                                                    "description": "The ID of the specific invoice item.\n",
+                                                    "type": "string"
+                                                },
+                                                "taxItemId": {
+                                                    "description": "The ID of the specific taxation item.\n",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "amount"
+                                            ],
+                                            "title": "items",
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "amount"
+                                ],
+                                "title": "invoices",
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "paymentMethodId": {
+                            "description": "The unique ID of the payment method that the customer used to make the payment. \n\nIf no payment method ID is specified in the request body, the default payment method for the customer account is used automatically. If the default payment method is different from the type of payments that you want to create, an error occurs.\n",
+                            "type": "string"
+                        },
+                        "referenceId": {
+                            "description": "The transaction ID returned by the payment gateway. Use this field to reconcile payments between your gateway and Zuora Payments.\n",
+                            "maxLength": 60,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The type of the payment.\n",
+                            "enum": [
+                                "External",
+                                "Electronic"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "amount",
+                        "currency",
+                        "type"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Payment fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the payment's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Origin__NS": {
+                            "description": "Origin of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the payment was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Transaction__NS": {
+                            "description": "Related transaction in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "paymentFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Payment object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Payment object.\n",
+                    "title": "paymentFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "accountId": "4028905f5a87c0ff015a87d25ae90025",
+                "amount": 44.1,
+                "comment": "normal payment",
+                "currency": "USD",
+                "debitMemos": [
+                    {
+                        "amount": 4.1,
+                        "debitMemoId": "4028905f5a87c0ff015a87e49e6b0062",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "amount": 4,
+                                    "debitMemoItemId": "4028905f5a87c0ff015a87e49e7a0063"
+                                },
+                                {
+                                    "amount": 0.1,
+                                    "taxItemId": "4028905f5a87c0ff015a87e49f5e0065"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "effectiveDate": "2017-03-01",
+                "invoices": [
+                    {
+                        "amount": 40,
+                        "invoiceId": "4028905f5a87c0ff015a87d3f8f10043",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "amount": 39,
+                                    "invoiceItemId": "4028905f5a87c0ff015a87d3f90c0045"
+                                },
+                                {
+                                    "amount": 1,
+                                    "taxItemId": "4028905f5a87c0ff015a87d3f884003f"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "paymentMethodId": "402881e522cf4f9b0122cf5dc4020045",
+                "type": "External"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

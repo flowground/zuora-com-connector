@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "charge_key": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

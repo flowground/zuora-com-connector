@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "queryLocator": "2c92c0f9602fb240016049ac7e0b47e7-2000"
+            },
+            "properties": {
+                "queryLocator": {
+                    "description": "",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "queryLocator"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

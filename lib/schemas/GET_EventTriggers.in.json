@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "baseObject": {
+            "required": false,
+            "type": "string"
+        },
+        "eventTypeName": {
+            "required": false,
+            "type": "string"
+        },
+        "active": {
+            "required": false,
+            "type": "string"
+        },
+        "start": {
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "default": 10
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

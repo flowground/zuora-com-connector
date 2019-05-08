@@ -1,0 +1,409 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "additionalEmailAddresses": {
+                            "description": "A list of additional email addresses to receive emailed invoices. Use a comma to separate each email address.\n\n**Note:** Invoices are emailed to the email addresses specified in this field only when the `invoiceDeliveryPrefsEmail` field is `true`.\n",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "autoPay": {
+                            "description": "Whether future payments are to be automatically billed when they are due. \n",
+                            "type": "boolean"
+                        },
+                        "batch": {
+                            "description": "The alias name given to a batch. A string of 50 characters or less.\n",
+                            "type": "string"
+                        },
+                        "billToContact": {
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "address1": {
+                                            "description": "First address line, 255 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "address2": {
+                                            "description": "Second address line, 255 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "city": {
+                                            "description": "City, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "country": {
+                                            "description": "Country; must be a valid country name or abbreviation. If using Zuora Tax, you must specify a country in the sold-to contact to calculate tax. A bill-to contact may be used if no sold-to contact is provided.\n",
+                                            "type": "string"
+                                        },
+                                        "county": {
+                                            "description": "County; 32 characters or less. May optionally be used by Zuora Tax to calculate county tax.\n",
+                                            "type": "string"
+                                        },
+                                        "fax": {
+                                            "description": "Fax phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "firstName": {
+                                            "description": "First name, 100 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "homePhone": {
+                                            "description": "Home phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "lastName": {
+                                            "description": "Last name, 100 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "mobilePhone": {
+                                            "description": "Mobile phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "nickname": {
+                                            "description": "Nickname for this contact\n",
+                                            "type": "string"
+                                        },
+                                        "otherPhone": {
+                                            "description": "Other phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "otherPhoneType": {
+                                            "description": "Possible values are: `Work`, `Mobile`, `Home`, `Other`.\n",
+                                            "type": "string"
+                                        },
+                                        "personalEmail": {
+                                            "description": "Personal email address, 80 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "state": {
+                                            "description": "State; must be a valid state or province name or 2-character abbreviation. If using Zuora Tax, be aware that Zuora Tax requires a state (in the US) or province (in Canada) in this field for the sold-to contact to calculate tax, and that a bill-to contact may be used if no sold-to contact is provided.\n",
+                                            "type": "string"
+                                        },
+                                        "taxRegion": {
+                                            "description": "If using Zuora Tax, a region string as optionally defined in your tax rules. Not required.\n",
+                                            "type": "string"
+                                        },
+                                        "workEmail": {
+                                            "description": "Work email address, 80 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "workPhone": {
+                                            "description": "Work phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "zipCode": {
+                                            "description": "Zip code, 20 characters or less.\n",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "firstName",
+                                        "lastName"
+                                    ],
+                                    "type": "object"
+                                },
+                                {
+                                    "additionalProperties": {
+                                        "description": "Custom fields of the Contact object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                    },
+                                    "description": "Container for custom fields of a Contact object.\n",
+                                    "title": "contactFieldsCustom",
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "Container for bill-to contact information for this account.\n",
+                            "title": "Contact"
+                        },
+                        "communicationProfileId": {
+                            "description": "The ID of a communication profile.\n",
+                            "type": "string"
+                        },
+                        "creditMemoTemplateId": {
+                            "description": "**Note**: This field is only available if you have the Invoice Settlement feature enabled. The Invoice Settlement feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\nThe unique ID of the credit memo template, configured in **Billing Settings** > **Manage Billing Document Configuration** through the Zuora UI. For example, 2c92c08a6246fdf101626b1b3fe0144b.\n",
+                            "type": "string"
+                        },
+                        "crmId": {
+                            "description": "CRM account ID for the account, up to 100 characters.\n",
+                            "type": "string"
+                        },
+                        "debitMemoTemplateId": {
+                            "description": "**Note**: This field is only available if you have the Invoice Settlement feature enabled. The Invoice Settlement feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\nThe unique ID of the debit memo template, configured in **Billing Settings** > **Manage Billing Document Configuration** through the Zuora UI. For example, 2c92c08d62470a8501626b19d24f19e2.\n",
+                            "type": "string"
+                        },
+                        "invoiceDeliveryPrefsEmail": {
+                            "description": "Whether the customer wants to receive invoices through email. \n\nThe default value is `false`.\n",
+                            "type": "boolean"
+                        },
+                        "invoiceDeliveryPrefsPrint": {
+                            "description": "Whether the customer wants to receive printed invoices, such as through postal mail.\n\nThe default value is `false`.\n",
+                            "type": "boolean"
+                        },
+                        "invoiceTemplateId": {
+                            "description": "Invoice template ID, configured in Billing Settings in the Zuora UI.\n",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Account name, up to 255 characters.\n",
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "A string of up to 65,535 characters.\n",
+                            "type": "string"
+                        },
+                        "parentId": {
+                            "description": "Identifier of the parent customer account for this Account object. The length is 32 characters. Use this field if you have customer hierarchy enabled.",
+                            "type": "string"
+                        },
+                        "paymentGateway": {
+                            "description": "The name of the payment gateway instance. If null or left unassigned, the Account will use the Default Gateway.\n",
+                            "type": "string"
+                        },
+                        "salesRep": {
+                            "description": "The name of the sales representative associated with this account, if applicable. Maximum of 50 characters.",
+                            "type": "string"
+                        },
+                        "soldToContact": {
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "address1": {
+                                            "description": "First address line, 255 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "address2": {
+                                            "description": "Second address line, 255 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "city": {
+                                            "description": "City, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "country": {
+                                            "description": "Country; must be a valid country name or abbreviation. If using Zuora Tax, you must specify a country in the sold-to contact to calculate tax. A bill-to contact may be used if no sold-to contact is provided.\n",
+                                            "type": "string"
+                                        },
+                                        "county": {
+                                            "description": "County; 32 characters or less. May optionally be used by Zuora Tax to calculate county tax.\n",
+                                            "type": "string"
+                                        },
+                                        "fax": {
+                                            "description": "Fax phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "firstName": {
+                                            "description": "First name, 100 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "homePhone": {
+                                            "description": "Home phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "lastName": {
+                                            "description": "Last name, 100 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "mobilePhone": {
+                                            "description": "Mobile phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "nickname": {
+                                            "description": "Nickname for this contact\n",
+                                            "type": "string"
+                                        },
+                                        "otherPhone": {
+                                            "description": "Other phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "otherPhoneType": {
+                                            "description": "Possible values are: `Work`, `Mobile`, `Home`, `Other`.\n",
+                                            "type": "string"
+                                        },
+                                        "personalEmail": {
+                                            "description": "Personal email address, 80 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "state": {
+                                            "description": "State; must be a valid state or province name or 2-character abbreviation. If using Zuora Tax, be aware that Zuora Tax  requires a state (in the US) or province (in Canada) in this field for the sold-to contact to calculate tax, and that a bill-to contact may be used if no sold-to contact is provided.\n",
+                                            "type": "string"
+                                        },
+                                        "taxRegion": {
+                                            "description": "If using Zuora Tax, a region string as optionally defined in your tax rules. Not required.\n",
+                                            "type": "string"
+                                        },
+                                        "workEmail": {
+                                            "description": "Work email address, 80 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "workPhone": {
+                                            "description": "Work phone number, 40 characters or less.\n",
+                                            "type": "string"
+                                        },
+                                        "zipCode": {
+                                            "description": "Zip code, 20 characters or less.\n",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "firstName",
+                                        "lastName"
+                                    ],
+                                    "type": "object"
+                                },
+                                {
+                                    "additionalProperties": {
+                                        "description": "Custom fields of the Contact object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                    },
+                                    "description": "Container for custom fields of a Contact object.\n",
+                                    "title": "contactFieldsCustom",
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "Container for optional sold-to contact.\n",
+                            "title": "Contact"
+                        },
+                        "tagging": {
+                            "description": "",
+                            "type": "string"
+                        },
+                        "taxInfo": {
+                            "description": "Container for tax exempt information, used to establish the tax exempt status of a customer account.\n",
+                            "properties": {
+                                "VATId": {
+                                    "description": "EU Value Added Tax ID. \n\n**Note:** This feature is in Limited Availability. If you wish to have access to the feature, submit a request at [Zuora Global Support](https://support.zuora.com).\n",
+                                    "type": "string"
+                                },
+                                "companyCode": {
+                                    "description": "Unique code that identifies a company account in Avalara. Use this field to calculate taxes based on origin and sold-to addresses in Avalara.\n\n**Note:** This feature is in Limited Availability. If you wish to have access to the feature, submit a request at [Zuora Global Support](https://support.zuora.com). \n",
+                                    "type": "string"
+                                },
+                                "exemptCertificateId": {
+                                    "description": "ID of the customer tax exemption certificate. Requires Zuora Tax.\n",
+                                    "type": "string"
+                                },
+                                "exemptCertificateType": {
+                                    "description": "Type of tax exemption certificate that the customer holds. Requires Zuora Tax.\n",
+                                    "type": "string"
+                                },
+                                "exemptDescription": {
+                                    "description": "Description of the tax exemption certificate that the customer holds. Requires Zuora Tax.\n",
+                                    "type": "string"
+                                },
+                                "exemptEffectiveDate": {
+                                    "description": "Date when the customer tax exemption starts. Requires Zuora Tax.\n\nFormat: `yyyy-mm-dd`. Defaults to the current date.\n",
+                                    "format": "date",
+                                    "type": "string"
+                                },
+                                "exemptEntityUseCode": {
+                                    "description": "A unique entity use code to apply exemptions in Avalara AvaTax.\n\nThis account-level field is required only when you choose Avalara as your tax engine. See [Exempt Transactions](https://developer.avalara.com/avatax/handling-tax-exempt-customers/)for more details.\n",
+                                    "maxLength": 64,
+                                    "type": "string"
+                                },
+                                "exemptExpirationDate": {
+                                    "description": "Date when the customer tax exemption expires. Requires Zuora Tax.\n\nFormat: `yyyy-mm-dd`. Defaults to the current date.\n",
+                                    "format": "date",
+                                    "type": "string"
+                                },
+                                "exemptIssuingJurisdiction": {
+                                    "description": "Jurisdiction in which the customer tax exemption certificate was issued.\n",
+                                    "type": "string"
+                                },
+                                "exemptStatus": {
+                                    "description": "Status of the account tax exemption. Requires Zuora Tax.\n\nRequired if you use Zuora Tax. This field is unavailable if Zuora Tax is not used.\n\nValues: `Yes`, `No`, `pendingVerification`.\n",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Account fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "Class__NS": {
+                            "description": "Value of the Class field for the corresponding customer account in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "CustomerType__NS": {
+                            "description": "Value of the Customer Type field for the corresponding customer account in NetSuite. The Customer Type field is used when the customer account is created in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Company",
+                                "Individual"
+                            ],
+                            "type": "string"
+                        },
+                        "Department__NS": {
+                            "description": "Value of the Department field for the corresponding customer account in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the account's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Location__NS": {
+                            "description": "Value of the Location field for the corresponding customer account in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Subsidiary__NS": {
+                            "description": "Value of the Subsidiary field for the corresponding customer account in NetSuite. The Subsidiary field is required if you use NetSuite OneWorld. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the account was sychronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SynctoNetSuite__NS": {
+                            "description": "Specifies whether the account should be synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Yes",
+                                "No"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "title": "accountFieldsNetSuite",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Account object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of an Account object.\n",
+                    "title": "accountFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "additionalEmailAddresses": [
+                    "contact3@example.com",
+                    "contact4@example.com"
+                ],
+                "paymentGateway": "TestGateway"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "account_key": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

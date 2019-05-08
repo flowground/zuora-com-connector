@@ -1,0 +1,109 @@
+{
+    "type": "object",
+    "properties": {
+        "paymentId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "comment": {
+                            "description": "Comments about the payment.\n",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "financeInformation": {
+                            "description": "Container for the finance information related to the payment.\n",
+                            "properties": {
+                                "bankAccountAccountingCode": {
+                                    "description": "The accounting code that maps to a bank account in your accounting system.\n",
+                                    "maxLength": 100,
+                                    "minLength": 0,
+                                    "type": "string"
+                                },
+                                "transferredToAccounting": {
+                                    "description": "Whether the payment was transferred to an external accounting system. Use this field for integration with accounting systems, such as NetSuite. \n",
+                                    "enum": [
+                                        "Processing",
+                                        "Yes",
+                                        "No",
+                                        "Error",
+                                        "Ignore"
+                                    ],
+                                    "type": "string"
+                                },
+                                "unappliedPaymentAccountingCode": {
+                                    "description": "The accounting code for the unapplied payment.\n",
+                                    "maxLength": 100,
+                                    "minLength": 0,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "referenceId": {
+                            "description": "The transaction ID returned by the payment gateway. Use this field to reconcile payments between your gateway and Zuora Payments.\n\nYou can only update the reference ID for external payments.\n",
+                            "maxLength": 60,
+                            "minLength": 0,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Payment fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the payment's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Origin__NS": {
+                            "description": "Origin of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the payment was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Transaction__NS": {
+                            "description": "Related transaction in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "paymentFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Payment object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Payment object.\n",
+                    "title": "paymentFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "comment": "new comment",
+                "financeInformation": {
+                    "transferredToAccounting": "No"
+                }
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

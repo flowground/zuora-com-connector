@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Status": "Posted"
+            },
+            "properties": {
+                "Status": {
+                    "description": "The status for this bill run. See [Status Types](https://knowledgecenter.zuora.com/CB_Billing/J_Billing_Operations/G_Bill_Runs#Status_Types) for more information.\n\nTo cancel a bill run, specify `Canceled`. To post a bill run, specify `Posted`.\n\n**Character limit:** 20\n\n**Values:** \n\n  * `Pending`\n  * `Processing`\n  * `Completed`\n  * `Error`\n  * `Canceled`\n  * `Posted`\n",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Status"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

@@ -1,0 +1,60 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "revenueItems": [
+                    {
+                        "accountingPeriodName": "Oct'2014"
+                    },
+                    {
+                        "accountingPeriodName": "Nov'2014"
+                    }
+                ]
+            },
+            "properties": {
+                "revenueItems": {
+                    "description": "Revenue items are listed in ascending order by the accounting period start date.\n\nInclude at least one custom field.\n",
+                    "items": {
+                        "allOf": [
+                            {
+                                "properties": {
+                                    "accountingPeriodName": {
+                                        "description": "Name of the accounting period. The open-ended accounting period is named `Open-Ended`.\n",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "accountingPeriodName"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "additionalProperties": {
+                                    "description": "Custom fields of the Revenue Schedule Item object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                },
+                                "description": "Container for custom fields of a Revenue Schedule Item object.\n",
+                                "title": "revenueScheduleItemFieldsCustom",
+                                "type": "object"
+                            }
+                        ],
+                        "title": "revenueItems"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "revenueItems"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "rs_number": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

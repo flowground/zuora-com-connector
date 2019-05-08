@@ -1,0 +1,663 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "add": {
+                            "description": "Container for adding one or more rate plans.\n",
+                            "items": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "chargeOverrides": {
+                                                "description": "This optional container is used to override the quantity of one or more product rate plan charges for this subscription.\n",
+                                                "items": {
+                                                    "allOf": [
+                                                        {
+                                                            "properties": {
+                                                                "applyDiscountTo": {
+                                                                    "description": "Specifies the type of charges that you want a specific discount to apply to.\n\nValues:\n\n* `ONETIME`\n* `RECURRING`\n* `USAGE`\n* `ONETIMERECURRING`\n* `ONETIMEUSAGE`\n* `RECURRINGUSAGE`\n* `ONETIMERECURRINGUSAGE`\n\nAvailable for the following charge type for the Discount-Fixed Amount and Discount-Percentage charge models:\n\n* Recurring\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billCycleDay": {
+                                                                    "description": "Sets the bill cycle day (BCD) for the charge. The BCD determines which day of the month customer is billed.\n\nValues: `1`-`31`\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billCycleType": {
+                                                                    "description": "Specifies how to determine the billing day for the charge. When this field is set to `SpecificDayofMonth`, set the `BillCycleDay` field. When this field is set to `SpecificDayofWeek`, set the `weeklyBillCycleDay` field.\n\nValues:\n\n* `DefaultFromCustomer`\n* `SpecificDayofMonth`\n* `SubscriptionStartDay`\n* `ChargeTriggerDay`\n* `SpecificDayofWeek`\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billingPeriod": {
+                                                                    "description": "Billing period for the charge. The start day of the billing period is also called the bill cycle day (BCD).\n\nValues:\n\n* `Month`\n* `Quarter`\n* `Semi_Annual`\n* `Annual`\n* `Eighteen_Months`\n* `Two_Years`\n* `Three_Years`\n* `Five_Years`\n* `Specific_Months`\n* `Subscription_Term`\n* `Week`\n* `Specific_Weeks`\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billingPeriodAlignment": {
+                                                                    "description": "Aligns charges within the same subscription if multiple charges begin on different dates.\n\nValues:\n\n* `AlignToCharge`\n* `AlignToSubscriptionStart`\n* `AlignToTermStart`\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billingTiming": {
+                                                                    "description": "Billing timing for the charge for recurring charge types. Not avaliable for one time, usage and discount charges.\n\nValues:\n\n* `IN_ADVANCE` (default)\n* `IN_ARREARS`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "description": "Description of the charge.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "discountAmount": {
+                                                                    "description": "Specifies the amount of fixed-amount discount.\n\nAvailable for the following charge type for the Discount-Fixed Amount charge model:\n\n* Recurring\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "discountLevel": {
+                                                                    "description": "Specifies if the discount applies to the product rate plan only , the entire subscription, or to any activity in the account.\n\nValues:\n\n* `rateplan`\n* `subscription`\n* `account`\n\nAvailable for the following charge type for the Discount-Fixed Amount and Discount-Percentage charge models:\n\n* Recurring\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "discountPercentage": {
+                                                                    "description": "Specifies the percentage of a percentage discount. \n\nAvailable for the following charge type for the Discount-Percentage charge model:\n\n* Recurring\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "endDateCondition": {
+                                                                    "description": "Defines when the charge ends after the charge trigger date. If the subscription ends before the charge end date, the charge ends when the subscription ends. But if the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge will end on the charge end date.\n\nValues:\n\n* `Subscription_End`\n* `Fixed_Period`\n* `Specific_End_Date`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "includedUnits": {
+                                                                    "description": "Specifies the number of units in the base set of units for this charge. Must be >=`0`.\n\nAvailable for the following charge types for the Overage charge model:\n\n* Recurring\n* Usage-based\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "listPriceBase": {
+                                                                    "description": "The list price base for the product rate plan charge.\n\nValues:\n\n* `Per_Billing_Period`\n* `Per_Month`\n* `Per_Week`\n\nAvailable for the following charge type for the Flat Fee, Per Unit, Volume Pricing, and Tiered Pricing charge models:\n\n* Recurring\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "number": {
+                                                                    "description": "Unique number that identifies the charge. System-generated if not provided.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "numberOfPeriods": {
+                                                                    "description": "Specifies the number of periods to use when calculating charges in an overage smoothing charge model.\n\nAvailable for the following charge type for the Overage and Tiered with Overage charge models:\n\n* Usage-based\n",
+                                                                    "format": "int64",
+                                                                    "type": "integer"
+                                                                },
+                                                                "overagePrice": {
+                                                                    "description": "Price for units over the allowed amount. \n\nAvailable for the following charge type for the Overage and Tiered with Overage charge models:\n\n* Usage-based\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "overageUnusedUnitsCreditOption": {
+                                                                    "description": "Determines whether to credit the customer with unused units of usage.\n\nValues:\n\n* `NoCredit`\n* `CreditBySpecificRate`\n\nAvailable for the following charge type for the Overage and Tiered with Overage charge models:\n\n* Usage-based\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "price": {
+                                                                    "description": "Price for units in the subscription rate plan.\n\nSupports all charge types for the Flat Fee and Per Unit charge models\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "priceChangeOption": {
+                                                                    "description": "Applies an automatic price change when a termed subscription is renewed. The Zuora Billing Admin setting Enable Automatic Price Change When Subscriptions are Renewed?  must be set to Yes to use this field.  See Define Default Subscription Settings for more information on setting this option.\n\nValues:\n\n* `NoChange` (default)\n* `SpecificPercentageValue`\n* `UseLatestProductCatalogPricing`\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n* Not available for the Fixed-Amount Discount charge model.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "priceIncreasePercentage": {
+                                                                    "description": "Specifies the percentage to increase or decrease the price of a termed subscription's renewal. Required if you set the `PriceChangeOption` field to `SpecificPercentageValue`.\n\nDecimal between -100 and 100.\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n\nNot available for the Fixed-Amount Discount charge model.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "productRatePlanChargeId": {
+                                                                    "description": "",
+                                                                    "type": "string"
+                                                                },
+                                                                "quantity": {
+                                                                    "description": "Number of units. Must be >=`0`.\n\nAvailable for the following charge types for the Per Unit, Volume Pricing, and Tiered Pricing charge models:\n\n* One-time\n* Recurring\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "ratingGroup": {
+                                                                    "description": "Specifies a rating group based on which usage records are rated.\n\n**Note:** This feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\nPossible values:\n\n- `ByBillingPeriod` (default): The rating is based on all the usages in a billing period.\n- `ByUsageStartDate`: The rating is based on all the usages on the same usage start date. \n- `ByUsageRecord`: The rating is based on each usage record.\n- `ByUsageUpload`: The rating is based on all the  usages in a uploaded usage file (`.xls` or `.csv`).\n- `ByGroupId`: The rating is based on all the usages in a custom group.\n\n**Note:** \n- The `ByBillingPeriod` value can be applied for all charge models. \n- The `ByUsageStartDate`, `ByUsageRecord`, and `ByUsageUpload` values can only be applied for per unit, volume pricing, and tiered pricing charge models. \n- The `ByGroupId` value is only available if you have [Active Rating](https://knowledgecenter.zuora.com/CB_Billing/J_Billing_Operations/H_Active_Rating) feature enabled.\n- Use this field only for Usage charges. One-Time Charges and Recurring Charges return `NULL`.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "specificBillingPeriod": {
+                                                                    "description": "Specifies the number of month or week for the charges billing period. Required if you set the value of the `billingPeriod` field to `Specific_Months` or `Specific_Weeks`.\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n",
+                                                                    "format": "int64",
+                                                                    "type": "integer"
+                                                                },
+                                                                "specificEndDate": {
+                                                                    "description": "Defines when the charge ends after the charge trigger date.\n\nThis field is only applicable when the `endDateCondition` field is set to `Specific_End_Date`.\n\nIf the subscription ends before the specific end date, the charge ends when the subscription ends. But if the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge will end on the specific end date.\n",
+                                                                    "format": "date",
+                                                                    "type": "string"
+                                                                },
+                                                                "tiers": {
+                                                                    "description": "Container for Volume, Tiered or Tiered with Overage charge models. Supports the following charge types:\n\n* One-time\n* Recurring\n* Usage-based\n",
+                                                                    "items": {
+                                                                        "properties": {
+                                                                            "endingUnit": {
+                                                                                "description": "End number of a range of units for the tier.\n",
+                                                                                "format": "decimal",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "price": {
+                                                                                "description": "Price of the tier if the charge is a flat fee, or the price of each unit in the tier if the charge model is tiered pricing.\n",
+                                                                                "format": "decimal",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "priceFormat": {
+                                                                                "description": "Indicates if pricing is a flat fee or is per unit.\n\nValues:\n\n* `FlatFee`\n* `PerUnit`\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "startingUnit": {
+                                                                                "description": "Starting number of a range of units for the tier.\n",
+                                                                                "format": "decimal",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "tier": {
+                                                                                "description": "Unique number that identifies the tier that the price applies to.\n",
+                                                                                "format": "int64",
+                                                                                "type": "integer"
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "tier",
+                                                                            "price"
+                                                                        ],
+                                                                        "title": "tiers",
+                                                                        "type": "object"
+                                                                    },
+                                                                    "type": "array"
+                                                                },
+                                                                "triggerDate": {
+                                                                    "description": "Specifies when to start billing the customer for the charge. Required if the `triggerEvent` field is set to `USD`.\n",
+                                                                    "format": "date",
+                                                                    "type": "string"
+                                                                },
+                                                                "triggerEvent": {
+                                                                    "description": "Specifies when to start billing the customer for the charge.\n\nValues:\n\n* `UCE`\n* `USA`\n* `UCA`\n* `USD`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "unusedUnitsCreditRates": {
+                                                                    "description": "Specifies the rate to credit a customer for unused units of usage. This field applies only for overage charge models when the `OverageUnusedUnitsCreditOption` field is set to `CreditBySpecificRate`.\n\nAvailable for the following charge type for the Overage and Tiered with Overage charge models:\n\n* Usage-based\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "upToPeriods": {
+                                                                    "description": "The period type used to define when the charge ends. \n\nValues:\n\n* `Billing_Periods`\n* `Days`\n* `Weeks`\n* `Months`\n* `Years`\n\nYou must use this field together with the `upToPeriods` field to specify the time period.\n\nThis field is applicable only when the `endDateCondition` field is set to `Fixed_Period`. \n",
+                                                                    "format": "int64",
+                                                                    "type": "integer"
+                                                                },
+                                                                "upToPeriodsType": {
+                                                                    "description": "The period type used to define when the charge ends. \n\nValues:\n\n* `Billing_Periods`\n* `Days`\n* `Weeks`\n* `Months`\n* `Years`\n\nYou must use this field together with the `upToPeriods` field to specify the time period.\n\nThis field is applicable only when the `endDateCondition` field is set to `Fixed_Period`. \n",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "productRatePlanChargeId"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "additionalProperties": {
+                                                                "description": "Custom fields of the Rate Plan Charge object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                                            },
+                                                            "description": "Container for custom fields of a Rate Plan Charge object.\n",
+                                                            "title": "ratePlanChargeFieldsCustom",
+                                                            "type": "object"
+                                                        }
+                                                    ],
+                                                    "title": "chargeOverrides"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "contractEffectiveDate": {
+                                                "description": "The date when the amendment changes take effect. The format of the date is yyyy-mm-dd.\n\nIf there is already a future-dated Update Product amendment on the subscription, the `specificUpdateDate` field will be used instead of this field to specify when the Update Product amendment takes effect.\n",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "customerAcceptanceDate": {
+                                                "description": "The date when the customer accepts the contract in yyyy-mm-dd format.\n\nIf this field is not set:\n\n* If the `serviceActivationDate` field is not set, the value of this field is set to be the contract effective date.\n* If the `serviceActivationDate` field is set, the value of this field is set to be the service activation date.\n\nThe billing trigger dates must follow this rule:\n\ncontractEffectiveDate <= serviceActivationDate <= contractAcceptanceDate\n",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "productRatePlanId": {
+                                                "description": "ID of a product rate plan for this subscription\n",
+                                                "type": "string"
+                                            },
+                                            "serviceActivationDate": {
+                                                "description": "The date when the new product in the subscription is activated in yyyy-mm-dd format.\n\nYou must specify a Service Activation date if the Customer Acceptance date is set. If the Customer Acceptance date is not set, the value of the `serviceActivationDate` field defaults to be the Contract Effective Date.\n\nThe billing trigger dates must follow this rule:\n\ncontractEffectiveDate <= serviceActivationDate <= contractAcceptanceDate\n",
+                                                "format": "date",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "productRatePlanId",
+                                            "contractEffectiveDate"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": {
+                                            "description": "Custom fields of the Rate Plan object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                        },
+                                        "description": "Container for custom fields of a Rate Plan object.\n",
+                                        "title": "ratePlanFieldsCustom",
+                                        "type": "object"
+                                    }
+                                ],
+                                "title": "add"
+                            },
+                            "type": "array"
+                        },
+                        "applyCreditBalance": {
+                            "description": "Applies a credit balance to an invoice.\n\nIf the value is `true`, the credit balance is applied to the invoice. If the value is `false`, no action is taken.\n\n\nTo view the credit balance adjustment, retrieve the details of the invoice using the Get Invoices method.\n\nPrerequisite: `invoice` must be `true`. \n\n**Note:** \n  - If you are using the field `invoiceCollect` rather than the field `invoice`, the `invoiceCollect` value must be `true`.\n  - This field is deprecated if you have the Invoice Settlement feature enabled.\n",
+                            "type": "boolean"
+                        },
+                        "autoRenew": {
+                            "description": "If `true`, this subscription automatically renews at the end of the subscription term. Default is `false`.\n",
+                            "type": "boolean"
+                        },
+                        "collect": {
+                            "description": "Collects an automatic payment for a subscription. The collection generated in this operation is only for this subscription, not for the entire customer account. If the value is `true`, the automatic payment is collected. If the value is `false`, no action is taken.\n\nThe default value is false.\n\n**Prerequisite:** `invoice` must be `true`.\n\n**Note:** This field is in Zuora REST API version control. Supported minor versions are 196.0 or later. To use this field in the method, you must set the `zuora-version` parameter to the minor version number in the request header.\n\n",
+                            "type": "boolean"
+                        },
+                        "currentTerm": {
+                            "description": "The length of the period for the current subscription term. If `termType` is `TERMED`, this field is required and must be greater than `0`. If `termType` is `EVERGREEN`, this value is ignored. Default is `0`.\n",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "currentTermPeriodType": {
+                            "description": "The period type for the current subscription term.\n\nThis field is used with the `CurrentTerm` field to specify the current subscription term.\n\nValues are:\n\n* `Month` (default)\n* `Year`\n* `Day`\n* `Week`\n",
+                            "type": "string"
+                        },
+                        "documentDate": {
+                            "description": "The date of the billing document, in `yyyy-mm-dd` format. It represents the invoice date for invoices, credit memo date for credit memos, and debit memo date for debit memos.\n\n- If this field is specified, the specified date is used as the billing document date. \n- If this field is not specified, the date specified in the `targetDate` is used as the billing document date.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "includeExistingDraftDocItems": {
+                            "description": "Specifies whether to include draft invoice items in subscription previews.\nValues are:\n\n* `true` (default). Includes draft invoice items in the preview result.\n* `false`. Excludes draft invoice items in the preview result.\n\n**Note:** This field is in Zuora REST API version control. Supported minor versions are 207.0 or later. To use this field in the method, you must set the **zuora-version** parameter to the minor version number in the request header. See [Zuora REST API Versions](https://www.zuora.com/developer/api-reference/#section/API-Versions) for more information.\n",
+                            "type": "boolean"
+                        },
+                        "includeExistingDraftInvoiceItems": {
+                            "description": "Specifies whether to include draft invoice items in subscription previews.\nValues are:\n\n* `true` (default). Includes draft invoice items in the preview result.\n* `false`. Excludes draft invoice items in the preview result.\n\n**Note:** This field is in Zuora REST API version control. Supported minor versions are 186.0, 187.0, 188.0, 189.0, and 196.0. See [Zuora REST API Versions](https://www.zuora.com/developer/api-reference/#section/API-Versions) for more information.\n",
+                            "type": "boolean"
+                        },
+                        "invoice": {
+                            "description": "**Note:** This field has been replaced by the `runBilling` field. The\n`invoice` field is only available for backward compatibility.\n\n\nCreates an invoice for a subscription. The invoice generated in this\noperation is only for this subscription, not for the entire customer\naccount.\n\n\nIf the value is `true`, an invoice is created. If the value is\n`false`, no action is taken. The default value is `false`. \n\n\nThis field is in Zuora REST API version control. Supported minor\nversions are `196.0` and `207.0`. To use this field in the method, you\nmust set the zuora-version parameter to the minor version number in\nthe request header. \n",
+                            "type": "boolean"
+                        },
+                        "invoiceCollect": {
+                            "description": "**Note:** This field has been replaced by the `invoice` field and the `collect` field. `invoiceCollect` is available only for backward compatibility.\n\nIf `true`, an invoice is generated and payment collected automatically during the subscription process. If `false` (default), no invoicing or payment takes place.  The invoice generated in this operation is only for this subscription, not for the entire customer account.\n\nThis field is in Zuora REST API version control. Supported minor versions are 186.0, 187.0, 188.0, 189.0, and 196.0. ",
+                            "type": "boolean"
+                        },
+                        "invoiceSeparately": {
+                            "description": "Separates a single subscription from other subscriptions and invoices the charge independently. \n\nIf the value is `true`, the subscription is billed separately from other subscriptions. If the value is `false`, the subscription is included with other subscriptions in the account invoice.\n\nThe default value is `false`.\nPrerequisite: The default subscription setting Enable Subscriptions to be Invoiced Separately must be set to Yes.\n",
+                            "type": "boolean"
+                        },
+                        "invoiceTargetDate": {
+                            "description": "**Note:** This field has been replaced by the `targetDate` field. The\n`invoiceTargetDate` field is only available for backward\ncompatibility.\n\n\nDate through which to calculate charges if an invoice is generated, as\nyyyy-mm-dd. Default is current date.\n\n\nThis field is in Zuora REST API version control. Supported minor\nversions are `207.0` and earlier.  \n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "String of up to 500 characters.\n",
+                            "type": "string"
+                        },
+                        "preview": {
+                            "description": "If `true` the update is made in preview mode. The default setting is `false`.\n",
+                            "type": "boolean"
+                        },
+                        "previewType": {
+                            "description": "The type of preview you will receive. \n\nThis field is in Zuora REST API version control. The supported values of this field depend on the REST API minor version you specified in the request header.\n\n\n* If you do not specify the REST API minor version or specify the minor version number to one of following values in the request header:\n\n  * 186.0\n  * 187.0\n  * 188.0\n  * 189.0\n  * 196.0 \n\n  The following values are supported in the **previewType** field:\n\n  * InvoiceItem\n  * ChargeMetrics\n  * InvoiceItemChargeMetrics\n\n  The default value is InvoiceItem.\n\n* If you specify the REST API minor version to 207.0 or later in the request header, the following values are supported in the **previewType** field:\n\n  - LegalDoc\n  - ChargeMetrics\n  - LegalDocChargeMetrics\n\n  The default value is LegalDoc.\n\nSee [Zuora REST API Versions](https://www.zuora.com/developer/api-reference/#section/API-Versions) for more information.\n",
+                            "type": "string"
+                        },
+                        "remove": {
+                            "description": "Container for removing one or more rate plans.\n",
+                            "items": {
+                                "properties": {
+                                    "contractEffectiveDate": {
+                                        "description": "Effective date of the new subscription, as yyyy-mm-dd.\n",
+                                        "format": "date",
+                                        "type": "string"
+                                    },
+                                    "customerAcceptanceDate": {
+                                        "description": "The date when the customer accepts the contract in yyyy-mm-dd format.\n\nIf this field is not set:\n\n* If the `serviceActivationDate` field is not set, the value of this field is set to be the contract effective date.\n* If the `serviceActivationDate` field is set, the value of this field is set to be the service activation date.\n\nThe billing trigger dates must follow this rule:\n\ncontractEffectiveDate <= serviceActivationDate <= contractAcceptanceDate\n",
+                                        "format": "date",
+                                        "type": "string"
+                                    },
+                                    "ratePlanId": {
+                                        "description": "ID of a rate plan for this subscription.\n",
+                                        "type": "string"
+                                    },
+                                    "serviceActivationDate": {
+                                        "description": "The date when the remove amendment is activated in yyyy-mm-dd format.\n\nYou must specify a Service Activation date if the Customer Acceptance date is set. If the Customer Acceptance date is not set, the value of the `serviceActivationDate` field defaults to be the Contract Effective Date.\n\nThe billing trigger dates must follow this rule:\n\ncontractEffectiveDate <= serviceActivationDate <= contractAcceptanceDate\n",
+                                        "format": "date",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "contractEffectiveDate",
+                                    "ratePlanId"
+                                ],
+                                "title": "remove",
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "renewalSetting": {
+                            "description": "Specifies whether a termed subscription will remain `TERMED` or change to `EVERGREEN` when it is renewed. \n\nValues are:\n\n* `RENEW_WITH_SPECIFIC_TERM` (default)\n* `RENEW_TO_EVERGREEN`\n",
+                            "type": "string"
+                        },
+                        "renewalTerm": {
+                            "description": "The length of the period for the subscription renewal term. Default is `0`.\n",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "renewalTermPeriodType": {
+                            "description": "\nThe period type for the subscription renewal term.\n\nThis field is used with the `renewalTerm` field to specify the subscription renewal term.\n\nValues are:\n\n* `Month` (default)\n* `Year`\n* `Day`\n* `Week`\n",
+                            "type": "string"
+                        },
+                        "runBilling": {
+                            "default": false,
+                            "description": "Creates an invoice for a subscription. If you have the Invoice Settlement feature enabled, a credit memo might also be created based on the [invoice and credit memo generation rule](https://knowledgecenter.zuora.com/CB_Billing/Invoice_Settlement/Credit_and_Debit_Memos/Rules_for_Generating_Invoices_and_Credit_Memos).  \n\n\nThe billing documents generated\nin this operation is only for this subscription, not for the entire\ncustomer account.\n\n\nPossible values:\n\n- `true`: An invoice is created. If you have the Invoice Settlement feature enabled, a credit memo might also be created.\n\n\n- `false`: No invoice is created.\n\n\n**Note:** This field is in Zuora REST API version control. Supported\nminor versions are `211.0` or later. To use this field in the method,\nyou must set the `zuora-version` parameter to the minor version number\nin the request header.\n",
+                            "enum": [
+                                true,
+                                false
+                            ],
+                            "type": "boolean"
+                        },
+                        "targetDate": {
+                            "description": "Date through which to calculate charges if an invoice or a credit memo is generated, as\nyyyy-mm-dd. Default is current date.\n\n\n**Note:** The credit memo is only available if you have the Invoice Settlement feature enabled.\n\n\nThis field is in Zuora REST API version control. Supported minor\nversions are `211.0` and later. To use this field in the method, you\nmust set the  `zuora-version` parameter to the minor version number in\nthe request header.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "termStartDate": {
+                            "description": "Date the subscription term begins, as yyyy-mm-dd. If this is a renewal subscription, this date is different from the subscription start date. \n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "termType": {
+                            "description": "Possible values are: `TERMED`, `EVERGREEN`.\n",
+                            "type": "string"
+                        },
+                        "update": {
+                            "description": "Container for updating one or more rate plans.\n",
+                            "items": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "chargeUpdateDetails": {
+                                                "description": "Container for one or more product rate plan charges. \n",
+                                                "items": {
+                                                    "allOf": [
+                                                        {
+                                                            "properties": {
+                                                                "billingPeriodAlignment": {
+                                                                    "description": "Aligns charges within the same subscription if multiple charges begin on different dates.\n\nValues:\n\n* `AlignToCharge`\n* `AlignToSubscriptionStart`\n* `AlignToTermStart`\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "description": "Description of the charge.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "includedUnits": {
+                                                                    "description": "Specifies the number of units in the base set of units for this charge. Must be >=0.\n\nAvailable for the following charge types for the Overage charge model:\n\n* `Recurring`\n* `Usage-based`\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "overagePrice": {
+                                                                    "description": "Price for units over the allowed amount. \n\nAvailable for the following charge type for the Overage and Tiered with Overage charge models:\n\n* Usage-based\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "price": {
+                                                                    "description": "Price for units in the subscription rate plan.\n\nSupports all charge types for the Flat Fee and Per Unit charge models\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "priceChangeOption": {
+                                                                    "description": "Applies an automatic price change when a termed subscription is renewed. The Billing Admin setting **Enable Automatic Price Change When Subscriptions are Renewed?** must be set to Yes to use this field.\n\nValues:\n\n* `NoChange` (default)\n* `SpecificPercentageValue`\n* `UseLatestProductCatalogPricing`\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n\nNot available for the Fixed-Amount Discount charge model.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "priceIncreasePercentage": {
+                                                                    "description": "Specifies the percentage to increase or decrease the price of a termed subscription's renewal. Required if you set the `PriceChangeOption` field to `SpecificPercentageValue`.\n\nDecimal between `-100` and `100`.\n\nAvailable for the following charge types:\n\n* Recurring\n* Usage-based\n\nNot available for the Fixed-Amount Discount charge model.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "quantity": {
+                                                                    "description": "Quantity of units; must be greater than zero.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "ratePlanChargeId": {
+                                                                    "description": "ID of a rate-plan charge for this subscription.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "tiers": {
+                                                                    "description": "Container for Volume, Tiered or Tiered with Overage charge models. Supports the following charge types:\n\n* One-time\n* Recurring\n* Usage-based\n",
+                                                                    "items": {
+                                                                        "properties": {
+                                                                            "endingUnit": {
+                                                                                "description": "End number of a range of units for the tier.\n",
+                                                                                "format": "decimal",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "price": {
+                                                                                "description": "Price of the tier if the charge is a flat fee, or the price of each unit in the tier if the charge model is tiered pricing.\n",
+                                                                                "format": "decimal",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "priceFormat": {
+                                                                                "description": "Indicates if pricing is a flat fee or is per unit.\n\nValues:\n\n* `FlatFee`\n* `PerUnit`\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "startingUnit": {
+                                                                                "description": "Starting number of a range of units for the tier.\n",
+                                                                                "format": "decimal",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "tier": {
+                                                                                "description": "Unique number that identifies the tier that the price applies to.\n",
+                                                                                "format": "int64",
+                                                                                "type": "integer"
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "tier",
+                                                                            "price"
+                                                                        ],
+                                                                        "title": "tiers",
+                                                                        "type": "object"
+                                                                    },
+                                                                    "type": "array"
+                                                                },
+                                                                "triggerDate": {
+                                                                    "description": "Specifies when to start billing the customer for the charge. Required if the `triggerEvent` field is set to USD.\n\n`triggerDate` cannot be updated for the following using the REST update subscription call:\n\n* One-time charge type\n* Discount-Fixed Amount charge model\n* Discount-Percentage charge model\n",
+                                                                    "format": "date",
+                                                                    "type": "string"
+                                                                },
+                                                                "triggerEvent": {
+                                                                    "description": "Specifies when to start billing the customer for the charge.\n\nValues:\n\n* `UCE`\n* `USA`\n* `UCA`\n* `USD`\n\nThis is the date when charge changes in the REST request become effective.\n\n`triggerEvent` cannot be updated for the following using the REST update subscription call:\n\n* One-time charge type\n* Discount-Fixed Amount charge model\n* Discount-Percentage charge model\n",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "ratePlanChargeId"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "additionalProperties": {
+                                                                "description": "Custom fields of the Rate Plan Charge object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                                            },
+                                                            "description": "Container for custom fields of a Rate Plan Charge object.\n",
+                                                            "title": "ratePlanChargeFieldsCustom",
+                                                            "type": "object"
+                                                        }
+                                                    ],
+                                                    "title": "chargeUpdateDetails"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "contractEffectiveDate": {
+                                                "description": "The date when the amendment changes take effect. The format of the date is yyyy-mm-dd.\n\nIf there is already a future-dated Update Product amendment on the subscription, the `specificUpdateDate` field will be used instead of this field to specify when the Update Product amendment takes effect.\n",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "customerAcceptanceDate": {
+                                                "description": "The date when the customer accepts the contract in yyyy-mm-dd format.\n\nIf this field is not set:\n\n* If the `serviceActivationDate` field is not set, the value of this field is set to be the contract effective date.\n* If the `serviceActivationDate` field is set, the value of this field is set to be the service activation date.\n\nThe billing trigger dates must follow this rule:\n\ncontractEffectiveDate <= serviceActivationDate <= contractAcceptanceDate\n",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "ratePlanId": {
+                                                "description": "ID of a rate plan for this subscription.\n",
+                                                "type": "string"
+                                            },
+                                            "serviceActivationDate": {
+                                                "description": "The date when the update amendment is activated in yyyy-mm-dd format.\n\nYou must specify a Service Activation date if the Customer Acceptance date is set. If the Customer Acceptance date is not set, the value of the `serviceActivationDate` field defaults to be the Contract Effective Date.\n\nThe billing trigger dates must follow this rule:\n\ncontractEffectiveDate <= serviceActivationDate <= contractAcceptanceDate\n",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "specificUpdateDate": {
+                                                "description": "The date when the Update Product amendment takes effect. This field is only applicable if there is already a future-dated Update Product amendment on the subscription. The format of the date is yyyy-mm-dd.\n\nRequired only for Update Product amendments if there is already a future-dated Update Product amendment on the subscription.\n",
+                                                "format": "date",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "ratePlanId",
+                                            "contractEffectiveDate"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": {
+                                            "description": "Custom fields of the Rate Plan object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                        },
+                                        "description": "Container for custom fields of a Rate Plan object.\n",
+                                        "title": "ratePlanFieldsCustom",
+                                        "type": "object"
+                                    }
+                                ],
+                                "title": "update"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Subscription fields provided by Zuora Quotes.\n",
+                    "properties": {
+                        "CpqBundleJsonId__QT": {
+                            "description": "The Bundle product structures from Zuora Quotes if you utilize Bundling in Salesforce. Do not change the value in this field.\n",
+                            "maxLength": 32,
+                            "type": "string"
+                        },
+                        "OpportunityCloseDate__QT": {
+                            "description": "The closing date of the Opportunity. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "OpportunityName__QT": {
+                            "description": "The unique identifier of the Opportunity. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "maxLength": 100,
+                            "type": "string"
+                        },
+                        "QuoteBusinessType__QT": {
+                            "description": "The specific identifier for the type of business transaction the Quote represents such as New, Upsell, Downsell, Renewal or Churn. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "maxLength": 32,
+                            "type": "string"
+                        },
+                        "QuoteNumber__QT": {
+                            "description": "The unique identifier of the Quote. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "maxLength": 32,
+                            "type": "string"
+                        },
+                        "QuoteType__QT": {
+                            "description": "The Quote type that represents the subscription lifecycle stage such as New, Amendment, Renew or Cancel. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "maxLength": 32,
+                            "type": "string"
+                        }
+                    },
+                    "title": "subscriptionFieldsQT",
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Subscription fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the subscription's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Project__NS": {
+                            "description": "The NetSuite project that the subscription was created from. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SalesOrder__NS": {
+                            "description": "The NetSuite sales order than the subscription was created from. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the subscription was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "subscriptionFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Subscription object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Subscription object.\n",
+                    "title": "subscriptionFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "autoRenew": false,
+                "collect": false,
+                "currentTerm": "10",
+                "currentTermPeriodType": "Month",
+                "notes": "Test UPDATE subscription from z-ruby-sdk",
+                "renewalSetting": "RENEW_WITH_SPECIFIC_TERM",
+                "renewalTerm": "4",
+                "renewalTermPeriodType": "Month",
+                "runBilling": true,
+                "termType": "TERMED",
+                "update": [
+                    {
+                        "chargeUpdateDetails": [
+                            {
+                                "quantity": 12,
+                                "ratePlanChargeId": "2c92c8f83dcbd8b1013dcce0eb510075"
+                            }
+                        ],
+                        "contractEffectiveDate": "2013-04-28",
+                        "ratePlanId": "2c92c8f83dcbd8b1013dcce0ea7e006f"
+                    }
+                ]
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "zuora_version": {
+            "required": false,
+            "type": "string"
+        },
+        "subscription_key": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

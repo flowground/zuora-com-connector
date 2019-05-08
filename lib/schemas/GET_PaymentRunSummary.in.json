@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "paymentRunId": {
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        }
+    }
+}

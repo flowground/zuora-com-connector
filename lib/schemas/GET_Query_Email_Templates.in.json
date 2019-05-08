@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "start": {
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "limit": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+        },
+        "eventTypeName": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

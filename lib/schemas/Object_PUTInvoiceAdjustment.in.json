@@ -1,0 +1,54 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "ReasonCode": {
+                            "description": " A code identifying the reason for the transaction. Must be an existing reason code or empty. If you do not specify a value, Zuora uses the default reason code.\n**Character limit**: 32 **V****alues**: a valid reason code ",
+                            "type": "string"
+                        },
+                        "Status": {
+                            "description": " The status of the invoice adjustment. This field is required in the Query call, but is automatically generated in other calls.\n**Character limit**: 9 **Values**: `Canceled`, `Processed` ",
+                            "type": "string"
+                        },
+                        "TransferredToAccounting": {
+                            "description": "Indicates the status of the adjustment's transfer to an external accounting system, such as NetSuite.\n",
+                            "enum": [
+                                "Processing",
+                                "Yes",
+                                "No",
+                                "Error",
+                                "Ignore"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Invoice Adjustment object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of an Invoice Adjustment object.\n",
+                    "title": "invoiceAdjustmentFieldsCustom",
+                    "type": "object"
+                }
+            ]
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

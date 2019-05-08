@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "orderNumber": {
+            "required": true,
+            "type": "string",
+            "format": "string"
+        },
+        "subscriptionNumber": {
+            "required": true,
+            "type": "string"
+        },
+        "startDate": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "endDate": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "itempartid": {
+            "required": true,
+            "type": "string"
+        },
+        "refundpartid": {
+            "required": true,
+            "type": "string"
+        },
+        "refundId": {
+            "required": true,
+            "type": "string"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

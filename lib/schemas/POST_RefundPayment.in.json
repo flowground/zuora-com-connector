@@ -1,0 +1,159 @@
+{
+    "type": "object",
+    "properties": {
+        "paymentId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "comment": {
+                            "description": "Comments about the refund.\n",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "financeInformation": {
+                            "description": "Container for the finance information related to the refund.\n",
+                            "properties": {
+                                "bankAccountAccountingCode": {
+                                    "description": "The accounting code that maps to a bank account in your accounting system.\n",
+                                    "maxLength": 100,
+                                    "minLength": 0,
+                                    "type": "string"
+                                },
+                                "transferredToAccounting": {
+                                    "description": "Whether the refund was transferred to an external accounting system. Use this field for integration with accounting systems, such as NetSuite. \n",
+                                    "enum": [
+                                        "Processing",
+                                        "Yes",
+                                        "No",
+                                        "Error",
+                                        "Ignore"
+                                    ],
+                                    "type": "string"
+                                },
+                                "unappliedPaymentAccountingCode": {
+                                    "description": "The accounting code for the unapplied payment.\n",
+                                    "maxLength": 100,
+                                    "minLength": 0,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "methodType": {
+                            "description": "How an external refund was issued to a customer. This field is required for an external refund and must be left empty for an electronic refund. You can issue an external refund on an electronic payment.\n",
+                            "enum": [
+                                "ACH",
+                                "Cash",
+                                "Check",
+                                "CreditCard",
+                                "PayPal",
+                                "WireTransfer",
+                                "DebitCard",
+                                "CreditCardReferenceTransaction",
+                                "BankTransfer",
+                                "Other"
+                            ],
+                            "type": "string"
+                        },
+                        "reasonCode": {
+                            "description": "A code identifying the reason for the transaction. The value must be an existing reason code or empty. If you do not specify a value, Zuora uses the default reason code.\n",
+                            "type": "string"
+                        },
+                        "referenceId": {
+                            "description": "The transaction ID returned by the payment gateway for an electronic refund. Use this field to reconcile refunds between your gateway and Zuora Payments.\n",
+                            "maxLength": 60,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "refundDate": {
+                            "description": "The date when the refund takes effect, in `yyyy-mm-dd` format. The date of the refund cannot be before the payment date. Specify this field only for external refunds. Zuora automatically generates this field for electronic refunds.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "secondRefundReferenceId": {
+                            "description": "The transaction ID returned by the payment gateway if there is an additional transaction for the refund. Use this field to reconcile payments between your gateway and Zuora Payments.\n",
+                            "maxLength": 60,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "totalAmount": {
+                            "description": "The total amount of the refund. The amount cannot exceed the unapplied amount of the associated payment. If the original payment was applied to one or more invoices or debit memos, you have to unapply a full or partial payment from the invoices or debit memos, and then refund the full or partial unapplied payment to your customers. \n",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "type": {
+                            "description": "The type of the refund.\n",
+                            "enum": [
+                                "External",
+                                "Electronic"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "totalAmount",
+                        "type"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Refund fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the refund's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Origin__NS": {
+                            "description": "Origin of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the refund was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SynctoNetSuite__NS": {
+                            "description": "Specifies whether the refund should be synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "refundFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Refund object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Refund object.\n",
+                    "title": "refundFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "comment": "Create a refund for unapplied payment.",
+                "methodType": "CreditCard",
+                "reasonCode": "Standard Refund",
+                "refundDate": "2017-03-01",
+                "totalAmount": 4,
+                "type": "External"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

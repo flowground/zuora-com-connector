@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "type": "string",
+            "format": "binary"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

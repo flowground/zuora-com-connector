@@ -1,0 +1,99 @@
+{
+    "type": "object",
+    "properties": {
+        "pageSize": {
+            "required": false,
+            "type": "integer",
+            "maximum": 40,
+            "default": 20
+        },
+        "accountId": {
+            "required": false,
+            "type": "string"
+        },
+        "amount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "appliedAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "createdById": {
+            "required": false,
+            "type": "string"
+        },
+        "createdDate": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "creditBalanceAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "currency": {
+            "required": false,
+            "type": "string"
+        },
+        "effectiveDate": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "number": {
+            "required": false,
+            "type": "string"
+        },
+        "refundAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "status": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "Draft",
+                "Processing",
+                "Processed",
+                "Error",
+                "Canceled",
+                "Posted"
+            ]
+        },
+        "type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "External",
+                "Electronic"
+            ]
+        },
+        "unappliedAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "updatedById": {
+            "required": false,
+            "type": "string"
+        },
+        "updatedDate": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "sort": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

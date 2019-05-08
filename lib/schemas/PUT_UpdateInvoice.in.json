@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "properties": {
+        "invoiceId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "autoPay": false,
+                "dueDate": "2017-02-20",
+                "transferredToAccounting": "Yes"
+            },
+            "properties": {
+                "autoPay": {
+                    "description": "Whether invoices are automatically picked up for processing in the corresponding payment run. \n\nBy default, invoices are automatically picked up for processing in the corresponding payment run.\n",
+                    "type": "boolean"
+                },
+                "dueDate": {
+                    "description": "The date by which the payment for this invoice is due. \n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "transferredToAccounting": {
+                    "description": "Whether the invoice was transferred to an external accounting system.\n",
+                    "enum": [
+                        "Processing",
+                        "Yes",
+                        "Error",
+                        "Ignore"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

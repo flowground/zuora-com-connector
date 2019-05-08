@@ -1,0 +1,140 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "AccountId": {
+                            "description": " The Zuora account ID associated with this contact. This field is not required when you use the Subscribe call. This field is required for all other calls.\n**Character limit: **32 **Values: **a valid account ID ",
+                            "type": "string"
+                        },
+                        "Address1": {
+                            "description": " The first line of the contact's address, which is often a street address or business name.\n**Character limit**: 255 **Values**: a string of 255 characters or fewer ",
+                            "type": "string"
+                        },
+                        "Address2": {
+                            "description": " The second line of the contact's address.\n**Character limit**: 255 **Values**: a string of 255 characters or fewer ",
+                            "type": "string"
+                        },
+                        "City": {
+                            "description": " The city of the contact's address.\n**Character limit**: 40 **Values: **a string of 40 characters or fewer ",
+                            "type": "string"
+                        },
+                        "Country": {
+                            "description": " The country of the contact's address. ",
+                            "type": "string"
+                        },
+                        "County": {
+                            "description": " The county. May optionally be used by Zuora Tax to calculate county tax.\n**Character limit**: 32 **Values**: a string of 32 characters or fewer ",
+                            "type": "string"
+                        },
+                        "Description": {
+                            "description": " A description for the contact.\n**Character limit**: 100 **Values**: a string of 100 characters or fewer ",
+                            "type": "string"
+                        },
+                        "Fax": {
+                            "description": " The contact's fax number.\n**Character limit**: 40 **Values**: a string of 40 characters or fewer ",
+                            "type": "string"
+                        },
+                        "FirstName": {
+                            "description": " The contact's first name.\n**Character limit**: 100 **Values**: a string of the contact's first name ",
+                            "type": "string"
+                        },
+                        "HomePhone": {
+                            "description": " The contact's home phone number.\n**Character limit**: 40 **Values**: a string of 40 characters or fewer ",
+                            "type": "string"
+                        },
+                        "LastName": {
+                            "description": " The contact's last name.\n**Character limit**: 100 **Values**: a string of 100 characters or fewer ",
+                            "type": "string"
+                        },
+                        "MobilePhone": {
+                            "description": " The contact's mobile phone number.\n**Character limit**: 40 **Values**: a string of 40 characters or fewer ",
+                            "type": "string"
+                        },
+                        "NickName": {
+                            "description": " A nickname for the contact.\n**Character limit**: 100 **Values**: a string of 100 characters or fewer ",
+                            "type": "string"
+                        },
+                        "OtherPhone": {
+                            "description": " An additional phone number for the contact.\n**Character limit**: 40 **Values**: a string of 40 characters or fewer ",
+                            "type": "string"
+                        },
+                        "OtherPhoneType": {
+                            "description": "The type of the `OtherPhone`. **Character limit**: 20 **Values**: `Work`, `Mobile`, `Home`, `Other` ",
+                            "type": "string"
+                        },
+                        "PersonalEmail": {
+                            "description": " The contact's personal email address.\n**Character limit**: 80 **Values**: a string of 80 characters or fewer ",
+                            "type": "string"
+                        },
+                        "PostalCode": {
+                            "description": " The zip code for the contact's address.\n**Character limit:** 20 **Values: **a string of 20 characters or fewer ",
+                            "type": "string"
+                        },
+                        "State": {
+                            "description": " The state or province of the contact's address. ",
+                            "type": "string"
+                        },
+                        "TaxRegion": {
+                            "description": "If using Zuora Tax rules ",
+                            "type": "string"
+                        },
+                        "WorkEmail": {
+                            "description": " The contact's business email address.\n**Character limit**: 80 **Values**: a string of 80 characters or fewer ",
+                            "type": "string"
+                        },
+                        "WorkPhone": {
+                            "description": " The contact's business phone number.\n**Character limit**: 40 **notes**: -- **Values**: a string of 40 characters or fewer ",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "AccountId",
+                        "FirstName",
+                        "LastName"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Contact object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Contact object.\n",
+                    "title": "contactFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "AccountId": "2c93808457d787030157e0321fdf4fab",
+                "Address1": "312 2nd Ave W",
+                "City": "Seattle",
+                "Country": "United States",
+                "Description": "desc",
+                "Fax": "123456",
+                "FirstName": "FN1476935164020",
+                "HomePhone": "86123456789",
+                "LastName": "LN1476935164020",
+                "MobilePhone": "8613312345678",
+                "NickName": "this is nick name",
+                "OtherPhone": "11111111111111111",
+                "OtherPhoneType": "Work",
+                "PersonalEmail": "home@example.com",
+                "PostalCode": "98119",
+                "State": "Washington",
+                "TaxRegion": "CA",
+                "WorkEmail": "work@example.com"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

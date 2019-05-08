@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "invoiceId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "applyEffectiveDate": "2017-02-20",
+                "memoDate": "2017-02-20"
+            },
+            "properties": {
+                "applyEffectiveDate": {
+                    "description": "The date when the credit memo was applied to the invoice that will be reversed, in `yyyy-mm-dd` format. The effective date must be later than or equal to the memo date.\n\nDefault value is today's date.\n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "memoDate": {
+                    "description": "The date when the credit memo was created, in `yyyy-mm-dd` format. The memo date must be later than or equal to the invoice date.\n\nDefault value is today's date.\n",
+                    "format": "date",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

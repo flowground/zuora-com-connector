@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "endDate": {
+                            "description": "The end date of the accounting period in yyyy-mm-dd format, for example, \"2016-02-19\".\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "fiscalYear": {
+                            "description": "Fiscal year of the accounting period in yyyy format, for example, \"2016\".\n",
+                            "type": "string"
+                        },
+                        "fiscal_quarter": {
+                            "description": "",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "name": {
+                            "description": "Name of the accounting period.\n\nAccounting period name must be unique. Maximum of 100 characters.\n",
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "Notes about the accounting period.\n\nMaximum of 255 characters.\n",
+                            "type": "string"
+                        },
+                        "startDate": {
+                            "description": "The start date of the accounting period in yyyy-mm-dd format, for example, \"2016-02-19\".\n",
+                            "format": "date",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "startDate",
+                        "endDate",
+                        "fiscalYear"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Accounting Period object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of an Accounting Period object.\n",
+                    "title": "accountingPeriodFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "endDate": "2016-06-30",
+                "fiscalYear": 2016,
+                "name": "Jun 2016",
+                "notes": "optional notes here",
+                "startDate": "2016-06-01"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

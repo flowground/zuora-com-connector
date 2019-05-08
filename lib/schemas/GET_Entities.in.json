@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "provisioned": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

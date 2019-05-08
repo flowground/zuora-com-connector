@@ -1,0 +1,69 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "autoPost": false,
+                "effectiveDate": "2017-05-23",
+                "subscriptionIds": [
+                    "4028905558b483220158b48983dd0015",
+                    "6028905558b483220158b68983dd0016"
+                ],
+                "targetDate": "2017-08-23"
+            },
+            "properties": {
+                "autoPost": {
+                    "default": false,
+                    "description": "Whether to automatically post the billing documents after the draft billing documents are generated. \n\nIf an error occurs during posting billing documents, the draft billing documents are not generated too.\n",
+                    "enum": [
+                        true,
+                        false
+                    ],
+                    "type": "boolean"
+                },
+                "autoRenew": {
+                    "default": false,
+                    "description": "Whether to automatically renew the subscriptions with **Auto Renew** set to **Yes**. \n",
+                    "enum": [
+                        true,
+                        false
+                    ],
+                    "type": "boolean"
+                },
+                "chargeTypeToExclude": {
+                    "description": "The types of the charges to be excluded from the generation of billing documents. The field values are case insensitive. Supported values include `onetime`, `recurring`, and `usage`. \n",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "effectiveDate": {
+                    "description": "The date on which to generate the billing documents, in `yyyy-mm-dd` format.\n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "subscriptionIds": {
+                    "description": "The IDs of the subscriptions that you want to create the billing documents for. \n",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "targetDate": {
+                    "description": "The date used to determine which charges are to be billed, in `yyyy-mm-dd` format.\n",
+                    "format": "date",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

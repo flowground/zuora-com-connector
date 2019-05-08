@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "properties": {
+        "documentType": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "Invoice",
+                "CreditMemo",
+                "DebitMemo"
+            ]
+        },
+        "documentId": {
+            "required": true,
+            "type": "string"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

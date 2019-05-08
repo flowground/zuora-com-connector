@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "paymentRunId": {
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

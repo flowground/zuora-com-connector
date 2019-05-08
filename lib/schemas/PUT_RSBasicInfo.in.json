@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "notes": {
+                            "description": "Additional information about this record.\n",
+                            "type": "string"
+                        },
+                        "referenceId": {
+                            "description": "Reference ID is used only in the custom unlimited rule to create a revenue schedule. In this scenario, the revenue schedule is not linked to an invoice item or invoice item adjustment.\n\nUse this field only when the revenue schedule is not linked to an invoice item or invoice item adjustment, such as for revenue schedules based on the Custom - Unlimited recognition model.\n",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Revenue Schedule object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Revenue Schedule object.\n",
+                    "title": "revenueScheduleFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "notes": "change recognition term",
+                "referenceId": "Reference ID"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "rs_number": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,112 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "AccountingCode": {
+                            "description": " The Chart of Accounts ",
+                            "type": "string"
+                        },
+                        "ExemptAmount": {
+                            "description": " The amount of taxes or VAT for which the customer has an exemption.\n**Character limit**: 16 **Values**: a decimal value ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "InvoiceItemId": {
+                            "description": " The ID of the specific invoice item that the taxation information applies to.\n**Character limit**: 32 **Values**: a valid invoice item ID ",
+                            "type": "string"
+                        },
+                        "Jurisdiction": {
+                            "description": " The jurisdiction that applies the tax or VAT. This value is typically a state, province, county, or city.\n**Character limit**: 32 **Values**: a string of 32 characterrs or fewer ",
+                            "type": "string"
+                        },
+                        "LocationCode": {
+                            "description": " The identifier for the location based on the value of the `TaxCode` field.\n**Character limit**: 32 **Values**: automatically generated ",
+                            "type": "string"
+                        },
+                        "Name": {
+                            "description": " The name of the tax rate, such as sales tax or GST. This name is displayed on invoices.\n**Character limit**: 128 **Values**: a string of 128 characters or fewer ",
+                            "type": "string"
+                        },
+                        "TaxAmount": {
+                            "description": " The amount of the tax applied to the charge.\n**Character limit**: 16 **Values**: a decimal value ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "TaxCode": {
+                            "description": " The tax code identifies which tax rules and tax rates to apply to a specific charge.\n**Character limit**: 32 **Values**: a string of 32 characters or fewer ",
+                            "type": "string"
+                        },
+                        "TaxCodeDescription": {
+                            "description": " The description for the tax code.\n**Character limit**: 255 **Values**: a string of 255 characters or fewer ",
+                            "type": "string"
+                        },
+                        "TaxDate": {
+                            "description": " The date that the tax is applied to the charge, in `yyyy-mm-dd` format.\n**Character limit**: 29 ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "TaxRate": {
+                            "description": " The tax rate applied to the charge.\n**Character limit**: 16 **Values**: a valid decimal value ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "TaxRateDescription": {
+                            "description": " The description of the tax rate.\n**Character limit**: 255 **Values**: a string of 255 characters or fewer ",
+                            "type": "string"
+                        },
+                        "TaxRateType": {
+                            "description": " The type of the tax rate applied to the charge.\n**Character limit**: 10 **Values**: `Percentage`, `FlatFee` ",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "InvoiceItemId",
+                        "Jurisdiction",
+                        "Name",
+                        "TaxAmount",
+                        "TaxRate",
+                        "TaxDate",
+                        "TaxRateType"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Taxation Item object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Taxation Item object.\n",
+                    "title": "taxationItemFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "AccountingCode": "Usage Revenue",
+                "ExemptAmount": 50,
+                "InvoiceItemId": "2c93808457d787030157e0306cd43a88",
+                "Jurisdiction": "test",
+                "LocationCode": "code - 001",
+                "Name": "test",
+                "TaxAmount": 3,
+                "TaxCode": "taxcode",
+                "TaxCodeDescription": "description",
+                "TaxDate": "2016-10-20",
+                "TaxMode": "TaxExclusive",
+                "TaxRate": 3,
+                "TaxRateDescription": "test",
+                "TaxRateType": "FlatFee"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

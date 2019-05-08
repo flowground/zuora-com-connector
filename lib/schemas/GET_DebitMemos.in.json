@@ -1,0 +1,106 @@
+{
+    "type": "object",
+    "properties": {
+        "pageSize": {
+            "required": false,
+            "type": "integer",
+            "maximum": 40,
+            "default": 20
+        },
+        "accountId": {
+            "required": false,
+            "type": "string"
+        },
+        "amount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "balance": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "beAppliedAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "createdById": {
+            "required": false,
+            "type": "string"
+        },
+        "createdDate": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "currency": {
+            "required": false,
+            "type": "string"
+        },
+        "debitMemoDate": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "dueDate": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "number": {
+            "required": false,
+            "type": "string"
+        },
+        "referredInvoiceId": {
+            "required": false,
+            "type": "string"
+        },
+        "status": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "Draft",
+                "Posted",
+                "Canceled",
+                "Error",
+                "PendingForTax",
+                "Generating",
+                "CancelInProgress"
+            ]
+        },
+        "targetDate": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "taxAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "totalTaxExemptAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "updatedById": {
+            "required": false,
+            "type": "string"
+        },
+        "updatedDate": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "sort": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

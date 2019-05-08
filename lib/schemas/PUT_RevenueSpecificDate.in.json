@@ -1,0 +1,87 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "amount": {
+                            "description": "The revenue schedule amount, which is the sum of all revenue items. This field cannot be null and must be formatted based on the currency, such as `JPY 30` or `USD 30.15`. Test out the currency to ensure you are using the proper formatting otherwise, the response will fail and this error message is returned: `Allocation amount with wrong decimal places.`\n",
+                            "format": "decimal",
+                            "type": "string"
+                        },
+                        "distributeOn": {
+                            "description": "The recognition date on which to distribute revenue for milestone-based recognition.\n\nType: date in `yyyy-mm-dd` format.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "distributionType": {
+                            "description": "How to distribute the revenue for milestone-based recognition. ",
+                            "enum": [
+                                "specific date (delta fixed amount)",
+                                "specific date (delta percent total)",
+                                "specific date (delta percent undistributed)"
+                            ],
+                            "type": "string"
+                        },
+                        "eventType": {
+                            "description": "Label of the revenue event type. Revenue event type labels can be duplicated. You can configure your revenue event type labels by navigating to **Settings > Finance > Configure Revenue Event Types** in the Zuora UI.\n\nNote that `Credit Memo Posted` and `Debit Memo Posted` are only available if you enable the Invoice Settlement feature.\n",
+                            "enum": [
+                                "Invoice Posted",
+                                "Invoice Item Adjustment Created",
+                                "Invoice Canceled",
+                                "Invoice Item Adjustment Canceled",
+                                "Revenue Distributed",
+                                "Credit Memo Posted",
+                                "Debit Memo Posted"
+                            ],
+                            "type": "string"
+                        },
+                        "eventTypeSystemId": {
+                            "description": "System ID of the revenue event type. Each eventType has a unique system ID. You can configure your revenue event type system IDs by navigating to **Settings > Finance > Configure Revenue Event Types** in the Zuora UI.\n",
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "Additional information about this record.\n",
+                            "type": "string"
+                        },
+                        "percentage": {
+                            "description": "Percentage of the total recognition amount or total undistributed to distribute.\n\nRequired if distributionType is either:\n* specific date (delta percent total)\n* specific date (delta percent undistributed)\n",
+                            "format": "decimal",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "distributionType",
+                        "distributeOn"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Revenue Event object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Revenue Event object.\n",
+                    "title": "revenueEventFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "amount": "1000.00",
+                "distributeOn": "2016-02-03",
+                "distributionType": "specific date (delta fixed amount)",
+                "eventType": "Revenue Distributed",
+                "eventTypeSystemId": "RevenueDistributed__z",
+                "notes": "service delivered and accepted by customer"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "rs_number": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

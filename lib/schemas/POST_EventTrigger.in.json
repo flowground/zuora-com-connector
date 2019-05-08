@@ -1,0 +1,87 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "active": true,
+                "baseObject": "Invoice",
+                "condition": "changeType == 'UPDATE' && Invoice.Status == 'Posted' && Invoice.Status_old != 'Posted' && Invoice.Amount > 1000",
+                "description": "Trigger an event when an invoice is posted with amount over 1000",
+                "eventType": {
+                    "description": "An invoice is posted with amount over 1000",
+                    "displayName": "Large Invoice Posted",
+                    "name": "LargeInvoicePosted"
+                }
+            },
+            "properties": {
+                "active": {
+                    "description": "The status of the event trigger.",
+                    "type": "boolean"
+                },
+                "baseObject": {
+                    "description": "The base object that the trigger rule is defined upon. Should be specified in the pattern: ^[A-Z][\\\\w\\\\-]*$",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "condition": {
+                    "description": "The JEXL expression to be evaluated against object changes. See above for more information and an example.",
+                    "maxLength": 5000,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "description": {
+                    "description": "The description of the event trigger.",
+                    "maxLength": 1000,
+                    "type": "string"
+                },
+                "eventType": {
+                    "properties": {
+                        "description": {
+                            "description": "The description of the event type.",
+                            "maxLength": 1000,
+                            "type": "string"
+                        },
+                        "displayName": {
+                            "description": "The display name for the event type.",
+                            "maxLength": 500,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The name of the event. Should be unique, contain no space, and be in the pattern: ^[A-Za-z]{1,}[\\\\w\\\\-]*$",
+                            "maxLength": 200,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "displayName"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "baseObject",
+                "condition",
+                "eventType",
+                "active"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

@@ -1,0 +1,125 @@
+{
+    "type": "object",
+    "properties": {
+        "pageSize": {
+            "required": false,
+            "type": "integer",
+            "maximum": 40,
+            "default": 20
+        },
+        "accountId": {
+            "required": false,
+            "type": "string"
+        },
+        "amount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "appliedAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "autoApplyUponPosting": {
+            "required": false,
+            "type": "boolean"
+        },
+        "createdById": {
+            "required": false,
+            "type": "string"
+        },
+        "createdDate": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "creditMemoDate": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "currency": {
+            "required": false,
+            "type": "string"
+        },
+        "excludeFromAutoApplyRules": {
+            "required": false,
+            "type": "boolean"
+        },
+        "number": {
+            "required": false,
+            "type": "string"
+        },
+        "referredInvoiceId": {
+            "required": false,
+            "type": "string"
+        },
+        "refundAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "status": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "Draft",
+                "Posted",
+                "Canceled",
+                "Error",
+                "PendingForTax",
+                "Generating",
+                "CancelInProgress"
+            ]
+        },
+        "targetDate": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "taxAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "totalTaxExemptAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "transferredToAccounting": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "Processing",
+                "Yes",
+                "No",
+                "Error",
+                "Ignore"
+            ]
+        },
+        "unappliedAmount": {
+            "required": false,
+            "type": "number",
+            "format": "double"
+        },
+        "updatedById": {
+            "required": false,
+            "type": "string"
+        },
+        "updatedDate": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "sort": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

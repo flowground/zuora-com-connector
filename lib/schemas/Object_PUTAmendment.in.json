@@ -1,0 +1,119 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "AutoRenew": {
+                            "description": " Determines whether the subscription is automatically renewed, or whether it expires at the end of the term and needs to be manually renewed. **Required:** For amendment of type TermsAndConditions when changing the automatic renewal status of a subscription.\n**Values**: true, false ",
+                            "type": "boolean"
+                        },
+                        "ContractEffectiveDate": {
+                            "description": " The date when the amendment's changes become effective for billing purposes.\n**Version notes**: -- ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "CurrentTerm": {
+                            "description": " The length of the period for the current subscription term. This field can be updated when Status is `Draft`.\n**Required**: Only if the value of the Type field is set to `TermsAndConditions` and TermType is set to `TERMED`. This field is not required if TermType is set to `EVERGREEN`.\n**Character limit**: **Values**: a valid number ",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "CurrentTermPeriodType": {
+                            "description": " The period type for the current subscription term. **Values**:\n\n- `Month` (default)\n- `Year`\n- `Day`\n- `Week`\n**Note**:\n\n- This field can be updated when Status is `Draft`.\n- This field is used with the CurrentTerm field to specify the current subscription term.\n",
+                            "type": "string"
+                        },
+                        "CustomerAcceptanceDate": {
+                            "description": " The date when the customer accepts the amendment's changes to the subscription. **Required**: Only if the value of the Status field is set to PendingAcceptance.\n**Version notes**: -- ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "Description": {
+                            "description": " A description of the amendment.\n**Character limit**: 500 **Values**: maximum 500 characters ",
+                            "type": "string"
+                        },
+                        "EffectiveDate": {
+                            "description": " The date when the amendment's changes take effective. This field validates that the amendment's changes are within valid ranges of products and product rate plans.\n**Required**: For the cancellation amendments. Optional for other types of amendments.\n**Version notes**: -- ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "Name": {
+                            "description": " The name of the amendment.\n**Character limit**: 100 **Values**: a string of 100 characters or fewer ",
+                            "type": "string"
+                        },
+                        "RenewalSetting": {
+                            "description": " Specifies whether a termed subscription will remain termed or change to evergreen when it is renewed.\n**Required**: If TermType is Termed **Values**: RENEW_WITH_SPECIFIC_TERM (default), RENEW_TO_EVERGREEN ",
+                            "type": "string"
+                        },
+                        "RenewalTerm": {
+                            "description": " The term of renewal for the amended subscription. This field can be updated when Status is `Draft`.\n**Required**: Only if the value of the Type field is set to `TermsAndConditions`.\n**Character limit**: **Values:** a valid number ",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "RenewalTermPeriodType": {
+                            "description": " The period type for the subscription renewal term. This field can be updated when Status is `Draft`.\n**Required**: Only if the value of the Type field is set to `TermsAndConditions`. This field is used with the RenewalTerm field to specify the subscription renewal term.\n**Values**:\n\n- `Month` (default)\n- `Year`\n- `Day`\n- `Week`\n",
+                            "type": "string"
+                        },
+                        "ServiceActivationDate": {
+                            "description": " The date when service is activated.\n**Required**: Only if the value of the Status field is set to PendingActivation.\n**Version notes**: -- ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "SpecificUpdateDate": {
+                            "description": " The date when the UpdateProduct amendment takes effect. This field is only applicable if there is already a future-dated UpdateProduct amendment on the subscription.\n**Required**: Only for the UpdateProduct amendments if there is already a future-dated UpdateProduct amendment on the subscription.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "Status": {
+                            "description": " The status of the amendment. Type: string (enum) **Character limit**: 17 **Values**: one of the following:\n\n- Draft (default, if left null)\n- Pending Activation\n- Pending Acceptance\n- Completed\n",
+                            "type": "string"
+                        },
+                        "SubscriptionId": {
+                            "description": " The ID of the subscription that the amendment changes.\n**Character limit**: 32 **Values**: a valid subscription ID ",
+                            "type": "string"
+                        },
+                        "TermStartDate": {
+                            "description": " The date when the new terms and conditions take effect.\n**Required**: Only if the value of the Type field is set to TermsAndConditions.\n**Version notes**: -- ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "TermType": {
+                            "description": " Indicates if the subscription isTERMED or EVERGREEN.\n\n- A TERMED subscription has an expiration date, and must be manually renewed.\n- An EVERGREEN subscription doesn't have an expiration date, and must be manually ended.\n\n**Required**: Only when as part of an amendment of type TermsAndConditions &#65279;to change the term type of a subscription. Type: string **Character limit**: 9 **Values**: TERMED, EVERGREEN ",
+                            "type": "string"
+                        },
+                        "Type": {
+                            "description": " The type of amendment.\n**Character limit**: 18 **Values**: one of the following:\n\n- Cancellation\n- NewProduct\n- OwnerTransfer\n- RemoveProduct\n- Renewal\n- UpdateProduct\n- TermsAndConditions\n- SuspendSubscription (This value is in **Limited Availability**.)\n- ResumeSubscription (This value is in **Limited Availability**.)\n",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Amendment object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of an Amendment object.\n",
+                    "title": "amendmentFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "Id": "2c93808457d787030157e02e430c1f15",
+                "Name": "AMtssl1bnuq1_new"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

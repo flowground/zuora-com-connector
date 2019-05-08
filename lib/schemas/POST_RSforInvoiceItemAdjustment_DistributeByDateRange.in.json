@@ -1,0 +1,110 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "distributionType": {
+                            "description": "How you want to distribute the revenue. \n\n\n* Daily Distribution: Distributes revenue evenly across each day between the recognitionStart and recognitionEnd dates.\n* Monthly Distribution (Back Load): Back loads the revenue so you distribute the monthly amount in the partial month in the end only.\n* Monthly Distribution (Front Load): Front loads the revenue so you distribute the monthly amount in the partial month in the beginning only.\n* Monthly Distribution (Proration by Days): Splits the revenue amount between the two partial months.\n\n**Note:** To use any of the Monthly Distribution options, you must have the \"Monthly recognition over time\" model enabled in **Settings > Finance > Manage Revenue Recognition Models** in the Zuora UI.\n",
+                            "enum": [
+                                "Daily Distribution",
+                                "Monthly Distribution (Back Load)",
+                                "Monthly Distribution (Front Load)",
+                                "Monthly Distribution (Proration by Days)"
+                            ],
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "Additional information about this record.\n",
+                            "type": "string"
+                        },
+                        "recognitionEnd": {
+                            "description": "The end date of a recognition period in `yyyy-mm-dd` format. \n\nThe maximum difference between the `recognitionStart` and `recognitionEnd` date fields is equal to 250 multiplied by the length of an accounting period.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "recognitionStart": {
+                            "description": "The start date of a recognition period in `yyyy-mm-dd` format.\n\nIf there is a closed accounting period between the `recognitionStart` and `recognitionEnd` dates, the revenue that would be placed in the closed accounting period is instead placed in the next open accounting period.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "revenueEvent": {
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "eventType": {
+                                            "description": "Label of the revenue event type. Revenue event type labels can be duplicated. You can configure your revenue event type labels by navigating to **Settings > Finance > Configure Revenue Event Types** in the Zuora UI.\n\nNote that `Credit Memo Posted` and `Debit Memo Posted` are only available if you enable the Invoice Settlement feature.\n",
+                                            "enum": [
+                                                "Invoice Posted",
+                                                "Invoice Item Adjustment Created",
+                                                "Invoice Canceled",
+                                                "Invoice Item Adjustment Canceled",
+                                                "Revenue Distributed",
+                                                "Credit Memo Posted",
+                                                "Debit Memo Posted"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "eventTypeSystemId": {
+                                            "description": "System ID of the revenue event type. Each eventType has a unique system ID. You can configure your revenue event type system IDs by navigating to **Settings > Finance > Configure Revenue Event Types** in the Zuora UI.\n\nRequired only if there is more than one revenue event type with the same label.\n",
+                                            "type": "string"
+                                        },
+                                        "notes": {
+                                            "description": "",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "additionalProperties": {
+                                        "description": "Custom fields of the Revenue Event object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                    },
+                                    "description": "Container for custom fields of a Revenue Event object.\n",
+                                    "title": "revenueEventFieldsCustom",
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "Must specify at least one of `eventType` or `eventTypeSystemId`.\n",
+                            "title": "RevenueEvent"
+                        }
+                    },
+                    "required": [
+                        "recognitionEnd",
+                        "recognitionStart",
+                        "revenueEvent"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Revenue Schedule object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Revenue Schedule object.\n",
+                    "title": "revenueScheduleFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "distributionType": "Daily distribution",
+                "notes": "Manually distribute revenue by usage",
+                "recognitionEnd": "2016-12-31",
+                "recognitionStart": "2016-12-1",
+                "revenueEvent": {
+                    "eventType": "Revenue Distributed",
+                    "eventTypeSystemId": "RevenueDistributed__z",
+                    "notes": ""
+                }
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "invoice_item_adj_key": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

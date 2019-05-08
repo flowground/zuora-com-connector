@@ -1,0 +1,80 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "AutoEmail": "false",
+                "AutoPost": "false",
+                "AutoRenewal": "false",
+                "Batch": "Batch1",
+                "BillCycleDay": "2",
+                "ChargeTypeToExclude": "OneTime, Usage",
+                "InvoiceDate": "2017-02-04",
+                "NoEmailForZeroAmountInvoice": "false",
+                "TargetDate": "2017-02-04"
+            },
+            "properties": {
+                "AccountId": {
+                    "description": "ID of the account used for single account bill run.\n\nThis field is only required if you create ad hoc bill run for a single customer account.\n\n**Character limit:** 32\n",
+                    "type": "string"
+                },
+                "AutoEmail": {
+                    "default": false,
+                    "description": "Determines whether to auto send email or not by this bill run once the bill run completes.\n\n**Note:** You must enable the [Support Bill Run Auto-Post Billing](https://knowledgecenter.zuora.com/CB_Billing/Billing_Settings/Define_Billing_Rules) rule to pass this field.\n",
+                    "type": "boolean"
+                },
+                "AutoPost": {
+                    "default": false,
+                    "description": "Determines whether to auto post bill run or not once the bill run completes.\n\n**Note:** You must enable the [Support Bill Run Auto-Post Billing](https://knowledgecenter.zuora.com/CB_Billing/Billing_Settings/Define_Billing_Rules) rule to pass this field.\n",
+                    "type": "boolean"
+                },
+                "AutoRenewal": {
+                    "default": false,
+                    "description": "Determines whether to auto renew subscription or not by this bill run once the bill run completes.\n",
+                    "type": "boolean"
+                },
+                "Batch": {
+                    "description": "Batch of accounts for this bill run. \n\nWhen creating ad hoc bill run for multiple customer accounts, this field is only required if the `BillCycleDay`\n field is not specified.\n\n**Character limit:** 20\n\n**Values:** AllBatches or Batchn where n is a number between 1 and 50.\n",
+                    "type": "string"
+                },
+                "BillCycleDay": {
+                    "description": "The day of the bill cycle.\n\nWhen creating ad hoc bill run for multiple customer accounts, this field is only required if the `Batch` field is not specified.\n\n**Character limit:** 32\n\n**Values:** `AllBillCycleDays` or 01 - 31.\n",
+                    "type": "string"
+                },
+                "ChargeTypeToExclude": {
+                    "description": "Charge type or types to be excluded, separated with comma.\n\n**Possible Values:** `OneTime`, `Recurring`, `Usage`, or a combination of these values. \n\n**Character limit:** 50\n",
+                    "type": "string"
+                },
+                "InvoiceDate": {
+                    "description": "Invoice date for this bill run.\n\n**Character limit:** 29\n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "NoEmailForZeroAmountInvoice": {
+                    "default": false,
+                    "description": "Determines whether to suppress email for invoices with zero total or not for this bill run once the bill run completes. (Do not email invoices with 0 Invoice Total).\n",
+                    "type": "boolean"
+                },
+                "TargetDate": {
+                    "description": "Target date for this bill run. See [Create Bill Run](https://knowledgecenter.zuora.com/CB_Billing/J_Billing_Operations/G_Bill_Runs/Creating_Bill_Runs) for more information.\n\n**Character limit:** 29\n",
+                    "format": "date",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "InvoiceDate",
+                "TargetDate"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "targetEntityId": "8a80825556ff28a4015708ba29312ecc"
+            },
+            "properties": {
+                "targetEntityId": {
+                    "description": "The ID of the target entity that you want to connect with. You can get the entity Id using the Multi-entity: Get entities call.\n",
+                    "maxLength": 32,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "targetEntityId"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

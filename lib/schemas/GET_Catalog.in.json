@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "pageSize": {
+            "required": false,
+            "type": "integer",
+            "maximum": 40,
+            "default": 10
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "zuora_version": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

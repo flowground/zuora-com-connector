@@ -1,0 +1,268 @@
+{
+    "type": "object",
+    "properties": {
+        "invoiceId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "autoPay": {
+                            "description": "Whether debit memos are automatically picked up for processing in the corresponding payment run. \n\nBy default, debit memos are automatically picked up for processing in the corresponding payment run.\n",
+                            "type": "boolean"
+                        },
+                        "comment": {
+                            "description": "Comments about the debit memo. \n",
+                            "maxLength": 255,
+                            "minLength": 0,
+                            "type": "string"
+                        },
+                        "effectiveDate": {
+                            "description": "The date when the debit memo takes effect.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "invoiceId": {
+                            "description": "The ID of the invoice that the debit memo is created from.\n",
+                            "type": "string"
+                        },
+                        "items": {
+                            "description": "Container for items.\n",
+                            "items": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "amount": {
+                                                "description": "The amount of the invoice item.\n",
+                                                "format": "double",
+                                                "type": "number"
+                                            },
+                                            "comment": {
+                                                "description": "Comments about the invoice item.\n",
+                                                "type": "string"
+                                            },
+                                            "financeInformation": {
+                                                "description": "Container for the finance information related to the invoice item.\n",
+                                                "properties": {
+                                                    "deferredRevenueAccountingCode": {
+                                                        "description": "The accounting code for the deferred revenue, such as Monthly Recurring Liability.\n",
+                                                        "maxLength": 100,
+                                                        "minLength": 0,
+                                                        "type": "string"
+                                                    },
+                                                    "recognizedRevenueAccountingCode": {
+                                                        "description": "The accounting code for the recognized revenue, such as Monthly Recurring Charges or Overage Charges.\n",
+                                                        "maxLength": 100,
+                                                        "minLength": 0,
+                                                        "type": "string"
+                                                    },
+                                                    "revenueRecognitionRuleName": {
+                                                        "description": "The name of the revenue recognition rule governing the revenue schedule.\n",
+                                                        "maxLength": 100,
+                                                        "minLength": 0,
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "invoiceItemId": {
+                                                "description": "The ID of the invoice item.\n",
+                                                "type": "string"
+                                            },
+                                            "serviceEndDate": {
+                                                "description": "The service end date of the debit memo item.\n",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "serviceStartDate": {
+                                                "description": "The service start date of the debit memo item. \n",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "skuName": {
+                                                "description": "The name of the SKU.\n",
+                                                "type": "string"
+                                            },
+                                            "taxItems": {
+                                                "description": "Container for taxation items.\n",
+                                                "items": {
+                                                    "properties": {
+                                                        "amount": {
+                                                            "description": "The amount of the debit memo taxation item.\n",
+                                                            "format": "double",
+                                                            "type": "number"
+                                                        },
+                                                        "financeInformation": {
+                                                            "description": "Container for the finance information related to the source taxation item.\n",
+                                                            "properties": {
+                                                                "salesTaxPayableAccountingCode": {
+                                                                    "description": "The accounting code for the sales taxes payable.\n",
+                                                                    "maxLength": 100,
+                                                                    "minLength": 0,
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "jurisdiction": {
+                                                            "description": "The jurisdiction that applies the tax or VAT. This value is typically a state, province, county, or city.\n",
+                                                            "type": "string"
+                                                        },
+                                                        "locationCode": {
+                                                            "description": "The identifier for the location based on the value of the `taxCode` field.\n",
+                                                            "type": "string"
+                                                        },
+                                                        "sourceTaxItemId": {
+                                                            "description": "The ID of the source taxation item.\n",
+                                                            "type": "string"
+                                                        },
+                                                        "taxCode": {
+                                                            "description": "The tax code identifies which tax rules and tax rates to apply to a specific debit memo.\n",
+                                                            "type": "string"
+                                                        },
+                                                        "taxCodeDescription": {
+                                                            "description": "The description of the tax code.\n",
+                                                            "type": "string"
+                                                        },
+                                                        "taxDate": {
+                                                            "description": "The date that the tax is applied to the debit memo, in `yyyy-mm-dd` format.\n",
+                                                            "format": "date",
+                                                            "type": "string"
+                                                        },
+                                                        "taxExemptAmount": {
+                                                            "description": "The amount of taxes or VAT for which the customer has an exemption.\n",
+                                                            "format": "double",
+                                                            "type": "number"
+                                                        },
+                                                        "taxName": {
+                                                            "description": "The name of taxation.\n",
+                                                            "type": "string"
+                                                        },
+                                                        "taxRate": {
+                                                            "description": "The tax rate applied to the debit memo.\n",
+                                                            "format": "double",
+                                                            "type": "number"
+                                                        },
+                                                        "taxRateDescription": {
+                                                            "description": "The description of the tax rate.\n",
+                                                            "type": "string"
+                                                        },
+                                                        "taxRateType": {
+                                                            "description": "The type of the tax rate applied to the debit memo.\n",
+                                                            "enum": [
+                                                                "Percentage",
+                                                                "FlatFee"
+                                                            ],
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "title": "taxItems",
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "unitOfMeasure": {
+                                                "description": "The definable unit that you measure when determining charges.\n",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "skuName",
+                                            "amount"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": {
+                                            "description": "Custom fields of the Debit Memo Item object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                        },
+                                        "description": "Container for custom fields of a Debit Memo Item object.\n",
+                                        "title": "debitMemoItemFieldsCustom",
+                                        "type": "object"
+                                    }
+                                ],
+                                "title": "items"
+                            },
+                            "type": "array"
+                        },
+                        "reasonCode": {
+                            "description": "A code identifying the reason for the transaction. The value must be an existing reason code or empty. If you do not specify a value, Zuora uses the default reason code.\n",
+                            "type": "string"
+                        },
+                        "taxAutoCalculation": {
+                            "default": true,
+                            "description": "Whether to automatically calculate taxes in the debit memo.\n",
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Debit Memo fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the debit memo's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the debit memo was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "debitMemoFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Debit Memo object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Debit Memo object.\n",
+                    "title": "debitMemoFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "autoPay": true,
+                "comment": "the comment",
+                "effectiveDate": "2017-11-30",
+                "items": {
+                    "amount": 0,
+                    "comment": "This is comment!",
+                    "invoiceItemId": "402890555a7d4022015a7dadb3b700a6",
+                    "serviceEndDate": "2017-11-30",
+                    "serviceStartDate": "2017-11-01",
+                    "skuName": "SKU-30",
+                    "taxItems": [
+                        {
+                            "amount": 0.01,
+                            "jurisdiction": "CALIFORNIA",
+                            "locationCode": "06",
+                            "sourceTaxItemId": "402890555a7d4022015a7dadb39b00a1",
+                            "taxDate": "2017-11-30",
+                            "taxExemptAmount": 0,
+                            "taxName": "STATE TAX",
+                            "taxRate": 0.0625,
+                            "taxRateDescription": "This is tax rate description!",
+                            "taxRateType": "Percentage"
+                        }
+                    ],
+                    "unitOfMeasure": "Test_UOM"
+                },
+                "reasonCode": "Charge Dispute"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

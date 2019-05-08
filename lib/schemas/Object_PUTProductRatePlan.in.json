@@ -1,0 +1,140 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "Description": {
+                            "description": "A description of the product rate plan. **Character limit**: 500 **Values**: a string of 500 characters or fewer ",
+                            "type": "string"
+                        },
+                        "EffectiveEndDate": {
+                            "description": " The date when the product rate plan expires and can't be subscribed to, in `yyyy-mm-dd` format.\n**Character limit**: 29 ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "EffectiveStartDate": {
+                            "description": " The date when the product rate plan becomes available and can be subscribed to, in `yyyy-mm-dd` format.\n**Character limit**: 29 ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "Name": {
+                            "description": "The name of the product rate plan. The name doesn't have to be unique in a Product Catalog, but the name has to be unique within a product. **Character limit**: 100 **Values**: a string of 100 characters or fewer ",
+                            "type": "string"
+                        },
+                        "ProductId": {
+                            "description": "The ID of the product that contains the product rate plan. **Character limit**: 32 **Values**: a string of 32 characters or fewer ",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Product Rate Plan fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "BillingPeriod__NS": {
+                            "description": "Billing period associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Monthly",
+                                "Quarterly",
+                                "Annual",
+                                "Semi-Annual"
+                            ],
+                            "type": "string"
+                        },
+                        "Class__NS": {
+                            "description": "Class associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Department__NS": {
+                            "description": "Department associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IncludeChildren__NS": {
+                            "description": "Specifies whether the corresponding item in NetSuite is visible under child subsidiaries. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Yes",
+                                "No"
+                            ],
+                            "type": "string"
+                        },
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the product rate plan's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "ItemType__NS": {
+                            "description": "Type of item that is created in NetSuite for the product rate plan. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Inventory",
+                                "Non Inventory",
+                                "Service"
+                            ],
+                            "type": "string"
+                        },
+                        "Location__NS": {
+                            "description": "Location associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "MultiCurrencyPrice__NS": {
+                            "description": "Multi-currency price associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Price__NS": {
+                            "description": "Price associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Subsidiary__NS": {
+                            "description": "Subsidiary associated with the corresponding item in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the product rate plan was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "productRatePlanFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Product Rate Plan object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Product Rate Plan object.\n",
+                    "title": "productRatePlanFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "Id": "2c93808457d787030157e02da0d91852",
+                "Name": "ProductRatePlan1476934869186_new"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

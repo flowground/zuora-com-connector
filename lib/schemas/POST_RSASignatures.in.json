@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "method": "POST",
+                "pageId": "2c92c0f855e2b4630155ec9e6a1b6eec",
+                "uri": "https://apisandbox.zuora.com/apps/PublicHostedPageLite.do"
+            },
+            "properties": {
+                "method": {
+                    "description": "The type of the request. Set it to POST.\n",
+                    "type": "string"
+                },
+                "pageId": {
+                    "description": "The page id of your Payment Pages 2.0 form. Click **Show Page Id** next to the Payment Page name in the Hosted Page List to retrieve the page id.\n",
+                    "type": "string"
+                },
+                "uri": {
+                    "description": "The URL that the Payment Page will be served from. Set it to:\n\n* https://www.zuora.com/apps/PublicHostedPageLite.do if you are on the production environment.\n* https://apisandbox.zuora.com/apps/PublicHostedPageLite.do if you are on the API Sandbox environment. ",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "method",
+                "pageId",
+                "uri"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

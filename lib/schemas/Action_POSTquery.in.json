@@ -1,0 +1,39 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "queryString": "select AccountId, AccountingCode, AdjustmentDate, AdjustmentNumber, Amount, CancelledById, CancelledDate, Comment, CreatedById, CreatedDate, InvoiceId, InvoiceItemName, InvoiceNumber, ReferenceId, ServiceEndDate, ServiceStartDate, SourceId, SourceType, Status, TransferredToAccounting, Type, UpdatedById, UpdatedDate, ReasonCode from InvoiceItemAdjustment where Id = '2c93808457d787030157e0324aea5158'"
+            },
+            "properties": {
+                "conf": {
+                    "description": "",
+                    "properties": {
+                        "batchSize": {
+                            "description": "Defines the batch size of the query result. The range is 1 - 2000 (inclusive). If a value higher than 2000 is submitted, only 2000 results are returned.\n",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                "queryString": {
+                    "description": "[ZOQL](https://knowledgecenter.zuora.com/DC_Developers/K_Zuora_Object_Query_Language) expression that specifies the object to query, the fields to retrieve, and any filters.\n\n**Note:** When querying one time charges from ProductRatePlanCharge, you need to specify the `ChargeType` value as `One-Time` rather than `OneTime`.\n",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "queryString"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

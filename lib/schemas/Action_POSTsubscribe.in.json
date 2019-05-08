@@ -1,0 +1,1822 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "subscribes": [
+                    {
+                        "Account": {
+                            "AccountNumber": "A00000085",
+                            "AutoPay": false,
+                            "Batch": "Batch1",
+                            "BillCycleDay": 1,
+                            "Currency": "USD",
+                            "Name": "West Corporation",
+                            "PaymentTerm": "Due Upon Receipt"
+                        },
+                        "BillToContact": {
+                            "Address1": "312 2nd Ave W",
+                            "City": "Seattle",
+                            "Country": "United States",
+                            "FirstName": "Sarah",
+                            "LastName": "Smith",
+                            "PostalCode": "98119",
+                            "State": "Washington",
+                            "WorkEmail": "sarah@example.com"
+                        },
+                        "PaymentMethod": {
+                            "CreditCardAddress1": "312 2nd Ave W",
+                            "CreditCardCity": "Seattle",
+                            "CreditCardCountry": "United States",
+                            "CreditCardExpirationMonth": 12,
+                            "CreditCardExpirationYear": 2020,
+                            "CreditCardHolderName": "Ms Sarah Smith",
+                            "CreditCardNumber": "4111111111111111",
+                            "CreditCardPostalCode": "98119",
+                            "CreditCardState": "Washington",
+                            "CreditCardType": "Visa",
+                            "Type": "CreditCard"
+                        },
+                        "SubscribeOptions": {
+                            "GenerateInvoice": true,
+                            "ProcessPayments": false
+                        },
+                        "SubscriptionData": {
+                            "RatePlanData": [
+                                {
+                                    "RatePlan": {
+                                        "ProductRatePlanId": "2c92c0f966537bf001666218919620cc"
+                                    },
+                                    "RatePlanChargeData": [
+                                        {
+                                            "RatePlanCharge": {
+                                                "ChargeModel": "Discount-Percentage",
+                                                "DiscountPercentage": "6.75",
+                                                "ProductRatePlanChargeId": "2c92c0f866536da301666222643809b4",
+                                                "Quantity": 200
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "Subscription": {
+                                "AutoRenew": true,
+                                "ContractAcceptanceDate": "2019-02-15",
+                                "ContractEffectiveDate": "2019-02-15",
+                                "InitialTerm": 12,
+                                "RenewalTerm": 6,
+                                "ServiceActivationDate": "2019-02-15",
+                                "TermType": "TERMED"
+                            }
+                        }
+                    }
+                ]
+            },
+            "properties": {
+                "subscribes": {
+                    "description": "",
+                    "items": {
+                        "properties": {
+                            "Account": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "AccountId": {
+                                                "description": "Internal identifier of an existing account. Only set this field if you want to assign the subscription to an existing account.",
+                                                "type": "string"
+                                            },
+                                            "AccountNumber": {
+                                                "description": "Unique account number assigned to the account.\n\n**Character limit**: 50\n\n\n**Values**: one of the following:\n\n- null to auto-generate\n- a string of 50 characters or fewer that doesn't begin with the default account number prefix\n",
+                                                "type": "string"
+                                            },
+                                            "AdditionalEmailAddresses": {
+                                                "description": "List of additional email addresses to receive emailed invoices.\n\n**Character limit**: 120\n\n\n**Values**: comma-separated list of email addresses ",
+                                                "type": "string"
+                                            },
+                                            "AllowInvoiceEdit": {
+                                                "description": " Indicates if associated invoices can be edited.\n\n\n**Character limit**: 5\n\n\n**Values**: `true`, `false` (default if left null) ",
+                                                "type": "boolean"
+                                            },
+                                            "AutoPay": {
+                                                "description": " Indicates if future payments are automatically collected when they're due during a Payment Run.\n\n\n**Character limit**: 5\n\n\n**Values**: `true`, `false` (default) ",
+                                                "type": "boolean"
+                                            },
+                                            "Batch": {
+                                                "description": " Organizes your customer accounts into groups to optimize your billing and payment operations.\n\n\n**Character limit**: 20\n\n\n**Values**:any system-defined batch (`Batch1` - `Batch50 `or by name). ",
+                                                "type": "string"
+                                            },
+                                            "BcdSettingOption": {
+                                                "description": "Billing cycle day setting option.\n\n**Character limit**: 9\n\n\n**Values**: `AutoSet`, `ManualSet` ",
+                                                "type": "string"
+                                            },
+                                            "BillCycleDay": {
+                                                "description": "Billing cycle day (BCD) on which bill runs generate invoices for the account.\n\n**Character limit**: 2\n\n\n**Values**: any activated system-defined bill cycle day (`1` - `31`) ",
+                                                "format": "int32",
+                                                "type": "integer"
+                                            },
+                                            "CommunicationProfileId": {
+                                                "description": "Associates the account with a specified communication profile.\n\n**Character limit**: 32\n\n\n**Values**: a valid communication profile ID ",
+                                                "type": "string"
+                                            },
+                                            "CrmId": {
+                                                "description": "CRM account ID for the account. A CRM is a customer relationship management system, such as Salesforce.com.\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "Currency": {
+                                                "description": " Currency that the customer is billed in. See [a currency value defined in the Zuora Ui admin settings](https://knowledgecenter.zuora.com/CB_Billing/Billing_Settings/Customize_Currencies) ",
+                                                "type": "string"
+                                            },
+                                            "CustomerServiceRepName": {
+                                                "description": "Name of the account's customer service representative, if applicable.\n\n**Character limit**: 50\n\n\n**Values**: a string of 50 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "DefaultPaymentMethodId": {
+                                                "description": "ID of the default payment method for the account. This field is only required if the `AutoPay` field is set to `true`.\n\n\n**Character limit**: 32\n\n\n**Values**: a valid ID for an existing payment method ",
+                                                "type": "string"
+                                            },
+                                            "InvoiceDeliveryPrefsEmail": {
+                                                "description": "Indicates if the customer wants to receive invoices through email.\n**Character limit**: 5\n\n\n**Values**: `true`, `false` (default if left null) ",
+                                                "type": "boolean"
+                                            },
+                                            "InvoiceDeliveryPrefsPrint": {
+                                                "description": "Indicates if the customer wants to receive printed invoices, such as through postal mail.\n\n**Character limit**: 5\n\n\n**Values**: `true`, `false` (default if left null) ",
+                                                "type": "boolean"
+                                            },
+                                            "InvoiceTemplateId": {
+                                                "description": "The ID of the invoice template. Each customer account can use a specific invoice template for invoice generation.\n\n**Character limit**: 32\n\n\n**Values**: a[ valid template ID configured in Z-Billing Settings](https://knowledgecenter.zuora.com/CB_Billing/Billing_Settings/Manage_Invoice_Rules_and_Templates) To find the ID of your current invoice template: In Zuora, navigate to **Settings > Z-Billing > Manage Invoice Rules and Templates** and click **Show Id **next to the template you want to use.\n\n\n",
+                                                "type": "string"
+                                            },
+                                            "LastInvoiceDate": {
+                                                "description": " The date when the previous invoice was generated for the account. The field value is null if no invoice has ever been generated for the account.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "Name": {
+                                                "description": "Name of the account as displayed in the Zuora UI.\n\n**Character limit**: 255\n\n\n**Values**: a string of 255 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "Notes": {
+                                                "description": " Comments about the account.\n\n**Character limit**: 65,535\n\n\n**Values**: a string of 65,535 characters ",
+                                                "type": "string"
+                                            },
+                                            "ParentId": {
+                                                "description": "Identifier of the parent customer account for this Account object. Use this field if you have customer hierarchy enabled.\n\n**Character limit**: 32\n\n\n**Values**: a valid account ID ",
+                                                "type": "string"
+                                            },
+                                            "PaymentGateway": {
+                                                "description": "Gateway used for processing electronic payments and refunds. This field is only required if there is no default payment gateway is defined in the tenant.\n\n**Character limit**: 40\n\n\n**Values**: one of the following:\n\n- a valid configured gateway name\n- Null to inherit the default value set in Z-Payment Settings\n",
+                                                "type": "string"
+                                            },
+                                            "PaymentTerm": {
+                                                "description": "Indicates when the customer pays for subscriptions.\n\n**Character limit**: 100\n\n\n**Values**: [a valid, active payment term defined in the web-based UI administrative settings](https://knowledgecenter.zuora.com/CB_Billing/Billing_Settings/Define_Payment_Terms) ",
+                                                "type": "string"
+                                            },
+                                            "PurchaseOrderNumber": {
+                                                "description": "The number of the purchase order associated with this account. Purchase order information generally comes from customers.\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "SalesRepName": {
+                                                "description": "The name of the sales representative associated with this account, if applicable.\n\n**Character limit**: 50\n\n\n**Values**: a string of 50 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "TaxCompanyCode": {
+                                                "description": " Unique code that identifies a company account in Avalara. Use this field to calculate taxes based on origin and sold-to addresses in Avalara.\nThis feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\n\n\n**Character limit**: 50\n\n\n**Values**: a valid company code ",
+                                                "type": "string"
+                                            },
+                                            "TaxExemptCertificateID": {
+                                                "description": "ID of your customer's tax exemption certificate.\n\n**Character limit**: 32\n\n\n**Values**: a string of 32 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "TaxExemptCertificateType": {
+                                                "description": "Type of the tax exemption certificate that your customer holds.\n**Character limit**: 32\n\n\n**Values**: a string of 32 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "TaxExemptDescription": {
+                                                "description": "Description of the tax exemption certificate that your customer holds.\n\n**Character limit**: 500\n\n\n**Values**: a string of 500 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "TaxExemptEffectiveDate": {
+                                                "description": "Date when the the customer's tax exemption starts.\n\n**Character limit**: 29 **Version notes**: requires Z-Tax ",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "TaxExemptExpirationDate": {
+                                                "description": "Date when the customer's tax exemption certificate expires\n**Character limit**: 29 **Version notes**: requires Z-Tax ",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "TaxExemptIssuingJurisdiction": {
+                                                "description": "Indicates the jurisdiction in which the customer's tax exemption certificate was issued.\n\n**Character limit**: 32\n\n\n**Values**: a string of 32 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "TaxExemptStatus": {
+                                                "description": " Status of the account's tax exemption. This field is only required if you use Zuora Tax. This field is not available if you do not use Zuora Tax.\n\n\n**Character limit**: 19\n\n\n**Values**: one of the following:\n\n- `Yes`\n- `No`\n- `PendingVerification`\n",
+                                                "type": "string"
+                                            },
+                                            "TotalInvoiceBalance": {
+                                                "description": "Total balance of the account's invoices.\n\n**Character limit**: 16\n\n\n**Values**: a valid currency value ",
+                                                "format": "double",
+                                                "type": "number"
+                                            },
+                                            "VATId": {
+                                                "description": " EU Value Added Tax ID.\nThis feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\n\n\n**Character limit**: 25\n\n\n**Values**: a valid Value Added Tax ID ",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "Batch",
+                                            "BillCycleDay",
+                                            "Currency",
+                                            "Name"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "description": "Container for Account fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                        "properties": {
+                                            "Class__NS": {
+                                                "description": "Value of the Class field for the corresponding customer account in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "maxLength": 255,
+                                                "type": "string"
+                                            },
+                                            "CustomerType__NS": {
+                                                "description": "Value of the Customer Type field for the corresponding customer account in NetSuite. The Customer Type field is used when the customer account is created in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "enum": [
+                                                    "Company",
+                                                    "Individual"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "Department__NS": {
+                                                "description": "Value of the Department field for the corresponding customer account in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "maxLength": 255,
+                                                "type": "string"
+                                            },
+                                            "IntegrationId__NS": {
+                                                "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "maxLength": 255,
+                                                "type": "string"
+                                            },
+                                            "IntegrationStatus__NS": {
+                                                "description": "Status of the account's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "maxLength": 255,
+                                                "type": "string"
+                                            },
+                                            "Location__NS": {
+                                                "description": "Value of the Location field for the corresponding customer account in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "maxLength": 255,
+                                                "type": "string"
+                                            },
+                                            "Subsidiary__NS": {
+                                                "description": "Value of the Subsidiary field for the corresponding customer account in NetSuite. The Subsidiary field is required if you use NetSuite OneWorld. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "maxLength": 255,
+                                                "type": "string"
+                                            },
+                                            "SyncDate__NS": {
+                                                "description": "Date when the account was sychronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "maxLength": 255,
+                                                "type": "string"
+                                            },
+                                            "SynctoNetSuite__NS": {
+                                                "description": "Specifies whether the account should be synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "enum": [
+                                                    "Yes",
+                                                    "No"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "title": "accountFieldsNetSuite",
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": {
+                                            "description": "Custom fields of the Account object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                        },
+                                        "description": "Container for custom fields of an Account object.\n",
+                                        "title": "accountFieldsCustom",
+                                        "type": "object"
+                                    }
+                                ],
+                                "description": " This is the Account object containing the information for this particular subscription. It has all the information needed to create an account for a subscription.\n\n**Values:** A valid account.",
+                                "title": "Account"
+                            },
+                            "BillToContact": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "AccountId": {
+                                                "description": " The Zuora account ID associated with this contact. This field is not required when you use the subscribe\ncall. This field is required for all other calls.\n**Character limit: **32 **Values: **a valid account ID ",
+                                                "type": "string"
+                                            },
+                                            "Address1": {
+                                                "description": " The first line of the contact's address, which is often a street address or business name.\n\n\n**Character limit**: 255\n\n\n**Values**: a string of 255 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "Address2": {
+                                                "description": " The second line of the contact's address.\n\n\n**Character limit**: 255\n\n\n**Values**: a string of 255 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "City": {
+                                                "description": " The city of the contact's address.\n\n\n**Character limit**: 40 **Values: **a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "Country": {
+                                                "description": " The country of the contact's address. This field is only required if you enbale taxation. ",
+                                                "type": "string"
+                                            },
+                                            "County": {
+                                                "description": " The country. May optionally be used by [Z-Tax](/C_Zuora_User_Guides/A_Billing_and_Payments/I_Taxes/Z-Tax) to calculate county tax.\n\n\n**Character limit**: 32\n\n\n**Values**: a string of 32 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "CreatedById": {
+                                                "description": "The ID of the Zuora user who created the contact.\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                "type": "string"
+                                            },
+                                            "CreatedDate": {
+                                                "description": "The date when the contact was created.\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                "format": "date-time",
+                                                "type": "string"
+                                            },
+                                            "Description": {
+                                                "description": " A description for the contact.\n\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "Fax": {
+                                                "description": " The contact's fax number.\n\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "FirstName": {
+                                                "description": " The contact's first name.\n\n\n**Character limit**: 100\n\n\n**Values**: a string of the contact's first name ",
+                                                "type": "string"
+                                            },
+                                            "HomePhone": {
+                                                "description": " The contact's home phone number.\n\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "LastName": {
+                                                "description": " The contact's last name.\n\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "MobilePhone": {
+                                                "description": " The contact's mobile phone number.\n\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "NickName": {
+                                                "description": " A nickname for the contact.\n\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "OtherPhone": {
+                                                "description": " An additional phone number for the contact.\n\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "OtherPhoneType": {
+                                                "description": "The type of the `OtherPhone`.\n\n**Character limit**: 20\n\n\n**Values**: `Work`, `Mobile`, `Home`, `Other` ",
+                                                "type": "string"
+                                            },
+                                            "PersonalEmail": {
+                                                "description": " The contact's personal email address.\n\n\n**Character limit**: 80\n\n\n**Values**: a string of 80 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "PostalCode": {
+                                                "description": " The zip code for the contact's address.\n**Character limit:** 20 **Values: **a string of 20 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "State": {
+                                                "description": " The state or province of the contact's address. ",
+                                                "type": "string"
+                                            },
+                                            "TaxRegion": {
+                                                "description": "If using [Z-Tax](https://knowledgecenter.zuora.com/CB_Billing/J_Billing_Operations/L_Taxes/A_Z-Tax) tax rules ",
+                                                "type": "string"
+                                            },
+                                            "UpdatedById": {
+                                                "description": " The ID of the user who lasted updated the contact.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                "type": "string"
+                                            },
+                                            "UpdatedDate": {
+                                                "description": " The date when the contact was last updated.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                "format": "date-time",
+                                                "type": "string"
+                                            },
+                                            "WorkEmail": {
+                                                "description": " The contact's business email address.\n\n\n**Character limit**: 80\n\n\n**Values**: a string of 80 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "WorkPhone": {
+                                                "description": " The contact's business phone number.\n\n\n**Character limit**: 40 **notes**: --\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "FirstName",
+                                            "LastName"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": {
+                                            "description": "Custom fields of the Contact object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                        },
+                                        "description": "Container for custom fields of a Contact object.\n",
+                                        "title": "contactFieldsCustom",
+                                        "type": "object"
+                                    }
+                                ],
+                                "description": " This is the object that contains the contact associated with this account in the Account's `BillToId` field.\nThis field is only required if the account does not exist.\nValues: A valid contact for the account.",
+                                "title": "Contact"
+                            },
+                            "PaymentMethod": {
+                                "description": " This is the object defining the payment details for the Account. The Account will be updated with this payment as the default payment method.\nUse this field if you are associating an electronic payment method with the account. A payment gateway must be enabled.\nValues: A valid electronic PaymentMethod.",
+                                "properties": {
+                                    "AccountId": {
+                                        "description": " The ID of the customer account associated with this payment method. ",
+                                        "type": "string"
+                                    },
+                                    "AchAbaCode": {
+                                        "description": " The nine-digit routing number or ABA number used by banks.\nThis field is only required if the `Type` field is set to `ACH`.\n\n\n**Character limit**: 9\n\n\n**Values**: a string of 9 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "AchAccountName": {
+                                        "description": " The name of the account holder, which can be either a person or a company.\nThis field is only required if the `Type` field is set to `ACH`.\n\n\n**Character limit**: 70\n\n\n**Values**: a string of 70 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "AchAccountNumber": {
+                                        "description": " The bank account number associated with the ACH payment.\nThis field is only required if the `Type` field is set to `ACH`.\n\n\n**Character limit**: 30\n\n\n**Values**: a string of 30 numeric characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "AchAccountNumberMask": {
+                                        "description": " This is a masked displayable version of the ACH account number, used for security purposes. For example: `XXXXXXXXX54321`. Use this field for ACH payment methods.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                        "type": "string"
+                                    },
+                                    "AchAccountType": {
+                                        "description": " The type of bank account associated with the ACH payment.\nThis field is only required if the `Type` field is set to `ACH`.\n\n\n**Character limit**: 16\n\n\n**Values**:\n\n- `BusinessChecking`\n- `Checking`\n- `Saving`\n",
+                                        "type": "string"
+                                    },
+                                    "AchAddress1": {
+                                        "description": " Line 1 for the ACH address. Required on create for the Vantiv payment gateway. Optional for other gateways.\n**Character limit:** **Values:** an address ",
+                                        "type": "string"
+                                    },
+                                    "AchAddress2": {
+                                        "description": " Line 2 for the ACH address. Required on create for the Vantiv payment gateway. Optional for other gateways.\n**Character limit:** **Values:** an address ",
+                                        "type": "string"
+                                    },
+                                    "AchBankName": {
+                                        "description": " The name of the bank where the ACH payment account is held. Use this field for ACH payment methods.\n\n\n**Character limit**: 70\n\n\n**Values**: a string of 70 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "Active": {
+                                        "description": " Specifies whether a payment method is available in Zuora. The default value is `false`.\n\n\n**Character limit**: 5\n\n\n**Values**: `true`, `false` ",
+                                        "type": "boolean"
+                                    },
+                                    "BankBranchCode": {
+                                        "description": " The branch code of the bank used for direct debit. Use this field for direct debit payment methods.\n\n\n**Character limit**: 10\n\n\n**Values**:  string of 10 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankCheckDigit": {
+                                        "description": "The check digit in the international bank account number, which confirms the validity of the account. Use this field for direct debit payment methods.\n\n**Character limit**: 4\n\n\n**Values**:  string of 4 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankCity": {
+                                        "description": " The city of the direct debit bank. Use this field for direct debit payment methods.\n\n\n**Character limit**:70\n\n\n**Values**:  string of 70 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankCode": {
+                                        "description": " The sort code or number that identifies the bank. This is also known as the sort code. This field is required for direct debit payment methods.\n\n\n**Character limit**: 18\n\n\n**Values**:  string of 18 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankIdentificationNumber": {
+                                        "description": " The first six digits of the payment method's number, such as the credit card number or account number. Banks use this number to identify a payment method.\n\n\n**Character limit**: 6\n\n\n**Values**:  string of 6 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankName": {
+                                        "description": " The name of the direct debit bank. Use this field for direct debit payment methods.\n\n\n**Character limit**:80\n\n\n**Values**:  string of 80 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankPostalCode": {
+                                        "description": " The zip code or postal code of the direct debit bank. Use this field for direct debit payment methods.\n\n\n**Character limit**:20\n\n\n**Values**:  string of 20 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankStreetName": {
+                                        "description": " The name of the street of the direct debit bank. Use this field for direct debit payment methods.\n\n\n**Character limit**:60\n\n\n**Values**:  string of 60 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankStreetNumber": {
+                                        "description": " The number of the direct debit bank. Use this field for direct debit payment methods.\n\n\n**Character limit**:10\n\n\n**Values**:  string of 10 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankTransferAccountName": {
+                                        "description": " The name on the direct debit bank account. Use this field for direct debit payment methods.\n\n\n**Character limit**: 60\n\n\n**Values**:  string of 60 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankTransferAccountNumber": {
+                                        "description": " The number of the customer's bank account.\nThis field is only required if the `Type` field is set to `BankTransfer`.\n\n\n**Character limit**:30\n\n\n**Values**:  string of 30 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "BankTransferAccountNumberMask": {
+                                        "description": " This is a masked displayable version of the ACH account number, used for security purposes. For example: `XXXXXXXXX54321`.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                        "type": "string"
+                                    },
+                                    "BankTransferAccountType": {
+                                        "description": " The type of the customer's bank account. Use this field for direct debit payment methods.\n\n\n**Character limit**: 11\n\n\n**Values**: `DirectDebit` ",
+                                        "type": "string"
+                                    },
+                                    "BankTransferType": {
+                                        "description": " Specifies the type of direct debit transfer. The value of this field is dependent on the country of the user.\nThis field is only required if the `Type` field is set to `BankTransfer`.\n\n\n**Character limit**: 20\n\n\n**Values**:\n\n- `AutomatischIncasso` (NL)\n- `LastschriftDE` (Germany)\n- `LastschriftAT` (Austria)\n- `DemandeDePrelevement` (FR)\n- `DirectDebitUK` (UK)\n- `Domicil` (Belgium)\n- `LastschriftCH` (CH)\n- `RID` (Italy)\n- `OrdenDeDomiciliacion` (Spain)\n",
+                                        "type": "string"
+                                    },
+                                    "BusinessIdentificationCode": {
+                                        "description": " The business identification code for Swiss direct payment methods that use the Global Collect payment gateway. Use this field only for direct debit payments in Switzerland with Global Collect.\n\n\n**Character limit**: 11\n\n\n**Values**: string of 11 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "City": {
+                                        "description": " The city of the customer's address. Use this field for direct debit payment methods.\n\n\n**Character limit**:80\n\n\n**Values**:  string of 80 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "Country": {
+                                        "description": " The two-letter country code of the customer's address.\nThis field is only required if the `Type` field is set to `BankTransfer`, and the `BankTransferType` field is set to either `DirectDebitUK`, `DirectEntryAU`, or `DirectDebitNZ`.\n\n\n**Character limit**: 2\n\n\n**Values**: a valid country code ",
+                                        "type": "string"
+                                    },
+                                    "CreatedById": {
+                                        "description": " The user ID of the person who created the `PaymentMethod` object when there is a login user in the user session. In Hosted Payment Method and Z-Checkout pages, this field is set to 3 as there is no login user to initiate a user session.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                        "type": "string"
+                                    },
+                                    "CreatedDate": {
+                                        "description": " The date when the `PaymentMethod` object was created in the Zuora system.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "CreditCardAddress1": {
+                                        "description": " The first line of the card holder's address, which is often a street address or business name. Use this field for credit card and direct debit payment methods.\n\n\n**Character limit**: 255\n\n\n**Values**: a string of 255 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "CreditCardAddress2": {
+                                        "description": " The second line of the card holder's address. Use this field for credit card and direct debit payment methods.\n\n\n**Character limit**: 255\n\n\n**Values**: a string of 255 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "CreditCardCity": {
+                                        "description": " The city of the card holder's address. Use this field for credit card and direct debit payment methods\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "CreditCardCountry": {
+                                        "description": " The country of the card holder's address.",
+                                        "type": "string"
+                                    },
+                                    "CreditCardExpirationMonth": {
+                                        "description": " The expiration month of the credit card or debit card.\nThis field is only required if the `Type` field is set to `CreditCard` or `DebitCard`.\n\n**Character limit**: 2\n\n\n**Values**: a two-digit number, 01 - 12 ",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "CreditCardExpirationYear": {
+                                        "description": " The expiration month of the credit card or debit card.\nThis field is only required if the `Type` field is set to `CreditCard` or `DebitCard`.\n\n\n**Character limit**: 4\n\n\n**Values**: a four-digit number ",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "CreditCardHolderName": {
+                                        "description": " The full name of the card holder.\nThis field is only required if the `Type` field is set to `CreditCard` or `DebitCard`.\n\n\n**Character limit**: 50\n\n\n**Values**: a string of 50 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "CreditCardMaskNumber": {
+                                        "description": " A masked version of the credit or debit card number.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                        "type": "string"
+                                    },
+                                    "CreditCardNumber": {
+                                        "description": " The credit card or debit card number. This is an insert-only field; it cannot be updated nor queried for security purposes.\nThis field is only required if the `Type` field is set to `CreditCard` or `DebitCard`.\n\n\n**Character limit**: 16\n\n\n**Values**: a string of 16 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "CreditCardPostalCode": {
+                                        "description": " The billing address's zip code. This field is required only when you define a debit card or credit card payment.\n\n\n**Character limit**: 20\n\n\n**Values**: a string of 20 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "CreditCardSecurityCode": {
+                                        "description": " The CVV or CVV2 security code. See [How do I control what information Zuora sends over to the Payment Gateway?](https://knowledgecenter.zuora.com/kb/How_do_I_control_information_sent_to_payment_gateways_when_verifying_payment_methods%3F) for more information. To ensure PCI compliance, this value is not stored and cannot be queried.\n\n\n**Character limit**:\n\n\n**Values**: a valid CVV or CVV2 security code ",
+                                        "type": "string"
+                                    },
+                                    "CreditCardState": {
+                                        "description": " The billing address's state. Use this field is if the `CreditCardCountry` value is either Canada or the US. State names must be spelled in full. ",
+                                        "type": "string"
+                                    },
+                                    "CreditCardType": {
+                                        "description": " The type of credit card or debit card.\nThis field is only required if the `Type` field is set to `CreditCard` or `DebitCard`.\n\n\n**Character limit**: 32\n\n\n**Values**: `AmericanExpress`, `Discover`, `MasterCard`, `Visa` ",
+                                        "type": "string"
+                                    },
+                                    "DeviceSessionId": {
+                                        "description": " The session ID of the user when the `PaymentMethod` was created or updated. Some gateways use this field for fraud prevention. If this field is passed to Zuora, then Zuora passes this field to supported gateways. Currently only Verifi supports this field.\n\n\n**Character limit**: 255\n\n\n**Values**: ",
+                                        "type": "string"
+                                    },
+                                    "Email": {
+                                        "description": " An email address for the payment method in addition to the bill to contact email address.\n\n\n**Character limit**: 80\n\n\n**Values**: a string of 80 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "ExistingMandate": {
+                                        "description": " Indicates if the customer has an existing mandate or a new mandate. A mandate is a signed authorization for UK and NL customers. When you are migrating mandates from another system, be sure to set this field correctly. If you indicate that a new mandate is an existing mandate or vice-versa, then transactions fail. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 3\n\n\n**Values**: `Yes`, `No` ",
+                                        "type": "string"
+                                    },
+                                    "FirstName": {
+                                        "description": " The customer's first name. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 30\n\n\n**Values**: a string of 30 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "GatewayOptionData": {
+                                        "description": " Use this field to pass gateway options.\n\n\n**Character limit**: 255\n\n\n**Values**: GatewayOption ",
+                                        "properties": {
+                                            "GatewayOption": {
+                                                "description": "",
+                                                "items": {
+                                                    "properties": {
+                                                        "name": {
+                                                            "description": "The name of a gateway-specific parameter. This field is optional, but you must pass value for this field when using the `GatewayOptionData` field. Otherwise, the additional payment gateway parameter will not be mapped.\n",
+                                                            "type": "string"
+                                                        },
+                                                        "value": {
+                                                            "description": "The value of the gateway-specific parameter. This field is optional, but you must pass value for this field when using the `GatewayOptionData` field. Otherwise, the additional payment gateway parameter will not be mapped.\n",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "required": [
+                                            "GatewayOption"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "IBAN": {
+                                        "description": " The International Bank Account Number. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 42\n\n\n**Values**: a string of 42 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "IPAddress": {
+                                        "description": " The IP address of the user when the payment method was created or updated. Some gateways use this field for fraud prevention. If this field is passed to Zuora, then Zuora passes this field to supported gateways. Currently PayPal, CyberSource, Authorize.Net, and Verifi support this field.\n\n\n**Character limit**: 15\n\n\n**Values**: a string of 15 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "Id": {
+                                        "description": " The ID of this object. Upon creation, the ID of this object is `PaymentMethodId`.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                        "type": "string"
+                                    },
+                                    "LastFailedSaleTransactionDate": {
+                                        "description": " The date of the last failed attempt to collect payment with this payment method.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "LastName": {
+                                        "description": " The customer's last name. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 70\n\n\n**Values**: a string of 70 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "LastTransactionDateTime": {
+                                        "description": " The date of the most recent transaction.\n\n\n**Character limit**: 29\n\n\n**Values**: a valid date and time value ",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "LastTransactionStatus": {
+                                        "description": " The status of the most recent transaction.\n\n\n**Character limit**: 39\n\n\n**Values**: automatically generated ",
+                                        "type": "string"
+                                    },
+                                    "MandateCreationDate": {
+                                        "description": " The date when the mandate was created, in `yyyy-mm-dd` format. A mandate is a signed authorization for UK and NL customers. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 29\n\n\n",
+                                        "format": "date",
+                                        "type": "string"
+                                    },
+                                    "MandateID": {
+                                        "description": " The ID of the mandate. A mandate is a signed authorization for UK and NL customers. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 36\n\n\n**Values**: a string of 36 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "MandateReceived": {
+                                        "description": " Indicates if  the mandate was received. A mandate is a signed authorization for UK and NL customers. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 3\n\n\n**Values**: `Yes`, `No `(case-sensitive) ",
+                                        "type": "string"
+                                    },
+                                    "MandateUpdateDate": {
+                                        "description": " The date when the mandate was last updated, in `yyyy-mm-dd` format. A mandate is a signed authorization for UK and NL customers. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 29\n\n\n",
+                                        "format": "date",
+                                        "type": "string"
+                                    },
+                                    "MaxConsecutivePaymentFailures": {
+                                        "description": " Specifies the number of allowable consecutive failures Zuora attempts with the payment method before stopping.\nWhen the `UseDefaultRetryRule` field is set to `false`, this field is only required if the `PaymentRetryWindow` field is not defined.\n\n\n\n**Values**: a valid number ",
+                                        "type": "integer"
+                                    },
+                                    "Name": {
+                                        "description": " Create Query Delete Filter ",
+                                        "type": "string"
+                                    },
+                                    "NumConsecutiveFailures": {
+                                        "description": " The number of consecutive failed payment for this payment method. It is reset to 0 upon successful payment. You can use the API to update the field value to 0.\n\n\n**Character limit**:\n\n\n**Values**: a positive whole number ",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "PaymentMethodStatus": {
+                                        "description": " Specifies the status of the payment method. It is set to Active on creation.\n\n\n**Character limit**: 6\n\n\n**Values**: `Active` or `Closed` PaymentMethodStatus should not be used in the `create\n` call. You can only set this field to **Closed** via the `update\n` call. ",
+                                        "type": "string"
+                                    },
+                                    "PaymentRetryWindow": {
+                                        "description": " The retry interval setting, which prevents making a payment attempt if the last failed attempt was within the last specified number of hours.\nWhen the `UseDefaultRetryRule` field is set to `false`, this field is only required if the `MaxConsecutivePaymentFailures` field is not defined.\n\n\n**Character limit**: 4\n\n\n**Values**: a whole number between 1 and 1000, exclusive ",
+                                        "type": "integer"
+                                    },
+                                    "PaypalBaid": {
+                                        "description": " The PayPal billing agreement ID, which is a contract between two PayPal accounts. Typically, the selling party initiates a request to create a BAID, and sends it to buying party for acceptance. The seller can keep track of the BAID and use it for future charges against the buyer.\nThis field is only required if the `Type` field is set to `PayPal`.\n\n\n**Character limit**: 64\n\n\n**Values**: a string of 64 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "PaypalEmail": {
+                                        "description": " The email address associated with the account holder's PayPal account or of the PayPal account of the person paying for the service.\nThis field is only required if the `Type` field is set to `PayPal`.\n\n\n**Character limit**: 80\n\n\n**Values**: a string of 80 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "PaypalPreapprovalKey": {
+                                        "description": " PayPal's Adaptive Payments API key. Zuora does not create this key, nor does it call PayPal to generate it. You must use PayPal's Adaptive Payments' API to generate this key, and then pass it to Zuora. Zuora uses this key to authorize future payments to PayPal's Adaptive Payments API.\nThis field is only required if you use PayPal Adaptive Payments gateway.\n\n\n**Character limit**: 32\n\n\n**Values**: a valid PayPal Adaptive Payment pre-approval key ",
+                                        "type": "string"
+                                    },
+                                    "PaypalType": {
+                                        "description": " Specifies the PayPal gateway: PayFlow Pro (Express Checkout) or Adaptive Payments.\nThis field is only required if you use PayPal Adaptive Payments or Payflow Pro (Express Checkout) gateways.\n\n\n**Character limit**: 32\n\n\n**Values**: `ExpressCheckout`, `AdaptivePayments` ",
+                                        "type": "string"
+                                    },
+                                    "Phone": {
+                                        "description": " The phone number that the account holder registered with the bank. This field is used for credit card validation when passing to a gateway.\n\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "PostalCode": {
+                                        "description": " The zip code of the customer's address. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 20\n\n\n**Values**: a string of 20 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "SecondTokenId": {
+                                        "description": " A gateway unique identifier that replaces sensitive payment method data. SecondTokenId is conditionally required only when TokenID is being used to represent a gateway customer profile. SecondTokenId is used in the CC Reference Transaction payment method.\n\n**Character limit**: 64\n\n\n**Values**: a string of 64 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "SkipValidation": {
+                                        "description": " Creates the payment method even if authorization fails with the payment gateway.\n\n\n**Character limit**: 5\n\n\n**Values**: `t``rue`, `false` ",
+                                        "type": "boolean"
+                                    },
+                                    "State": {
+                                        "description": " The state of the customer's address. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 70\n\n\n**Values**: a string of 70 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "StreetName": {
+                                        "description": " The street name of the customer's address. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "StreetNumber": {
+                                        "description": " The street number of the customer's address. This field is used only for the direct debit payment method.\n\n\n**Character limit**: 30\n\n\n**Values**: a string of 30 characters or fewer ",
+                                        "type": "string"
+                                    },
+                                    "TokenId": {
+                                        "description": "A gateway unique identifier that replaces sensitive payment method data or represents a gateway's unique customer profile. If you want to create an Amazon Pay payment method, specify `AmazonBillingAgreementId` for this field. \n\nWhile `TokenId` is used to represent a customer profile, `SecondTokenId` is conditionally required for representing the underlying tokenized payment method. When the `Type` field is set to `CreditCardReferenceTransaction`, this field is required if the `CreditCardNumber` field is not specified. \n\n**Character limit**: 255\n**Values**: a string of 255 characters or fewer\n",
+                                        "type": "string"
+                                    },
+                                    "TotalNumberOfErrorPayments": {
+                                        "description": " The number of error payments that used this payment method.\n\n\n**Character limit**:\n\n\n**Values**: automatically generated ",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "TotalNumberOfProcessedPayments": {
+                                        "description": " The number of successful payments that used this payment method.\n\n\n**Character limit**:\n\n\n**Values**: automatically generated ",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "Type": {
+                                        "description": "The type of payment method. If you want to create an Amazon Pay payment method, specify `CreditCardReferenceTransaction` for this field.",
+                                        "enum": [
+                                            "ACH",
+                                            "ApplePay",
+                                            "BankTransfer",
+                                            "Cash",
+                                            "Check",
+                                            "CreditCard",
+                                            "CreditCardReferenceTransaction",
+                                            "DebitCard",
+                                            "Other",
+                                            "PayPal",
+                                            "WireTransfer"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "UpdatedById": {
+                                        "description": " The ID of the user who last updated the payment method.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                        "type": "string"
+                                    },
+                                    "UpdatedDate": {
+                                        "description": " The date when the payment method was last updated.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "UseDefaultRetryRule": {
+                                        "description": " Determines whether to use the default retry rules configured in the [Z-Payments settings](https://knowledgecenter.zuora.com/CB_Billing/L_Payment_Methods/H_Configure_Payment_Method_Retry_Rules). Set this to `true` to use the default retry rules. Set this to `false` to set the specific rules for this payment method. If you set this value to `false`, then the fields, `PaymentRetryWindow` and `MaxConsecutivePaymentFailures`, are required.\n\n\n**Character limit**: 5\n\n\n**Values**: `t``rue`, `false` ",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "Type"
+                                ],
+                                "type": "object"
+                            },
+                            "PreviewOptions": {
+                                "description": "Only used if you want to call this operation in preview mode. After a call in preview mode is completed, Zuora will roll back the subscription and return only the temporary invoice data.\n",
+                                "properties": {
+                                    "EnablePreviewMode": {
+                                        "description": "Specifies whether to create a subscription or preview the invoices that would be generated.\n",
+                                        "type": "boolean"
+                                    },
+                                    "NumberOfPeriods": {
+                                        "description": "The number of invoice periods to show in a preview.\n",
+                                        "type": "integer"
+                                    },
+                                    "PreviewThroughTermEnd": {
+                                        "description": "Specifies whether to preview the charge through the end of the subscription term. Applicable to termed subscriptions only.\n",
+                                        "type": "boolean"
+                                    },
+                                    "PreviewType": {
+                                        "default": "InvoiceItem",
+                                        "description": "The type of preview to return:\n\n * `InvoiceItem` - Return an invoice item preview\n * `ChargeMetrics` - Return a charge metrics preview\n * `InvoiceItemChargeMetrics` - Return an invoice item and charge metrics of that item\n",
+                                        "enum": [
+                                            "InvoiceItem",
+                                            "ChargeMetrics",
+                                            "InvoiceItemChargeMetrics"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "SoldToContact": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "AccountId": {
+                                                "description": " The Zuora account ID associated with this contact. This field is not required when you use the subscribe\ncall. This field is required for all other calls.\n**Character limit: **32 **Values: **a valid account ID ",
+                                                "type": "string"
+                                            },
+                                            "Address1": {
+                                                "description": " The first line of the contact's address, which is often a street address or business name.\n\n\n**Character limit**: 255\n\n\n**Values**: a string of 255 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "Address2": {
+                                                "description": " The second line of the contact's address.\n\n\n**Character limit**: 255\n\n\n**Values**: a string of 255 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "City": {
+                                                "description": " The city of the contact's address.\n\n\n**Character limit**: 40 **Values: **a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "Country": {
+                                                "description": " The country of the contact's address. ",
+                                                "type": "string"
+                                            },
+                                            "County": {
+                                                "description": " The country. May optionally be used by [Z-Tax](/C_Zuora_User_Guides/A_Billing_and_Payments/I_Taxes/Z-Tax) to calculate county tax.\n\n\n**Character limit**: 32\n\n\n**Values**: a string of 32 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "CreatedById": {
+                                                "description": "The ID of the Zuora user who created the contact.\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                "type": "string"
+                                            },
+                                            "CreatedDate": {
+                                                "description": "The date when the contact was created.\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                "format": "date-time",
+                                                "type": "string"
+                                            },
+                                            "Description": {
+                                                "description": " A description for the contact.\n\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "Fax": {
+                                                "description": " The contact's fax number.\n\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "FirstName": {
+                                                "description": " The contact's first name.\n\n\n**Character limit**: 100\n\n\n**Values**: a string of the contact's first name ",
+                                                "type": "string"
+                                            },
+                                            "HomePhone": {
+                                                "description": " The contact's home phone number.\n\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "LastName": {
+                                                "description": " The contact's last name.\n\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "MobilePhone": {
+                                                "description": " The contact's mobile phone number.\n\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "NickName": {
+                                                "description": " A nickname for the contact.\n\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "OtherPhone": {
+                                                "description": " An additional phone number for the contact.\n\n\n**Character limit**: 40\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "OtherPhoneType": {
+                                                "description": "The type of the `OtherPhone`.\n\n**Character limit**: 20\n\n\n**Values**: `Work`, `Mobile`, `Home`, `Other` ",
+                                                "type": "string"
+                                            },
+                                            "PersonalEmail": {
+                                                "description": " The contact's personal email address.\n\n\n**Character limit**: 80\n\n\n**Values**: a string of 80 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "PostalCode": {
+                                                "description": " The zip code for the contact's address.\n**Character limit:** 20 **Values: **a string of 20 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "State": {
+                                                "description": " The state or province of the contact's address. ",
+                                                "type": "string"
+                                            },
+                                            "TaxRegion": {
+                                                "description": "If using [Z-Tax](https://knowledgecenter.zuora.com/CB_Billing/J_Billing_Operations/L_Taxes/A_Z-Tax) tax rules ",
+                                                "type": "string"
+                                            },
+                                            "UpdatedById": {
+                                                "description": " The ID of the user who lasted updated the contact.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                "type": "string"
+                                            },
+                                            "UpdatedDate": {
+                                                "description": " The date when the contact was last updated.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                "format": "date-time",
+                                                "type": "string"
+                                            },
+                                            "WorkEmail": {
+                                                "description": " The contact's business email address.\n\n\n**Character limit**: 80\n\n\n**Values**: a string of 80 characters or fewer ",
+                                                "type": "string"
+                                            },
+                                            "WorkPhone": {
+                                                "description": " The contact's business phone number.\n\n\n**Character limit**: 40 **notes**: --\n\n\n**Values**: a string of 40 characters or fewer ",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": {
+                                            "description": "Custom fields of the Contact object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                        },
+                                        "description": "Container for custom fields of a Contact object.\n",
+                                        "title": "contactFieldsCustom",
+                                        "type": "object"
+                                    }
+                                ],
+                                "description": " Unless otherwise specified, this field defaults to the information in the `BillToContact` field.\n\n**Values:** A valid contact. ",
+                                "title": "Contact"
+                            },
+                            "SubscribeOptions": {
+                                "description": " This optional object specifies parameters related to invoicing - whether to immediately generate an invoice and collect payment, and whether the invoice should cover all subscriptions or just this new subscription.\nThe default behavior is to invoice immediately for all the account's subscriptions, with the current date as the target date, and immediately collect payment if the account's `AutoPay` flag is true.\n\n\n**Values:** A valid SubscribeOptions object. ",
+                                "properties": {
+                                    "ApplyCreditBalance": {
+                                        "description": "",
+                                        "type": "boolean"
+                                    },
+                                    "ElectronicPaymentOptions": {
+                                        "description": "",
+                                        "properties": {
+                                            "PaymentMethodId": {
+                                                "description": "",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "ExternalPaymentOptions": {
+                                        "description": "",
+                                        "properties": {
+                                            "Amount": {
+                                                "description": "",
+                                                "format": "double",
+                                                "type": "number"
+                                            },
+                                            "EffectiveDate": {
+                                                "description": "",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "GatewayOrderId": {
+                                                "description": "",
+                                                "type": "string"
+                                            },
+                                            "PaymentMethodId": {
+                                                "description": "",
+                                                "type": "string"
+                                            },
+                                            "ReferenceId": {
+                                                "description": "",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "GenerateInvoice": {
+                                        "description": "",
+                                        "type": "boolean"
+                                    },
+                                    "ProcessPayments": {
+                                        "description": "",
+                                        "type": "boolean"
+                                    },
+                                    "SubscribeInvoiceProcessingOptions": {
+                                        "description": "",
+                                        "properties": {
+                                            "InvoiceDate": {
+                                                "description": "",
+                                                "format": "date",
+                                                "type": "string"
+                                            },
+                                            "InvoiceProcessingScope": {
+                                                "description": "",
+                                                "type": "string"
+                                            },
+                                            "InvoiceTargetDate": {
+                                                "description": "",
+                                                "format": "date",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "GenerateInvoice",
+                                    "ProcessPayments"
+                                ],
+                                "type": "object"
+                            },
+                            "SubscriptionData": {
+                                "description": " This object contains the information on the contract's dates and terms.\n\n\n**Values:** A valid SubscriptionData object. ",
+                                "properties": {
+                                    "RatePlanData": {
+                                        "description": "",
+                                        "items": {
+                                            "properties": {
+                                                "RatePlan": {
+                                                    "allOf": [
+                                                        {
+                                                            "properties": {
+                                                                "AmendmentId": {
+                                                                    "description": " The ID of the amendment associated with the rate plan. This field only applies to amendment rate plans.\n\n\n**Character limit**: 32\n\n\n**Values**: a valid amendment ID ",
+                                                                    "type": "string"
+                                                                },
+                                                                "AmendmentSubscriptionRatePlanId": {
+                                                                    "description": "The ID of the subscription rate plan modified by the amendment. This field only applies to amendment rate plans.\n\n**Character limit**: 32\n\n\n**Values**: a valid rate plan ID ",
+                                                                    "type": "string"
+                                                                },
+                                                                "AmendmentType": {
+                                                                    "description": "The type of amendment associated with the rate plan. This field only applies to amendment rate plans.\n\n**Character limit**: 18\n\n\n**Values**: inherited from `Amendment.Type` ",
+                                                                    "type": "string"
+                                                                },
+                                                                "CreatedById": {
+                                                                    "description": "The ID of the Zuora user who created the RatePlan object.\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                                    "type": "string"
+                                                                },
+                                                                "CreatedDate": {
+                                                                    "description": "The date when the `RatePlan` object was last updated.\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                                    "format": "date-time",
+                                                                    "type": "string"
+                                                                },
+                                                                "Name": {
+                                                                    "description": "The name of the rate plan. Leave this null in a subscribe\ncall to inherited the `ProductRatePlan.Name` field value.\n\n**Character limit**: 100\n\n\n**Values**: a string of 100 characters or fewer or inherited from ProductRatePlan.Name ",
+                                                                    "type": "string"
+                                                                },
+                                                                "ProductRatePlanId": {
+                                                                    "description": "The ID of the associated product rate plan.\n\n**Character limit**: 32\n\n\n**Values**: a valid product rate plan ID ",
+                                                                    "type": "string"
+                                                                },
+                                                                "SubscriptionId": {
+                                                                    "description": "The ID of the subscription that the rate plan belongs to.\n\n**Character limit**: 32\n\n\n**Values**: a valid subscription ID ",
+                                                                    "type": "string"
+                                                                },
+                                                                "UpdatedById": {
+                                                                    "description": " The ID of the user who last updated the rate plan.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                                    "type": "string"
+                                                                },
+                                                                "UpdatedDate": {
+                                                                    "description": " The date when the rate plan was last updated.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                                    "format": "date-time",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "ProductRatePlanId"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "additionalProperties": {
+                                                                "description": "Custom fields of the Rate Plan object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                                            },
+                                                            "description": "Container for custom fields of a Rate Plan object.\n",
+                                                            "title": "ratePlanFieldsCustom",
+                                                            "type": "object"
+                                                        }
+                                                    ],
+                                                    "description": "",
+                                                    "title": "RatePlan"
+                                                },
+                                                "RatePlanChargeData": {
+                                                    "description": "",
+                                                    "items": {
+                                                        "properties": {
+                                                            "RatePlanCharge": {
+                                                                "allOf": [
+                                                                    {
+                                                                        "properties": {
+                                                                            "AccountingCode": {
+                                                                                "description": "The accounting code for the charge. Accounting codes group transactions that contain similar accounting attributes.\n\n**Character limit**: 100\n\n\n**Values**: inherited from `ProductRatePlanCharge.AccountingCode` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "ApplyDiscountTo": {
+                                                                                "description": " Specifies the type of charges a specific discount applies to.\n\n**Character limit**: 21\n\n\n**Values**: inherited from `ProductRatePlanCharge.ApplyDiscountTo` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "BillCycleDay": {
+                                                                                "description": " Indicates the charge's billing cycle day (BCD), which is when bill runs generate invoices for charges associated with the product rate plan charge or the account.\n\n\n**Character limit**: 2\n\n\n**Values**: inherited from `ProductRatePlanCharge.BillCycleDay` ",
+                                                                                "format": "int32",
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "BillCycleType": {
+                                                                                "description": " Specifies how to determine the billing day for the charge.\n\n\n**Character limit**: 20\n\n\n**Values**: inherited from `ProductRatePlanCharge.BillCycleType` **Note:** You can override the value inherited from the Product Rate Plan Charge, but only when creating a new subscription or a New Product amendment. ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "BillingPeriod": {
+                                                                                "description": " Allows billing period to be overridden on rate plan charge.\n\n\n\n**Values**: inherited from `ProductRatePlanCharge.BillingPeriod` **Note:** You can override the value inherited from the Product Rate Plan Charge, but only when creating a new subscription or a New Product amendment. ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "BillingPeriodAlignment": {
+                                                                                "description": " Aligns charges within the same subscription if multiple charges begin on different dates.\n\n\n**Character limit**: 24\n\n\n**Values**: inherited from `ProductRatePlanCharge.BillingPeriodAlignment` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "BillingTiming": {
+                                                                                "description": " The billing timing for the charge. You can choose to bill in advance or in arrears for recurring charge types. This field is not used in one-time or usage based charge types.\n\n\n**Character limit**:\n\n\n**Values**: one of the following:\n\n- I`n Advance`\n- `In Arrears`\n**Note:** You can override the value inherited from the Product Rate Plan Charge when a subscription has a recurring charge type.\nThis feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "ChargeModel": {
+                                                                                "description": " Determines how to evaluate charges. Charge models must be individually activated in the web-based UI.\n\n\n**Character limit**: 29\n\n\n**Values**: inherited from `ProductRatePlanCharge.ChargeModel` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "ChargeNumber": {
+                                                                                "description": " A unique number that identifies the charge. This number is returned as a string.\n\n\n**Character limit**: 50\n\n\n**Values**: one of the following:\n\n- automatically generated if left null\n- a unique number of 50 characters or fewer\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "ChargeType": {
+                                                                                "description": " Specifies the type of charge.\n\n\n**Character limit**: 9\n\n\n**Values**: inherited from `ProductRatePlanCharge.ChargeType` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "ChargedThroughDate": {
+                                                                                "description": " The date through which a customer has been billed for the charge.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                                                "format": "date",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "CreatedById": {
+                                                                                "description": "The ID of the Zuora user who created the `RatePlanCharge` object.\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "CreatedDate": {
+                                                                                "description": " The date when the `RatePlanCharge` object was created.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                                                "format": "date-time",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "DMRC": {
+                                                                                "description": "A delta monthly recurring charge is the change in monthly recurring revenue caused by an amendment or a new subscription.\n\n**Character limit**: 16\n\n\n**Values**: automatically generated ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "DTCV": {
+                                                                                "description": " After an Amendment, the change in the total contract value (TCV) amount for this charge, compared with its previous value.\n\n\n**Character limit**: 16\n\n\n**Values**: automatically generated ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "Description": {
+                                                                                "description": " A description of the charge.\n\n\n**Character limit**: 500\n\n\n**Values**: inherited from `ProductRatePlanCharge.Description` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "DiscountAmount": {
+                                                                                "description": " Specifies the amount of a fixed-amount discount. You can provide a value for this field if the `ChargeModel` field value is `Discount-Fixed Amount`. If this field is included in a query, the query will filter out the rate plans whose `ChargeModel` field is not of a Discount type. You cannot query this field with the following fields in a single query:\n\n- Price\n- IncludedUnits\n- DiscountPercentage\n- OveragePrice\n\n\n**Character limit**: 16\n\n\n**Values**: a valid currency amount ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "DiscountLevel": {
+                                                                                "description": "Specifies if the discount applies to just the product rate plan, the entire subscription, or to any activity in the account. This field is only required if the `ChargeModel` field is set to `DiscountFixedAmount` or `DiscountPercentage`.\n\n**Character limit**: 12\n\n\n**Values**: inherited from `ProductRatePlanCharge.DiscountLevel` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "DiscountPercentage": {
+                                                                                "description": " Query Filter ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "EffectiveEndDate": {
+                                                                                "description": " The date when the segmented charge ends or ended.\n\n\n**Character limit**: 16\n\n\n**Values**: automatically generated ",
+                                                                                "format": "date",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "EffectiveStartDate": {
+                                                                                "description": " The date when the segmented charge starts or started.\n\n\n**Character limit**: 16\n\n\n**Values**: automatically generated ",
+                                                                                "format": "date",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "EndDateCondition": {
+                                                                                "description": " Defines when the charge ends after the charge trigger date. This field can be updated when **Status** is `Draft`.\n\n\n\n**Values**: one of the following:\n\n- `SubscriptionEnd`: The charge ends on the subscription end date after the charge trigger date. This is the default value.\n- `FixedPeriod`: The charge ends after a specified period based on the trigger date of the charge. If you set this field to `FixedPeriod`, you must specify the length of the period and a period type by defining the `UpToPeriods` and `UpToPeriodsType` fields.\n- `SpecificEndDate`: The specific date on which the charge ends. If you set this field to `SpecificEndDate`, you must specify the specific date by defining the `SpecificEndDate` field.\n\n\n\n**Note**: If the subscription ends before the charge end date, the charge ends when the subscription ends. But if the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge will end on the charge end date. ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "IncludedUnits": {
+                                                                                "description": " Query Filter ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "IsLastSegment": {
+                                                                                "description": "Indicates if the segment of the rate plan charge is the most recent segment.\n\n**Character limit**: 5\n\n\n**Values**: automatically generated: `true`, `false` ",
+                                                                                "type": "boolean"
+                                                                            },
+                                                                            "ListPriceBase": {
+                                                                                "description": "The list price base for the product rate plan charge.\n\n\n**Values**: one of the following:\n\n- `Per Month`\n- `Per Billing Period`\n- `Per Week`\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "MRR": {
+                                                                                "description": "Monthly recurring revenue (MRR) is the amount of recurring charges in a given month. The MRR calculation doesn't include one-time charges nor usage charges.\n\n**Character limit**: 16\n\n\n**Values**: automatically generated ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "Name": {
+                                                                                "description": "The name of the rate plan charge.\n\n**Character limit**: 100\n\n\n**Values**: automatically generated ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "NumberOfPeriods": {
+                                                                                "description": "Specifies the number of periods to use when calculating charges in an overage smoothing charge model.\n\n**Character limit**: 5\n\n\n**Values**: inherited from `ProductRatePlanCharge.NumberOfPeriod` ",
+                                                                                "format": "int64",
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "OriginalId": {
+                                                                                "description": "The original ID of the rate plan charge.\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "OverageCalculationOption": {
+                                                                                "description": "Determines when to calculate overage charges. If the value of the SmoothingMode field is null (not specified and not inherited from ProductRatePlanCharge.SmoothingMode), the value of this field is ignored.\n\n**Character limit**: 20\n\n\n**Values**: inherited from `ProductRatePlanCharge.OverageCalculationOption` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "OveragePrice": {
+                                                                                "description": " Query Filter ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "OverageUnusedUnitsCreditOption": {
+                                                                                "description": " Determines whether to credit the customer with unused units of usage.\n\n\n**Character limit**: 20\n\n\n**Values**: inherited from `ProductRatePlanCharge.OverageUnusedUnitsCreditOption` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "Price": {
+                                                                                "description": " Query Filter ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "PriceChangeOption": {
+                                                                                "description": " Applies an automatic price change when a termed subscription is renewed.\n\n\n**Character limit**:\n\n\n**Values**: one of the following:\n\n- `NoChange` (default)\n- `SpecificPercentageValue`\n- `UseLatestProductCatalogPricing`\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "PriceIncreasePercentage": {
+                                                                                "description": " Specifies the percentage to increase or decrease the price of renewed subscriptions. Use this field if the `ProductRatePlanCharge`.`PriceChangeOption` value is set to `SpecificPercentageValue`.\n\n\n**Character limit**: 16\n\n\n**Values**: a decimal value between -100 and 100 ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "ProcessedThroughDate": {
+                                                                                "description": " The date until when charges have been processed. When billing in arrears, such as usage, this field value is the the same as the `ChargedThroughDate` value. This date is the earliest date when a charge can be amended.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                                                "format": "date",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "ProductRatePlanChargeId": {
+                                                                                "description": " The ID of the product rate plan charge associated with the subscription rate plan charge,\n\n**Character limit**: 32\n\n\n**Values**: inherited from `ProductRatePlanCharge.Id` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "Quantity": {
+                                                                                "description": " The default quantity of units, such as the number of authors in a hosted wiki service. Valid for all charge models except for Flat Fee pricing. This field is only rquired if the charge model is tiered pricing or volume pricing.\n\n\n**Character limit**: 16\n\n\n**Values**: a valid quantity value ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "RatePlanId": {
+                                                                                "description": " The ID of the rate plan associated with the rate plan charge.\n\n\n**Character limit**: 32\n\n\n**Values**: inherited from `RatePlan.Id` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "RevRecCode": {
+                                                                                "description": " Associates this product rate plan charge with a specific revenue recognition code.\n\n\n**Character limit**: 70\n\n\n**Values**: a valid revenue recognition code ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "RevRecTriggerCondition": {
+                                                                                "description": " Specifies when revenue recognition begins.\n\n\n**Character limit**: 22\n\n\n**Values**: one of the following:\n\n-  `ContractEffectiveDate`\n\n-  `ServiceActivationDate`\n\n-  `CustomerAcceptanceDate`\n\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "RevenueRecognitionRuleName": {
+                                                                                "description": " Specifies the Revenue Recognition Rule that you want the Rate Plan Charge to use. This field can be updated when **Status** is `Draft`. By default, the Revenue Recognition Rule is inherited from the Product Rate Plan Charge. For Amend\ncalls, you can use this field only for NewProduct amendments. For Update\ncalls, you can use this field only to update subscriptions in draft status. Note that if you use this field to specify a Revenue Recognition Rule for the Rate Plan Charge, the rule will remain as specified even if you later change the rule used by the corresponding Product Rate Plan Charge. See [Z-Billing User Role](https://knowledgecenter.zuora.com/CF_Users_and_Administrators/A_Administrator_Settings/User_Roles/d_Billing_Roles) permission enabled to use this field.\n\n\n\n**Character limit**: n/a\n\n\n**Values**: name of an active Revenue Recognition Rule ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "RolloverBalance": {
+                                                                                "description": " Specifies the number of units of measure (UOM) rolled over from previous periods. This field is applicable only to usage charges with overage models.\n\n\n**Character limit**: 16\n\n\n**Values**: automatically generated\n\n**Note**:\n\n- You cannot query or filter this field with other fields in a single query.\n- To query or filter this field, you must specify and only specify the rate plan charge Id in the condition.\n- You cannot use this field in the query or filter condition.\n",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "Segment": {
+                                                                                "description": " The identifying number of the subscription rate plan segment. Segments are numbered sequentially, starting with 1.\n\n\n**Character limit**: 2\n\n\n**Values**: automatically generated ",
+                                                                                "format": "int32",
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "SpecificBillingPeriod": {
+                                                                                "description": " Customizes the number of months or weeks for the charges billing period. This field is only required if you set the value of the `BillingPeriod` field to `Specific Months` or `Specific Weeks`.\n\n**Character limit**: 5\n\n\n**Values**: inherited from `ProductRatePlanCharge.BillingPeriod` **Note:** You can override the value inherited from the Product Rate Plan Charge, but only when creating a new subscription or a New Product amendment. ",
+                                                                                "format": "int64",
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "SpecificEndDate": {
+                                                                                "description": " The specific date on which the charge ends, in `yyyy-mm-dd` format.\n\n\n**Character limit**: 29\n\n\n\n**Note**:\n\n- This field is only applicable when the `EndDateCondition` field is set to `SpecificEndDate`.\n- If the subscription ends before the specific end date, the charge ends when the subscription ends. But if the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge will end on the specific end date.\n",
+                                                                                "format": "date",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "TCV": {
+                                                                                "description": " The total contract value (TCV) is the value of a single rate plan charge in a subscription over the lifetime of the subscription. This value does not represent all charges on the subscription. The TCV includes recurring charges and one-time charges, but it doesn't include usage charge.\n\n\n**Character limit**: 16\n\n\n**Values**: automatically generated ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "TriggerDate": {
+                                                                                "description": " The date when the charge becomes effective and billing begins, in `yyyy-mm-dd` format. This field is only required if the `TriggerEvent` field is set to `SpecificDate`.\n\n\n**Character limit**: 29\n\n",
+                                                                                "format": "date",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "TriggerEvent": {
+                                                                                "description": " Specifies when to start billing the customer for the charge.\n**Note: **This field can be passed through the subscribe\nand amend\ncalls and will override the default value set on the Product Rate Plan Charge.\n\n\n**Character limit**: 18\n\n\n**Values**: inherited from `ProductRatePlanCharge.TriggerEvent` and can be one of the following values:\n\n- `ContractEffective`is the date when the subscription's contract goes into effect and the charge is ready to be billed.\n- `ServiceActivationDate`is when the services or products for a subscription have been activated and the customers have access.\n- `CustomerAcceptance`is when the customer accepts the services or products for a subscription.\n- `SpecificDate` is valid only on the RatePlanCharge.\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "UOM": {
+                                                                                "description": " Specifies the units to measure usage. Units of measure are configured in the web-based UI: **Z-Billing > Settings**.\n\n\n**Character limit**: 25\n\n\n**Values**: inherited from `ProductRatePlanCharge.UOM` ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "UnusedUnitsCreditRates": {
+                                                                                "description": " Specifies the rate to credit a customer for unused units of usage. This field is applicable only for overage charge models when the `OverageUnusedUnitsCreditOption` field value is CreditBySpecificRate.\n\n\n**Character limit**: 16\n\n\n**Values**: a valid decimal value ",
+                                                                                "format": "double",
+                                                                                "type": "number"
+                                                                            },
+                                                                            "UpToPeriods": {
+                                                                                "description": " Specifies the length of the period during which the charge is active. If this period ends before the subscription ends, the charge ends when this period ends.\n\n\n**Character limit**: 5\n\n\n**Values**: inherited from `ProductRatePlanCharge.UpToPeriods`\n\n**Note**:\n\n- You must use this field together with the `UpToPeriodsType` field to specify the time period. This field is only applicable only when the `EndDateCondition` field is set to `FixedPeriod`.\n- You can override the value inherited from the Product Rate Plan Charge, but only when creating a new subscription or a New Product amendment.\n- Use this field to override the value in `ProductRatePlanCharge.UpToPeriod`.\n- If you override the value in this field, enter a whole number between 0 and 65535, exclusive.\n- If the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge end date will change accordingly up to the original period end.\n",
+                                                                                "format": "int64",
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "UpToPeriodsType": {
+                                                                                "description": " The period type used to define when the charge ends. This field can be updated when **Status** is `Draft`.\n\n\n**Values**: one of the following:\n\n- `Billing Periods` (default)\n- `Days`\n- `Weeks`\n- `Months`\n- `Years`\n\n\n**Note**:\n\n- You must use this field together with the `UpToPeriods` field to specify the time period.\n- This field is only applicable only when the `EndDateCondition` field is set to `FixedPeriod`.\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "UpdatedById": {
+                                                                                "description": "The ID of the last user to update the object.\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "UpdatedDate": {
+                                                                                "description": " The date when the object was last updated.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                                                "format": "date-time",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "UsageRecordRatingOption": {
+                                                                                "description": " Determines how Zuora processes usage records for per-unit usage charges.\n\n**Character limit**: 18\n\n\n**Values**: automatically generated ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "UseDiscountSpecificAccountingCode": {
+                                                                                "description": " Determines whether to define a new accounting code for the new discount charge.\n\n\n**Character limit**: 5\n\n\n**Values**: inherited from `ProductRatePlanCharge.UseDiscountSpecificAccountingCode` ",
+                                                                                "type": "boolean"
+                                                                            },
+                                                                            "Version": {
+                                                                                "description": " The version of the rate plan charge. Each time a charge is amended, Zuora creates a new version of the rate plan charge.\n\n**Character limit**: 5\n\n\n**Values**: automatically generated ",
+                                                                                "format": "int64",
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "WeeklyBillCycleDay": {
+                                                                                "description": " Specifies which day of the week as the bill cycle day (BCD) for the charge.\nThis feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\n\n\n\n**Values**: one of the following:\n\n- `Sunday`\n- `Monday`\n- `Tuesday`\n- `Wednesday`\n- `Thursday`\n- `Friday`\n- `Saturday`\n",
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "ProductRatePlanChargeId"
+                                                                        ],
+                                                                        "type": "object"
+                                                                    },
+                                                                    {
+                                                                        "additionalProperties": {
+                                                                            "description": "Custom fields of the Rate Plan Charge object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                                                        },
+                                                                        "description": "Container for custom fields of a Rate Plan Charge object.\n",
+                                                                        "title": "ratePlanChargeFieldsCustom",
+                                                                        "type": "object"
+                                                                    }
+                                                                ],
+                                                                "description": "",
+                                                                "title": "RatePlanCharge"
+                                                            },
+                                                            "RatePlanChargeTier": {
+                                                                "description": "",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "CreatedById": {
+                                                                            "description": "The ID of the Zuora user who created the RatePlanChargeTier object.\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                                            "type": "string"
+                                                                        },
+                                                                        "CreatedDate": {
+                                                                            "description": " The date when the RatePlanChargeTier object was created.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                                            "format": "date-time",
+                                                                            "type": "string"
+                                                                        },
+                                                                        "EndingUnit": {
+                                                                            "description": " The end number of a range of units for the tier. This field is only required if the charge mode is `Tiered Pricing` or `Tierred with Overage Pricing`.\n\n\n**Character limit**: 16\n\n\n**Values**: any positive decimal value ",
+                                                                            "format": "double",
+                                                                            "type": "number"
+                                                                        },
+                                                                        "IsOveragePrice": {
+                                                                            "description": " Indicates if the price is an overage price. An overage occurs when usage surpasses the last defined tier. This field is applicable only to tier pricing and volume pricing models.\n\n\n\n**Values**: true, false ",
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "Price": {
+                                                                            "description": " The price of the tier if the charge is a flat fee, or the price of each unit in the tier if the change model is tiered pricing.\n\n\n**Character limit**: 16\n\n\n**Values**: any positive decimal value ",
+                                                                            "format": "double",
+                                                                            "type": "number"
+                                                                        },
+                                                                        "PriceFormat": {
+                                                                            "description": " Indicates if the price is a flat fee or is per unit.\n\n\n**Character limit**: 8\n\n\n**Values**: `FlatFee`, `PerUnit` ",
+                                                                            "enum": [
+                                                                                "FlatFee",
+                                                                                "PerUnit"
+                                                                            ],
+                                                                            "type": "string"
+                                                                        },
+                                                                        "RatePlanChargeId": {
+                                                                            "description": " The ID of the subscription or amendment rate plan charge associated with this tier. You can't create an unassociated tier.\n\n\n**Character limit**: 32\n\n\n**Values**: inherited from `RatePlanCharge`.`Id` ",
+                                                                            "type": "string"
+                                                                        },
+                                                                        "StartingUnit": {
+                                                                            "description": " The start number of a range of units for the tier. This field is only required if the charge mode is `Tiered Pricing` or `Tierred with Overage Pricing`.\n\n\n**Character limit**: 16\n\n\n**Values**: any positive decimal value ",
+                                                                            "format": "double",
+                                                                            "type": "number"
+                                                                        },
+                                                                        "Tier": {
+                                                                            "description": " A unique number that identifies the tier that the price applies to.\n\n\n**Character limit**: 20\n\n\n**Values**: automatically generated ",
+                                                                            "format": "int32",
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "UpdatedById": {
+                                                                            "description": "The ID of the last user to update the object.\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                                            "type": "string"
+                                                                        },
+                                                                        "UpdatedDate": {
+                                                                            "description": " The date when the object was last updated.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                                            "format": "date-time",
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "RatePlanChargeId"
+                                                                    ],
+                                                                    "type": "object"
+                                                                },
+                                                                "type": "array"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "RatePlanCharge"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                },
+                                                "SubscriptionProductFeatureList": {
+                                                    "description": "",
+                                                    "properties": {
+                                                        "SubscriptionProductFeature": {
+                                                            "description": "",
+                                                            "items": {
+                                                                "allOf": [
+                                                                    {
+                                                                        "properties": {
+                                                                            "CreatedById": {
+                                                                                "description": "",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "CreatedDate": {
+                                                                                "description": " Date and time when the product feature was added to the subscription.\n\n\n**Character limit**: 29\n\n\n**Values**: ",
+                                                                                "format": "date-time",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "Description": {
+                                                                                "description": " Description of the subscription product feature.\n\n\n**Character limit**: 500\n\n\n**Values**: ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "FeatureCode": {
+                                                                                "description": " Unique code of the feature.\n\n\n**Character limit**: 255\n\n\n**Values**: ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "FeatureId": {
+                                                                                "description": " Internal Zuora ID of the feature.\n\n\n**Character limit**: 32\n\n\n**Values**: ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "Name": {
+                                                                                "description": " Name of the feature.\n\n\n**Character limit**: 255\n\n\n**Values**: ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "RatePlanId": {
+                                                                                "description": " Id of the product rate plan to which the feature belongs.\n\n\n**Character limit**: 32\n\n\n**Values**: ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "UpdatedById": {
+                                                                                "description": " Internal Zuora ID of the user who last updated the subscription product feature.\n\n\n**Character limit**: 32\n\n\n**Values**: ",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "UpdatedDate": {
+                                                                                "description": " Date and time when the subscription product feature was last updated.\n\n\n**Character limit**: 29\n\n\n**Values**: ",
+                                                                                "format": "date-time",
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "FeatureId"
+                                                                        ],
+                                                                        "type": "object"
+                                                                    },
+                                                                    {
+                                                                        "additionalProperties": {
+                                                                            "description": "Custom fields of the Subscription Product Feature object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                                                        },
+                                                                        "description": "Container for custom fields of a Subscription Product Feature object.\n",
+                                                                        "title": "subscriptionProductFeatureFieldsCustom",
+                                                                        "type": "object"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "required": [
+                                                "RatePlan"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "Subscription": {
+                                        "allOf": [
+                                            {
+                                                "properties": {
+                                                    "AccountId": {
+                                                        "description": " This field can be updated when `Status` is `Draft`. ",
+                                                        "type": "string"
+                                                    },
+                                                    "AncestorAccountId": {
+                                                        "description": " A filter option for querying all subscriptions under the same account hierarchy.\n\n\n**Character limit**: 32\n\n\n**Values**: a valid account ID ",
+                                                        "type": "string"
+                                                    },
+                                                    "AutoRenew": {
+                                                        "description": " This field can be updated when `Status` is `Draft`. Indicates if the subscription automatically renews at the end of the term. This field is only required if the `TermType` field is set to `TERMED`.\n\n\n\n**Values**: `true`, `false` ",
+                                                        "type": "boolean"
+                                                    },
+                                                    "CancelledDate": {
+                                                        "description": " The date of the amendment that canceled the subscription.\n\n\n\n**Values**: inherited from `Amendment`.`EffectiveDate` ",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    },
+                                                    "ContractAcceptanceDate": {
+                                                        "description": " The date when the customer accepts the contract. This field can be updated when **Status** is `Draft`.\n\n\nThis field is only required if the [Require Service Activation of Orders?](https://knowledgecenter.zuora.com/CB_Billing/Billing_Settings/Define_Default_Subscription_Settings#Require_Service_Activation_of_Orders.3F) Setting is set to `Yes`. If this setting is set to `Yes`:\n\n- If ContractAcceptanceDate field is required, you must set this field, ContractAcceptanceDate, and ContractEffectiveDate fields in the subscribe call to activate a subscription.\n- If ContractAcceptanceDate field is not required, you must set both this field and the ContractEffectiveDate field in the subscribe call to activate a subscription. If you only set a valid date in the ContractEffectiveDate field, the subscribe call still returns success, but the subscription is in `DRAT` status.\n",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    },
+                                                    "ContractEffectiveDate": {
+                                                        "description": " The date when the contract takes effect. This field can be updated when **Status** is `Draft`.\n\n\n**Note**: This field is required in the subscribe call. If you set the value of this field to null and both the ServiceActivationDate and ContractAcceptanceDate fields are not required, the subscribe call still returns success, but the new subscription is in `DRAFT` status. To activate the subscription, you must set a valid date to this field. ",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    },
+                                                    "CreatedById": {
+                                                        "description": "The user ID of the person who created the subscription.\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                        "type": "string"
+                                                    },
+                                                    "CreatedDate": {
+                                                        "description": " The date the subscription was created. This value is the same as the OriginalCreatedDate value until the subscription is amended.\n\n\n\n**Values**: automatically generated ",
+                                                        "format": "date-time",
+                                                        "type": "string"
+                                                    },
+                                                    "CreatorAccountId": {
+                                                        "description": " The account ID that created the subscription or the amended subscription.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                        "type": "string"
+                                                    },
+                                                    "CreatorInvoiceOwnerId": {
+                                                        "description": "The account ID that owns the invoices associated with the subscription or the amended subscription.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                        "type": "string"
+                                                    },
+                                                    "CurrentTerm": {
+                                                        "description": " The length of the period for the current subscription term. This field is only required If the `TermType` field is set to `TERMED` and its value must be greater than `0`. If TermType is set to `EVERGREEN`, this value is ignored. Default is `0`.\n\n\n**Character limit**: 20\n\n\n**Values**: automatically generated ",
+                                                        "format": "int32",
+                                                        "type": "integer"
+                                                    },
+                                                    "CurrentTermPeriodType": {
+                                                        "description": " The period type for the current subscription term. This field is used with the CurrentTerm field to specify the current subscription term.\n\n\n\n**Values**:\n\n- `Month` (default)\n- `Year`\n- `Day`\n- `Week`\n",
+                                                        "type": "string"
+                                                    },
+                                                    "InitialTerm": {
+                                                        "description": " The length of the period for the first subscription term. This field can be updated when Status is `Draft`. If you use the subscribe\ncall, this field is required.\n\n\nThis field is only required if the `TermType` field is set to `TERMED`.\n\n**Character limit**: 20\n\n\n**Values**: any valid number. The default value is 0. ",
+                                                        "format": "int32",
+                                                        "type": "integer"
+                                                    },
+                                                    "InitialTermPeriodType": {
+                                                        "description": " The period type for the first subscription term.\n\n\n\n**Values**:\n\n- `Month` (default)\n- `Year`\n- `Day`\n- `Week`\n\n\n**Note**:\n\n- This field can be updated when `Status` is `Draft`.\n- This field is used with the `InitialTerm` field to specify the initial subscription term.\n",
+                                                        "type": "string"
+                                                    },
+                                                    "InvoiceOwnerId": {
+                                                        "description": " This field can be updated when `Status` is `Draft`. ",
+                                                        "type": "string"
+                                                    },
+                                                    "IsInvoiceSeparate": {
+                                                        "description": " Determines if the subscription is invoiced separately. If `TRUE`, then all charges for this subscription are collected into the subscription's own invoice.\n\n\n\n**Values**: `TRUE`, `FALSE `(default) ",
+                                                        "type": "boolean"
+                                                    },
+                                                    "Name": {
+                                                        "description": " The unique identifier of the subscription. If you don't specify a value, then Zuora generates a name automatically. Whether auto-generated or manually specified, the subscription name must be unique. Otherwise an error will occur. You can change this value only when the subscription is in `Draft` status. Once the subscription is activated, you can't change this value, nor can you use this value for a different subscription.\n\n\n**Character limit**: 100\n\n\n**Values**: one of the following:\n\n- leave null to automatically generate\n- a string of 100 characters or fewer\n",
+                                                        "type": "string"
+                                                    },
+                                                    "Notes": {
+                                                        "description": " Use this field to record comments about the subscription.\n\n\n**Character limit**: 500\n\n\n**Values**: a string of 500 characters or fewer ",
+                                                        "type": "string"
+                                                    },
+                                                    "OriginalCreatedDate": {
+                                                        "description": " The date when the subscription was originally created. This value is the same as the CreatedDate value until the subscription is amended.\n\n\n\n**Values**: automatically generated ",
+                                                        "format": "date-time",
+                                                        "type": "string"
+                                                    },
+                                                    "OriginalId": {
+                                                        "description": " The original ID of this subscription.\n\n\n\n**Values**: automatically generated ",
+                                                        "type": "string"
+                                                    },
+                                                    "PreviousSubscriptionId": {
+                                                        "description": " The subscription ID immediately prior to the current subscription.\n\n\n**Character limit**: 32\n\n\n**Values**: automatically generated ",
+                                                        "type": "string"
+                                                    },
+                                                    "RenewalSetting": {
+                                                        "description": " This field can be updated when **Status** is `Draft`. Specifies whether a termed subscription will remain termed or change to evergreen when it is renewed.\n\n\nThis field is only required if the `TermType` field is set to `TERMED`.\n\n\n**Values**: `RENEW_WITH_SPECIFIC_TERM `(default), `RENEW_TO_EVERGREEN` ",
+                                                        "type": "string"
+                                                    },
+                                                    "RenewalTerm": {
+                                                        "description": " The length of the period for the subscription renewal term. This field can be updated when **Status** is `Draft`. If you use the subscribe\ncall, this field is required.\n\n\nThis field is only required if the `TermType` field is set to `TERMED`.\n\n\n**Character limit**: 20\n\n\n**Values**: one of the following:\n\n- leave null to default to `0`\n- any number\n",
+                                                        "format": "int32",
+                                                        "type": "integer"
+                                                    },
+                                                    "RenewalTermPeriodType": {
+                                                        "description": " The period type for the subscription renewal term.\n\n\n\n**Values**:\n\n- `Month` (default)\n- `Year`\n- `Day`\n- `Week`\n\n\n**Note**:\n\n- This field is used with the RenewalTerm field to specify the subscription renewal term.\n- This field can be updated when Status is `Draft`.\n",
+                                                        "type": "string"
+                                                    },
+                                                    "ServiceActivationDate": {
+                                                        "description": " The date when the subscription is activated.\nThis field can be updated when **Status** is `Draft`. This field is only required if the [Require Service Activation of Orders?](https://knowledgecenter.zuora.com/CB_Billing/Billing_Settings/Define_Default_Subscription_Settings#Require_Service_Activation_of_Orders.3F) Setting is set to `Yes`.\nIf this setting is set to `Yes`:\n\n- If ContractAcceptanceDate field is required, you must set this field, ContractAcceptanceDate, and ContractEffectiveDate fields in the subscribe call to activate a subscription.\n- If ContractAcceptanceDate field is not required, you must set both this field and the ContractEffectiveDate field in the subscribe call to activate a subscription. If you only set a valid date in the ContractEffectiveDate field, the subscribe call still returns success, but the subscription is in `DRAT` status.\n\n\n**Character limit**: 29\n\n",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    },
+                                                    "Status": {
+                                                        "description": " The status of the subscription.\n\n\n**Character limit**: 17\n\n\n**Values**: automatically generated\n\n**Possible values**: one of the following:\n\n- `Draft`\n- `PendingActivation`\n- `PendingAcceptance`\n- `Active`\n- `Cancelled`\n- `Expired`\n- `Suspended` (This value is in **Limited Availability**.)\n",
+                                                        "type": "string"
+                                                    },
+                                                    "SubscriptionEndDate": {
+                                                        "description": " The date when the subscription term ends, where the subscription ends at midnight the day before. For example, if the SubscriptionEndDate is 12/31/2016, the subscriptions ends at midnight (00:00:00 hours) on 12/30/2016. This date is the same as the term end date or the cancelation date, as appropriate.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    },
+                                                    "SubscriptionStartDate": {
+                                                        "description": " The date when the subscription term starts. This date is the same as the start date of the original term, which isn't necessarily the start date of the current or new term.\n\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    },
+                                                    "TermEndDate": {
+                                                        "description": " This field can be updated when **Status** is `Draft`. The date when the subscription term ends. If the subscription is evergreen, the TermEndDate value is null or is the cancelation date, as appropriate.\n\n**Character limit**: 29\n\n\n**Values**: automatically generated ",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    },
+                                                    "TermStartDate": {
+                                                        "description": " This field can be updated when **Status** is `Draft`. The date when the subscription term begins. If this is a renewal subscription, then this date is different from the subscription start date. If you don't specify a value, then Zuora uses ContractEffectiveDate automatically.\n\n\n**Character limit**: 29 ",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    },
+                                                    "TermType": {
+                                                        "description": " This field can be updated when **Status** is `Draft`. Indicates if a subscription is [termed or evergreen](https://knowledgecenter.zuora.com/BC_Subscription_Management/Subscriptions#Termed_and_Evergreen_Subscriptions). A termed subscription has a specific end date and requires manual renewal. An evergreen subscription doesn't have an end date and doesn't need renewal. This field can be updated when the subscription status is Draft.\n\n\n**Character limit**: 9\n\n\n**Values**: `TERMED`, `EVERGREEN` ",
+                                                        "type": "string"
+                                                    },
+                                                    "UpdatedById": {
+                                                        "description": " The ID of the user who last updated the subscription.\n**Character limit:** 32 **Values: **automatically generated ",
+                                                        "type": "string"
+                                                    },
+                                                    "UpdatedDate": {
+                                                        "description": " The date when the subscription was last updated.\n**Character limit:** 29\n\n\n**Values**: automatically generated ",
+                                                        "format": "date-time",
+                                                        "type": "string"
+                                                    },
+                                                    "Version": {
+                                                        "description": " The version number of the subscription.\n\n\n\n**Values**: automatically generated ",
+                                                        "format": "int32",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "ContractEffectiveDate",
+                                                    "TermType"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            {
+                                                "description": "Container for Subscription fields provided by Zuora Quotes.\n",
+                                                "properties": {
+                                                    "CpqBundleJsonId__QT": {
+                                                        "description": "The Bundle product structures from Zuora Quotes if you utilize Bundling in Salesforce. Do not change the value in this field.\n",
+                                                        "maxLength": 32,
+                                                        "type": "string"
+                                                    },
+                                                    "OpportunityCloseDate__QT": {
+                                                        "description": "The closing date of the Opportunity. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    },
+                                                    "OpportunityName__QT": {
+                                                        "description": "The unique identifier of the Opportunity. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                                                        "maxLength": 100,
+                                                        "type": "string"
+                                                    },
+                                                    "QuoteBusinessType__QT": {
+                                                        "description": "The specific identifier for the type of business transaction the Quote represents such as New, Upsell, Downsell, Renewal or Churn. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                                                        "maxLength": 32,
+                                                        "type": "string"
+                                                    },
+                                                    "QuoteNumber__QT": {
+                                                        "description": "The unique identifier of the Quote. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                                                        "maxLength": 32,
+                                                        "type": "string"
+                                                    },
+                                                    "QuoteType__QT": {
+                                                        "description": "The Quote type that represents the subscription lifecycle stage such as New, Amendment, Renew or Cancel. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                                                        "maxLength": 32,
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "title": "subscriptionFieldsQT",
+                                                "type": "object"
+                                            },
+                                            {
+                                                "description": "Container for Subscription fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                "properties": {
+                                                    "IntegrationId__NS": {
+                                                        "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                        "maxLength": 255,
+                                                        "type": "string"
+                                                    },
+                                                    "IntegrationStatus__NS": {
+                                                        "description": "Status of the subscription's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                        "maxLength": 255,
+                                                        "type": "string"
+                                                    },
+                                                    "Project__NS": {
+                                                        "description": "The NetSuite project that the subscription was created from. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                        "maxLength": 255,
+                                                        "type": "string"
+                                                    },
+                                                    "SalesOrder__NS": {
+                                                        "description": "The NetSuite sales order than the subscription was created from. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                        "maxLength": 255,
+                                                        "type": "string"
+                                                    },
+                                                    "SyncDate__NS": {
+                                                        "description": "Date when the subscription was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                                        "maxLength": 255,
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "title": "subscriptionFieldsNS",
+                                                "type": "object"
+                                            },
+                                            {
+                                                "additionalProperties": {
+                                                    "description": "Custom fields of the Subscription object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                                },
+                                                "description": "Container for custom fields of a Subscription object.\n",
+                                                "title": "subscriptionFieldsCustom",
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "description": "",
+                                        "title": "Subscription"
+                                    }
+                                },
+                                "required": [
+                                    "Subscription",
+                                    "RatePlanData"
+                                ],
+                                "type": "object"
+                            }
+                        },
+                        "required": [
+                            "Account",
+                            "SubscriptionData"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "subscribes"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

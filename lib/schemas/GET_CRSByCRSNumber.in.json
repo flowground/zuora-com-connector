@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "crs_number": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

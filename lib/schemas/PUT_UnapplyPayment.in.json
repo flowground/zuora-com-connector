@@ -1,0 +1,158 @@
+{
+    "type": "object",
+    "properties": {
+        "paymentId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "debitMemos": [
+                    {
+                        "amount": 1.02,
+                        "debitMemoId": "4028905f5a87c0ff015a87e49e6b0062",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "amount": 1,
+                                    "debitMemoItemId": "4028905f5a87c0ff015a87e49e7a0063"
+                                },
+                                {
+                                    "amount": 0.02,
+                                    "taxItemId": "4028905f5a87c0ff015a87e49f5e0065"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "effectiveDate": "2017-03-01",
+                "invoices": [
+                    {
+                        "amount": 10.1,
+                        "invoiceId": "4028905f5a87c0ff015a87d3f8f10043",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "amount": 10,
+                                    "invoiceItemId": "4028905f5a87c0ff015a87d3f90c0045"
+                                },
+                                {
+                                    "amount": 0.1,
+                                    "taxItemId": "4028905f5a87c0ff015a87d3f884003f"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "properties": {
+                "debitMemos": {
+                    "description": "Container for debit memos.\n",
+                    "items": {
+                        "properties": {
+                            "amount": {
+                                "description": "The amount of the payment that is unapplied from the debit memo.\n",
+                                "format": "double",
+                                "type": "number"
+                            },
+                            "debitMemoId": {
+                                "description": "The unique ID of the debit memo that the payment is unapplied from.\n",
+                                "type": "string"
+                            },
+                            "items": {
+                                "description": "Container for debit memo items.\n\n**Note:** The Invoice Item Settlement feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n",
+                                "items": {
+                                    "properties": {
+                                        "amount": {
+                                            "description": "The amount of the payment that is unapplied from the specific debit mem or taxation item.\n",
+                                            "format": "double",
+                                            "type": "number"
+                                        },
+                                        "debitMemoItemId": {
+                                            "description": "The ID of the specific debit memo item.\n",
+                                            "type": "string"
+                                        },
+                                        "taxItemId": {
+                                            "description": "The ID of the specific taxation item.\n",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "amount"
+                                    ],
+                                    "title": "items",
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "amount"
+                        ],
+                        "title": "debitMemos",
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "effectiveDate": {
+                    "description": "The date when the payment is unapplied, in `yyyy-mm-dd` format.\n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "invoices": {
+                    "description": "Container for invoices.\n",
+                    "items": {
+                        "properties": {
+                            "amount": {
+                                "description": "The amount of the payment that is unapplied from the invoice.\n",
+                                "format": "double",
+                                "type": "number"
+                            },
+                            "invoiceId": {
+                                "description": "The unique ID of the invoice that the payment is unapplied from.\n",
+                                "type": "string"
+                            },
+                            "items": {
+                                "description": "Container for invoice items.\n\n**Note:** The Invoice Item Settlement feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n",
+                                "items": {
+                                    "properties": {
+                                        "amount": {
+                                            "description": "The amount of the payment that is unapplied from the specific invoice or taxation item.\n",
+                                            "format": "double",
+                                            "type": "number"
+                                        },
+                                        "invoiceItemId": {
+                                            "description": "The ID of the specific invoice item.\n",
+                                            "type": "string"
+                                        },
+                                        "taxItemId": {
+                                            "description": "The ID of the specific taxation item.\n",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "amount"
+                                    ],
+                                    "title": "items",
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "amount"
+                        ],
+                        "title": "invoices",
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

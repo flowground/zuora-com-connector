@@ -1,0 +1,97 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "accountingPeriodName": "Nov-2014",
+                "journalEntryDate": "2014-11-04",
+                "transactionTypes": [
+                    {
+                        "type": "Invoice Item"
+                    },
+                    {
+                        "type": "Revenue Event Item"
+                    }
+                ]
+            },
+            "properties": {
+                "accountingPeriodName": {
+                    "description": "Name of the accounting period.\n\nThis field determines the target start and end dates of the journal run.\n\nRequired if you do not include `targetStartDate` and `targetEndDate`.\n",
+                    "type": "string"
+                },
+                "journalEntryDate": {
+                    "description": "Date of the journal entry.\n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "targetEndDate": {
+                    "description": "The target end date of the journal run.\n\nIf you include `accountingPeriodName`, the `targetEndDate` must be empty or the same as the end date of the accounting period specified in `accountingPeriodName`.\n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "targetStartDate": {
+                    "description": "The target start date of the journal run.\n\nRequired if you include targetEndDate.\n\nIf you include `accountingPeriodName`, the `targetStartDate` must be empty or the same as the start date of the accounting period specified in `accountingPeriodName`.\n",
+                    "format": "date",
+                    "type": "string"
+                },
+                "transactionTypes": {
+                    "description": "Transaction types included in the journal run.\n\nYou can include one or more transaction types.\n",
+                    "items": {
+                        "properties": {
+                            "type": {
+                                "description": "Transaction type. Invoice Adjustment is deprecated on Production. Zuora recommends that you use the Invoice Item Adjustment instead.\n\nIf you enable the Invoice Settlement feature, Debit Memo Item, Credit Memo Item, and Credit Memo Application Item are available, Payment and Refund will be replaced by Payment Application and Refund Application. \n\nIf you enable both the Invoice Settlement feature and the Invoice Item Settlement feature, Payment and Refund will be replaced by Payment Application Item and Refund Application Item. \n",
+                                "enum": [
+                                    "Invoice Item",
+                                    "Taxation Item",
+                                    "Invoice Item Adjustment (Invoice)",
+                                    "Invoice Item Adjustment (tax)",
+                                    "Invoice Adjustment",
+                                    "Electronic Payment",
+                                    "External Payment",
+                                    "Electronic Refund",
+                                    "External Refund",
+                                    "Electronic Credit Balance Payment",
+                                    "External Credit Balance Payment",
+                                    "Electronic Credit Balance Refund",
+                                    "External Credit Balance Refund",
+                                    "Credit Balance Adjustment (Applied from Credit Balance)",
+                                    "Credit Balance Adjustment (Transferred to Credit Balance)",
+                                    "Revenue Event Item",
+                                    "Debit Memo Item (Charge)",
+                                    "Debit Memo Item (tax)",
+                                    "Credit Memo Item (Charge)",
+                                    "Credit Memo Item (tax)",
+                                    "Credit Memo Application Item",
+                                    "Electronic Payment Application",
+                                    "External Payment Application",
+                                    "Electronic Refund Application",
+                                    "External Refund Application",
+                                    "Electronic Payment Application Item",
+                                    "External Payment Application Item",
+                                    "Electronic Refund Application Item",
+                                    "External Refund Application Item"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type"
+                        ],
+                        "title": "transactionTypes",
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "transactionTypes",
+                "journalEntryDate"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

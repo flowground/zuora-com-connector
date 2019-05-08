@@ -1,0 +1,35 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "memoItemIds": [
+                    "2c989012662441dc0166518ad4d407ef"
+                ],
+                "memoNumber": "CM00000001"
+            },
+            "properties": {
+                "memoItemIds": {
+                    "description": "The credit memo items to break down.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "memoNumber": {
+                    "description": "The credit memo number which the invoice items belong to.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "memoNumber",
+                "memoItemIds"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

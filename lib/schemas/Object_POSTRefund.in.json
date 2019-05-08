@@ -1,0 +1,197 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "AccountId": {
+                            "description": " The ID of the account associated with this refund. This field is only required if you create a non-referenced refund. Don't specify a value for any other type of refund; Zuora associates the refund automatically with the account from the associated payment.\n**Character limit**: 32 **Values**: a valid account ID ",
+                            "type": "string"
+                        },
+                        "Amount": {
+                            "description": " The amount of the refund. The amount can't exceed the amount of the associated payment. If the original payment was applied to a single invoice, then you can create a partial refund. However, if the payment was applies to multiple invoices, then you can only make a partial refund through the web-based UI, not through the API.\n**Character limit**: 16 **Values**: a valid currency amount ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "Comment": {
+                            "description": " Use this field to record comments about the refund.\n**Character limit**: 255 **Values**: a string of 255 characters or fewer ",
+                            "type": "string"
+                        },
+                        "GatewayOptionData": {
+                            "description": "A field used to pass gateway options. Zuora allows you to pass in special gateway-specific parameters for payments that go through the Adyen, Autorize.et, CyberSource, Merchant eSolutions, Orbital (Chase Paymentech), QValent, Vantiv, and Verifi gateways.\n\nFor each of these special parameters, you supply the name-value pair and Zuora passes it to the gateway. This allows you to add functionality that's supported by a specific gateway but currently not supported by Zuora.\n",
+                            "properties": {
+                                "GatewayOption": {
+                                    "description": "",
+                                    "items": {
+                                        "properties": {
+                                            "name": {
+                                                "description": "The name of a gateway-specific parameter. This field is optional, but you must pass value for this field when using the `GatewayOptionData` field. Otherwise, the additional payment gateway parameter will not be mapped.\n",
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "description": "The value of the gateway-specific parameter. This field is optional, but you must pass value for this field when using the `GatewayOptionData` field. Otherwise, the additional payment gateway parameter will not be mapped.\n",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "maxItems": 200,
+                                    "minItems": 0,
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "GatewayOption"
+                            ],
+                            "type": "object"
+                        },
+                        "GatewayState": {
+                            "description": " The status of the payment in the gateway.\n**Character limit**: 19 **Values**: automatically generated ",
+                            "type": "string"
+                        },
+                        "MethodType": {
+                            "description": " Indicates how an external refund was issued to a customer. This field is only required if the `Type` field is set to ` External`. You can issue an external refund on an electronic payment. **Character limit**: 30 **Values**:\n\n- `ACH`\n- `Cash`\n- `Check`\n- `CreditCard`\n- `Other`\n- `PayPal`\n- `WireTransfer`\n- `DebitCard`\n- `CreditCardReferenceTransaction`\n",
+                            "type": "string"
+                        },
+                        "PaymentMethodId": {
+                            "description": " The unique ID of the payment method that the customer used to make the payment. This field is only required if you create a non-referenced refund.\n**Character limit**: 32 **V****alues**: a valid payment method ID ",
+                            "type": "string"
+                        },
+                        "ReasonCode": {
+                            "description": " A code identifying the reason for the transaction. Must be an existing reason code or empty. If you do not specify a value, Zuora uses the default reason code.\n**Character limit**: 32 **V****alues**: a valid reason code ",
+                            "type": "string"
+                        },
+                        "RefundDate": {
+                            "description": " The date of the refund, in `yyyy-mm-dd` format. The date of the refund cannot be before the payment date. This field is only required if the `Type` field is set to ` External`. Zuora automatically generates this field for electronic refunds.\n**Character limit**: 29 ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "RefundInvoicePaymentData": {
+                            "description": "Container for the refund invoice payment data. This field is only required if you apply a full or partical refund against a payment attached to muliple invoices.\n",
+                            "properties": {
+                                "RefundInvoicePayment": {
+                                    "description": "",
+                                    "items": {
+                                        "properties": {
+                                            "InvoiceId": {
+                                                "description": "The ID of the invoice that the payment is applied to.\n",
+                                                "type": "string"
+                                            },
+                                            "RefundAmount": {
+                                                "description": "The amount of the payment that is refunded. The value of this field is `0` if no refund is made against the payment.\n",
+                                                "format": "decimal",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "InvoiceId",
+                                            "RefundAmount"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "maxItems": 200,
+                                    "minItems": 0,
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "RefundInvoicePayment"
+                            ],
+                            "type": "object"
+                        },
+                        "SoftDescriptor": {
+                            "description": " A payment gateway-specific field that maps Zuora to other gateways . **Character limit**: 35 **Values**:\n\n- 3-byte company identifier &quot;*&quot; 18-byte descriptor\n- 7-byte company identifier &quot;*&quot; 14-byte descriptor\n- 12-byte company identifier &quot;*&quot; 9-byte descriptor\n",
+                            "type": "string"
+                        },
+                        "SoftDescriptorPhone": {
+                            "description": " A payment gateway-specific field that maps Zuora to other gateways . **Character limit**: 20 **Values**:\n\n- Customer service phone number formatted as: `NNN-NNN-NNNN` or `NNN-AAAAAAA`\n- URL (non-e-Commerce): Transactions sent with a URL do not qualify for the best interchange rate\n- Email address\n",
+                            "type": "string"
+                        },
+                        "SourceType": {
+                            "description": " Specifies whether the refund is a refund payment or a credit balance. This field is only required if you create a non-referenced refund. If you creating an non-referenced refund, then set this value to `CreditBalance`.\n**Character limit**: 13 **Values**:\n\n- `Payment`\n- `CreditBalance`\n",
+                            "type": "string"
+                        },
+                        "Type": {
+                            "description": " Specifies if the refund is electronic or external.\n**Character limit**: 10 **Values**:\n\n- `Electronic`\n- External\n",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Amount",
+                        "Type"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Refund fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the refund's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Origin__NS": {
+                            "description": "Origin of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the refund was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SynctoNetSuite__NS": {
+                            "description": "Specifies whether the refund should be synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "refundFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Refund object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Refund object.\n",
+                    "title": "refundFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "AccountId": "2c93808457d787030157e03190e748ea",
+                "Amount": 1.1,
+                "Comment": "this is comments",
+                "PaymentId": "2c93808457d787030157e03197714910",
+                "ReasonCode": "Standard Refund",
+                "RefundInvoicePaymentData": {
+                    "RefundInvoicePayment": [
+                        {
+                            "InvoiceId": "2c93808457d787030157e03195604902",
+                            "RefundAmount": 1.1
+                        }
+                    ]
+                },
+                "SoftDescriptor": "thisSD",
+                "SoftDescriptorPhone": "contact@example.com",
+                "SourceType": "Payment",
+                "Type": "Electronic"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "pageSize": {
+            "required": false,
+            "type": "integer",
+            "maximum": 40,
+            "default": 20
+        },
+        "partid": {
+            "required": true,
+            "type": "string"
+        },
+        "paymentId": {
+            "required": true,
+            "type": "string"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

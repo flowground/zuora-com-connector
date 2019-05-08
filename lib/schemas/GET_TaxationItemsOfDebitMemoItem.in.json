@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "properties": {
+        "pageSize": {
+            "required": false,
+            "type": "integer",
+            "maximum": 40,
+            "default": 20
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+        },
+        "dmitemid": {
+            "required": true,
+            "type": "string"
+        },
+        "debitMemoId": {
+            "required": true,
+            "type": "string"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

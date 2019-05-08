@@ -1,0 +1,197 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "AccountId": {
+                            "description": " This field can be updated when **Status** is `Draft`. The ID of a valid account ID. ",
+                            "type": "string"
+                        },
+                        "AutoRenew": {
+                            "description": " This field can be updated when **Status** is `Draft`. Indicates if the subscription automatically renews at the end of the term.\n**Values**: `true`, `false` ",
+                            "type": "boolean"
+                        },
+                        "CancelledDate": {
+                            "description": " The date of the Amendment object.\n**Values**: inherited from `Amendment.EffectiveDate` ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "ContractAcceptanceDate": {
+                            "description": " The date when the customer accepts the contract. This field can be updated when **Status** is `Draft`. ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "ContractEffectiveDate": {
+                            "description": " The date when the contract takes effect. This field can be updated when **Status** is `Draft`.\n**Note**: This field is required in the Subscribe call. If you set the value of this field to null and both the ServiceActivationDate and ContractAcceptanceDate fields are not required, the Subscribe call still returns success, but the new subscription is in `DRAFT` status. To activate the subscription, you must set a valid date to this field. ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "CurrentTermPeriodType": {
+                            "description": " The period type for the current subscription term. This field is used with the CurrentTerm field to specify the current subscription term.\n**Values**:\n\n- `Month` (default)\n- `Year`\n- `Day`\n- `Week`\n",
+                            "type": "string"
+                        },
+                        "InitialTerm": {
+                            "description": " The length of the period for the first subscription term. This field can be updated when Status is `Draft`.\n**Required**: If TermType is Termed **Character limit**: 20 **Values**: any valid number. The default value is 0. ",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "InitialTermPeriodType": {
+                            "description": " The period type for the first subscription term.\n**Values**:\n\n- `Month` (default)\n- `Year`\n- `Day`\n- `Week`\n**Note**:\n\n- This field can be updated when Status is `Draft`.\n- This field is used with the InitialTerm field to specify the initial subscription term.\n",
+                            "type": "string"
+                        },
+                        "InvoiceOwnerId": {
+                            "description": " This field can be updated when **Status** is `Draft`. A valid account ID. ",
+                            "type": "string"
+                        },
+                        "IsInvoiceSeparate": {
+                            "description": " Determines if the subscription is invoiced separately. If `TRUE`, then all charges for this subscription are collected into the subscription's own invoice.\n**Values**: `TRUE`, `FALSE `(default) ",
+                            "type": "boolean"
+                        },
+                        "Name": {
+                            "description": " The unique identifier of the subscription. If you don't specify a value, then Zuora generates a name automatically. Whether auto-generated or manually specified, the subscription name must be unique. Otherwise an error will occur.\n**Character limit**: 100 **Values**: one of the following:\n\n- leave null to automatically generate\n- a string of 100 characters or fewer\n",
+                            "type": "string"
+                        },
+                        "Notes": {
+                            "description": " Use this field to record comments about the subscription.\n**Character limit**: 500 **Values**: a string of 500 characters or fewer ",
+                            "type": "string"
+                        },
+                        "RenewalSetting": {
+                            "description": " This field can be updated when **Status** is `Draft`. Specifies whether a termed subscription will remain termed or change to evergreen when it is renewed.\n**Required**: If TermType is Termed **Values**: `RENEW_WITH_SPECIFIC_TERM `(default), `RENEW_TO_EVERGREEN` ",
+                            "type": "string"
+                        },
+                        "RenewalTerm": {
+                            "description": " The length of the period for the subscription renewal term. This field can be updated when **Status** is `Draft`. **Required**: If TermType is Termed.\n**Character limit**: 20 **Values**: one of the following:\n\n- leave null to default to `0`\n- any number\n",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "RenewalTermPeriodType": {
+                            "description": " The period type for the subscription renewal term.\n**Values**:\n\n- `Month` (default)\n- `Year`\n- `Day`\n- `Week`\n**Note**:\n\n- This field is used with the RenewalTerm field to specify the subscription renewal term.\n- This field can be updated when Status is `Draft`.\n",
+                            "type": "string"
+                        },
+                        "ServiceActivationDate": {
+                            "description": " The date when the subscription is activated. This field can be updated when **Status** is `Draft`.\n**Character limit**: 29 ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "Status": {
+                            "description": " The status of the subscription.\n**Character limit**: 17 **Values**: automatically generated **Possible values**: one of the following:\n\n- `Draft`\n- `Pending Activation`\n- `Pending Acceptance`\n- `Active`\n- `Cancelled`\n- `Expired`\n- `Suspended` (This value is in **Limited Availability**.)\n",
+                            "type": "string"
+                        },
+                        "TermStartDate": {
+                            "description": " This field can be updated when **Status** is `Draft`. The date when the subscription term begins. If this is a renewal subscription, then this date is different from the subscription start date.\n**Character limit**: 29 **Version notes**: -- ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "TermType": {
+                            "description": " This field can be updated when **Status** is `Draft`. Indicates if a subscription is termed or evergreen.\n**Character limit**: 9 **Values**: `TERMED`, `EVERGREEN` ",
+                            "type": "string"
+                        },
+                        "Version": {
+                            "description": " The version number of the subscription.\n**Values**: automatically generated ",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Subscription fields provided by Zuora Quotes.\n",
+                    "properties": {
+                        "CpqBundleJsonId__QT": {
+                            "description": "The Bundle product structures from Zuora Quotes if you utilize Bundling in Salesforce. Do not change the value in this field.\n",
+                            "maxLength": 32,
+                            "type": "string"
+                        },
+                        "OpportunityCloseDate__QT": {
+                            "description": "The closing date of the Opportunity. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "OpportunityName__QT": {
+                            "description": "The unique identifier of the Opportunity. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "maxLength": 100,
+                            "type": "string"
+                        },
+                        "QuoteBusinessType__QT": {
+                            "description": "The specific identifier for the type of business transaction the Quote represents such as New, Upsell, Downsell, Renewal or Churn. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "maxLength": 32,
+                            "type": "string"
+                        },
+                        "QuoteNumber__QT": {
+                            "description": "The unique identifier of the Quote. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "maxLength": 32,
+                            "type": "string"
+                        },
+                        "QuoteType__QT": {
+                            "description": "The Quote type that represents the subscription lifecycle stage such as New, Amendment, Renew or Cancel. This field is used in Zuora data sources to report on Subscription metrics. If the subscription originated from Zuora Quotes, the value is populated with the value from Zuora Quotes.\n",
+                            "maxLength": 32,
+                            "type": "string"
+                        }
+                    },
+                    "title": "subscriptionFieldsQT",
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Subscription fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the subscription's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "Project__NS": {
+                            "description": "The NetSuite project that the subscription was created from. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SalesOrder__NS": {
+                            "description": "The NetSuite sales order than the subscription was created from. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the subscription was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "subscriptionFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Subscription object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Subscription object.\n",
+                    "title": "subscriptionFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "Id": "2c93808457d787030157e02ea04123cf",
+                "Name": "S_1476934934547_name",
+                "Notes": "this is notes_new"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

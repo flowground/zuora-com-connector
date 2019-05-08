@@ -1,0 +1,157 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "accountKey": {
+                            "description": "ID of the customer account to update.\n\n**Note:** You can create a credit card payment method without assocating it with a customer account if you want. To do it and change the `accountKey` field to optional in this operation, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\n**Important:** When you skip the `accountKey` field in this operation, the `cardHolderName` field in the cardHolderInfo object is required.",
+                            "type": "string"
+                        },
+                        "cardHolderInfo": {
+                            "description": "Container for cardholder information. If provided, Zuora will only use this information for this card. Otherwise, Zuora will use the account's existing bill-to contact information for this card.\n",
+                            "properties": {
+                                "addressLine1": {
+                                    "description": "First address line, 255 characters or less.\n",
+                                    "type": "string"
+                                },
+                                "addressLine2": {
+                                    "description": "Second address line, 255 characters or less.\n",
+                                    "type": "string"
+                                },
+                                "cardHolderName": {
+                                    "description": "The card holder's full name as it appears on the card, e.g., \"John J Smith\", 50 characters or less.\n",
+                                    "type": "string"
+                                },
+                                "city": {
+                                    "description": "City, 40 characters or less.\n",
+                                    "type": "string"
+                                },
+                                "country": {
+                                    "description": "Country, must be a valid country name or abbreviation.\n",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Card holder's email address, 80 characters or less.\n",
+                                    "type": "string"
+                                },
+                                "phone": {
+                                    "description": "Phone number, 40 characters or less.\n",
+                                    "type": "string"
+                                },
+                                "state": {
+                                    "description": "State; must be a valid state name or 2-character abbreviation.\n",
+                                    "type": "string"
+                                },
+                                "zipCode": {
+                                    "description": "Zip code, 20 characters or less.\n",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "creditCardNumber": {
+                            "description": "Credit card number, a string of up to 16 characters. This field can only be set when creating a new payment method; it cannot be queried or updated.\n",
+                            "type": "string"
+                        },
+                        "creditCardType": {
+                            "description": "Possible values are: `Visa`, `MasterCard`, `AmericanExpress`, `Discover`.\n",
+                            "type": "string"
+                        },
+                        "defaultPaymentMethod": {
+                            "description": "Specify true to make this card the default payment method; otherwise, omit this parameter to keep the current default payment method.\n",
+                            "type": "boolean"
+                        },
+                        "expirationMonth": {
+                            "description": "One or two digits expiration month (1-12).\n",
+                            "type": "string"
+                        },
+                        "expirationYear": {
+                            "description": "Four-digit expiration year.\n",
+                            "type": "string"
+                        },
+                        "mitConsentAgreementRef": {
+                            "description": "Specifies your reference for the stored credential consent agreement that you have established with the customer. Only applicable if you set the `mitProfileAction` field.\n",
+                            "maxLength": 128,
+                            "type": "string"
+                        },
+                        "mitConsentAgreementSrc": {
+                            "description": "Required if you set the `mitProfileAction` field.\n",
+                            "enum": [
+                                "External"
+                            ],
+                            "type": "string"
+                        },
+                        "mitProfileAction": {
+                            "description": "If you set this field, Zuora creates a stored credential profile within the payment method.\n\n**Note:** This feature is in **Limited Availability**. We are actively soliciting feedback from a small set of early adopters before releasing as generally available.\n",
+                            "enum": [
+                                "Activate"
+                            ],
+                            "type": "string"
+                        },
+                        "mitProfileType": {
+                            "description": "Required if you set the `mitProfileAction` field.\n",
+                            "enum": [
+                                "Recurring"
+                            ],
+                            "type": "string"
+                        },
+                        "numConsecutiveFailures": {
+                            "description": "The number of consecutive failed payments for this payment method. It is reset to `0` upon successful payment. \n",
+                            "format": "int32",
+                            "maximum": 100,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "securityCode": {
+                            "description": "The CVV or CVV2 security code for the credit card or debit card. Only required if changing expirationMonth, expirationYear, or cardHolderName. To ensure PCI compliance, this value isn't stored and can't be queried.\n\n",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "accountKey",
+                        "creditCardType",
+                        "creditCardNumber",
+                        "expirationMonth",
+                        "expirationYear"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the payment method. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a payment method object.\n",
+                    "title": "paymentMethodFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "accountKey": "A00001115",
+                "cardHolderInfo": {
+                    "addressLine1": "77 Fallon Glen",
+                    "addressLine2": "",
+                    "cardHolderName": "Leo",
+                    "city": "Fremont",
+                    "country": "USA",
+                    "email": "smith@example.com",
+                    "phone": "4155551234",
+                    "state": "California",
+                    "zipCode": "94020"
+                },
+                "creditCardNumber": "1111222233334444",
+                "creditCardType": "Discover",
+                "defaultPaymentMethod": false,
+                "expirationMonth": "10",
+                "expirationYear": "2015",
+                "numConsecutiveFailures": 3,
+                "securityCode": "123"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,481 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "accountKey": {
+                            "description": "\nCustomer account number or ID.\n\nYou must specify the account information either in this field or in the `previewAccountInfo` field with the following conditions:\n         \n* If you already have a customer account, specify the account number or ID in this field.\n* If you do not have a customer account, provide account information in the `previewAccountInfo` field.\n",
+                            "type": "string"
+                        },
+                        "contractEffectiveDate": {
+                            "description": "Effective contract date for this subscription, as yyyy-mm-dd.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "customerAcceptanceDate": {
+                            "description": "The date on which the services or products within a subscription have been accepted by the customer, as yyyy-mm-dd.\n\nDefault value is dependent on the value of other fields. See **Notes** section for more details.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "includeExistingDraftDocItems": {
+                            "description": "Specifies whether to include draft invoice items in subscription previews.\nValues are:\n\n* `true` (default). Includes draft invoice items in the preview result.\n* `false`. Excludes draft invoice items in the preview result.\n\n**Note:** This field is in Zuora REST API version control. Supported minor versions are 207.0 or later. To use this field in the method, you must set the **zuora-version** parameter to the minor version number in the request header. See [Zuora REST API Versions](https://www.zuora.com/developer/api-reference/#section/API-Versions) for more information.\n",
+                            "type": "boolean"
+                        },
+                        "includeExistingDraftInvoiceItems": {
+                            "description": "Specifies whether to include draft invoice items in previews.\nValues are:\n\n* `true` (default). Includes draft invoice items in the preview result.\n* `false`. Excludes draft invoice items in the preview result.\n\n**Note:** This field is in Zuora REST API version control. Supported minor versions are 186.0, 187.0, 188.0, 189.0, and 196.0. See [Zuora REST API Versions](https://www.zuora.com/developer/api-reference/#section/API-Versions) for more information.\n",
+                            "type": "boolean"
+                        },
+                        "initialTerm": {
+                            "description": "Duration of the first term of the subscription, in whole months. Default is `0`. If `termType` is `TERMED`, then this field is required, and the value must be greater than `0`. If `termType` is `EVERGREEN`, this field is ignored.\n",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "initialTermPeriodType": {
+                            "description": "The period type of the initial term. \n\nSupported values are:\n\n* `Month`\n* `Year`\n* `Day`\n* `Week`\n",
+                            "type": "string"
+                        },
+                        "invoiceOwnerAccountKey": {
+                            "description": "Invoice owner account number or ID.\n\n**Note:** This feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n",
+                            "type": "string"
+                        },
+                        "invoiceTargetDate": {
+                            "description": "Date through which to calculate charges if an invoice is generated, as yyyy-mm-dd. Default is current date.\n\n**Note:** This field is in Zuora REST API version control. Supported minor versions are 186.0, 187.0, 188.0, 189.0, and 196.0. See [Zuora REST API Versions](https://www.zuora.com/developer/api-reference/#section/API-Versions) for more information.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "String of up to 500 characters.",
+                            "type": "string"
+                        },
+                        "previewAccountInfo": {
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "billCycleDay": {
+                                            "description": "The account's bill cycle day (BCD), when bill runs generate invoices for the account. Specify any day of the month (`1`-`31`, where `31` = end-of-month), or `0` for auto-set.\n",
+                                            "format": "int64",
+                                            "type": "integer"
+                                        },
+                                        "billToContact": {
+                                            "description": "Container for bill-to contact information of this account.\n",
+                                            "properties": {
+                                                "city": {
+                                                    "description": "The city of the bill-to address. The value should be 40 characters or less.\n",
+                                                    "type": "string"
+                                                },
+                                                "country": {
+                                                    "description": "The country of the bill-to address. The value must be a valid country name or abbreviation.\n\n**Note:** You must specify this field if you are using Zuora Tax for this account.\n",
+                                                    "type": "string"
+                                                },
+                                                "county": {
+                                                    "description": "The county of the bill-to address. The value should be 32 characters or less.\n",
+                                                    "type": "string"
+                                                },
+                                                "state": {
+                                                    "description": "The state of the bill-to address. The value must be a valid state or province name or 2-character abbreviation.\n\n**Note:** You must specify this field if you are using Zuora Tax for this account and the country is `USA` or `Canada`.\n",
+                                                    "type": "string"
+                                                },
+                                                "taxRegion": {
+                                                    "description": "If using Zuora Tax, a region string as optionally defined in your tax rules.\n",
+                                                    "type": "string"
+                                                },
+                                                "zipCode": {
+                                                    "description": "The zip code of the bill-to address. The value should be 20 characters or less.\n",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "currency": {
+                                            "description": "A currency as defined in Billing Settings.\n",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "billCycleDay",
+                                        "billToContact",
+                                        "currency"
+                                    ],
+                                    "type": "object"
+                                },
+                                {
+                                    "description": "Container for Account fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                    "properties": {
+                                        "Class__NS": {
+                                            "description": "Value of the Class field for the corresponding customer account in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                            "maxLength": 255,
+                                            "type": "string"
+                                        },
+                                        "CustomerType__NS": {
+                                            "description": "Value of the Customer Type field for the corresponding customer account in NetSuite. The Customer Type field is used when the customer account is created in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                            "enum": [
+                                                "Company",
+                                                "Individual"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "Department__NS": {
+                                            "description": "Value of the Department field for the corresponding customer account in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                            "maxLength": 255,
+                                            "type": "string"
+                                        },
+                                        "IntegrationId__NS": {
+                                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                            "maxLength": 255,
+                                            "type": "string"
+                                        },
+                                        "IntegrationStatus__NS": {
+                                            "description": "Status of the account's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                            "maxLength": 255,
+                                            "type": "string"
+                                        },
+                                        "Location__NS": {
+                                            "description": "Value of the Location field for the corresponding customer account in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                            "maxLength": 255,
+                                            "type": "string"
+                                        },
+                                        "Subsidiary__NS": {
+                                            "description": "Value of the Subsidiary field for the corresponding customer account in NetSuite. The Subsidiary field is required if you use NetSuite OneWorld. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                            "maxLength": 255,
+                                            "type": "string"
+                                        },
+                                        "SyncDate__NS": {
+                                            "description": "Date when the account was sychronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                            "maxLength": 255,
+                                            "type": "string"
+                                        },
+                                        "SynctoNetSuite__NS": {
+                                            "description": "Specifies whether the account should be synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                                            "enum": [
+                                                "Yes",
+                                                "No"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "title": "accountFieldsNetSuite",
+                                    "type": "object"
+                                },
+                                {
+                                    "additionalProperties": {
+                                        "description": "Custom fields of the Account object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                    },
+                                    "description": "Container for custom fields of an Account object.\n",
+                                    "title": "accountFieldsCustom",
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "A container for providing a customer account information if you do not have an existing customer account. This customer account information is only used for subscription preview.\n\nYou must specify the account information either in this field or in the `accountKey` field with the following conditions:\n\n* If you already have a customer account, specify the account number or ID in the accountKey field.\n* If you do not have a customer account, provide account information in this field.\n",
+                            "title": "previewAccountInfo"
+                        },
+                        "previewType": {
+                            "description": "The type of preview you will receive. \n\nThis field is in Zuora REST API version control. The supported values of this field depend on the REST API minor version you specified in the request header.\n\n\n* If you do not specify the REST API minor version or specify the minor version number to one of following values in the request header:\n \n  * 186.0\n  * 187.0\n  * 188.0\n  * 189.0\n  * 196.0 \n  \n  The following values are supported in the **previewType** field:\n\n  * InvoiceItem\n  * ChargeMetrics\n  * InvoiceItemChargeMetrics\n  \n  The default value is InvoiceItem.\n\n* If you specify the REST API minor version to 207.0 or later in the request header, the following values are supported in the **previewType** field:\n\n  - LegalDoc\n  - ChargeMetrics\n  - LegalDocChargeMetrics\n\n  The default value is LegalDoc.\n\nSee [Zuora REST API Versions](https://www.zuora.com/developer/api-reference/#section/API-Versions) for more information.\n",
+                            "type": "string"
+                        },
+                        "serviceActivationDate": {
+                            "description": "The date on which the services or products within a subscription have been activated and access has been provided to the customer, as yyyy-mm-dd.\n\nDefault value is dependent on the value of other fields. See **Notes** section for more details.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "subscribeToRatePlans": {
+                            "description": "Container for one or more rate plans for this subscription.\n",
+                            "items": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "chargeOverrides": {
+                                                "description": "This optional container is used to override the quantity of one or more product rate plan charges for this subscription.\n",
+                                                "items": {
+                                                    "allOf": [
+                                                        {
+                                                            "properties": {
+                                                                "applyDiscountTo": {
+                                                                    "description": "Specifies the type of charges that you want a specific discount to apply to.\n\nValues:\n\n* `ONETIME`\n* `RECURRING`\n* `USAGE`\n* `ONETIMERECURRING`\n* `ONETIMEUSAGE`\n* `RECURRINGUSAGE`\n* `ONETIMERECURRINGUSAGE`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billCycleDay": {
+                                                                    "description": "Sets the bill cycle day (BCD) for the charge. The BCD determines which day of the month the customer is billed.\n\nValues: `1`-`31`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billCycleType": {
+                                                                    "description": "Specifies how to determine the billing day for the charge. When this field is set to `SpecificDayofMonth`, set the `BillCycleDay` field. When this field is set to `SpecificDayofWeek`, set the `weeklyBillCycleDay` field.\n\nValues:\n\n* `DefaultFromCustomer`\n* `SpecificDayofMonth`\n* `SubscriptionStartDay`\n* `ChargeTriggerDay`\n* `SpecificDayofWeek`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billingPeriod": {
+                                                                    "description": "Billing period for the charge. The start day of the billing period is also called the bill cycle day (BCD).\n\nValues:\n\n* `Month`\n* `Quarter`\n* `Semi_Annual`\n* `Annual`\n* `Eighteen_Months`\n* `Two_Years`\n* `Three_Years`\n* `Five_Years`\n* `Specific_Months`\n* `Subscription_Term`\n* `Week`\n* `Specific_Weeks`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billingPeriodAlignment": {
+                                                                    "description": "Aligns charges within the same subscription if multiple charges begin on different dates.\n\nValues:\n\n* `AlignToCharge`\n* `AlignToSubscriptionStart`\n* `AlignToTermStart`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "billingTiming": {
+                                                                    "description": "Billing timing for the charge for recurring charge types. Not avaliable for one time, usage, and discount charges.\n\nValues:\n\n* `IN_ADVANCE` (default)\n* `IN_ARREARS`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "description": {
+                                                                    "description": "Description of the charge.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "discountAmount": {
+                                                                    "description": "Specifies the amount of fixed-amount discount.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "discountLevel": {
+                                                                    "description": "Specifies if the discount applies to the product rate plan only, the entire subscription, or to any activity in the account.\n\nValues:\n\n* `rateplan`\n* `subscription`\n* `account`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "discountPercentage": {
+                                                                    "description": "Percentage of discount for a percentage discount. \n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "endDateCondition": {
+                                                                    "description": "Defines when the charge ends after the charge trigger date. If the subscription ends before the charge end date, the charge ends when the subscription ends. But if the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge will end on the charge end date.\n\nValues:\n\n* `Subscription_End`\n* `Fixed_Period`\n* `Specific_End_Date`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "includedUnits": {
+                                                                    "description": "Specifies the number of units in the base set of units for this charge. Must be >=`0`.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "listPriceBase": {
+                                                                    "description": "The list price base for the product rate plan charge.\n\nValues:\n\n* `Per_Billing_Period`\n* `Per_Month`\n* `Per_Week`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "number": {
+                                                                    "description": "Unique number that identifies the charge. Max 50 characters. System-generated if not provided.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "numberOfPeriods": {
+                                                                    "description": "Specifies the number of periods to use when calculating charges in an overage smoothing charge model.\n",
+                                                                    "format": "int64",
+                                                                    "type": "integer"
+                                                                },
+                                                                "overagePrice": {
+                                                                    "description": "Price for units over the allowed amount.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "overageUnusedUnitsCreditOption": {
+                                                                    "description": "Determines whether to credit the customer with unused units of usage.\n\nValues:\n\n* `NoCredit`\n* `CreditBySpecificRate`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "price": {
+                                                                    "description": "Price for units in the subscription rate plan.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "priceChangeOption": {
+                                                                    "description": "Applies an automatic price change when a termed subscription is renewed. The Billing Admin setting **Enable Automatic Price Change When Subscriptions are Renewed?** must be set to Yes to use this field.\nValues:\n\n* `NoChange` (default)\n* `SpecificPercentageValue`\n* `UseLatestProductCatalogPricing`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "priceIncreasePercentage": {
+                                                                    "description": "Specifies the percentage to increase or decrease the price of a termed subscription's renewal. Required if you set the `PriceChangeOption` field to `SpecificPercentageValue`. \n\nValue must be a decimal between `-100` and `100`.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "productRatePlanChargeId": {
+                                                                    "description": "ID of a product rate-plan charge for this subscription.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "quantity": {
+                                                                    "description": "Number of units. Must be a decimal >=`0`. \n\nWhen using `chargeOverrides` for creating subscriptions with recurring charge types, the `quantity` field must be populated when the charge model is \"Tiered Pricing\" or \"Volume Pricing\". It is not required for \"Flat Fee Pricing\" charge model.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "ratingGroup": {
+                                                                    "description": "Specifies a rating group based on which usage records are rated.\n\n**Note:** This feature is in **Limited Availability**. If you wish to have access to the feature, submit a request at [Zuora Global Support](http://support.zuora.com/).\n\nPossible values:\n\n- `ByBillingPeriod` (default): The rating is based on all the usages in a billing period.\n- `ByUsageStartDate`: The rating is based on all the usages on the same usage start date. \n- `ByUsageRecord`: The rating is based on each usage record.\n- `ByUsageUpload`: The rating is based on all the  usages in a uploaded usage file (`.xls` or `.csv`).\n- `ByGroupId`: The rating is based on all the usages in a custom group.\n\n**Note:** \n- The `ByBillingPeriod` value can be applied for all charge models. \n- The `ByUsageStartDate`, `ByUsageRecord`, and `ByUsageUpload` values can only be applied for per unit, volume pricing, and tiered pricing charge models. \n- The `ByGroupId` value is only available if you have [Active Rating](https://knowledgecenter.zuora.com/CB_Billing/J_Billing_Operations/H_Active_Rating) feature enabled.\n- Use this field only for Usage charges. One-Time Charges and Recurring Charges return `NULL`.\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "specificBillingPeriod": {
+                                                                    "description": "Specifies the number of month or week for the charges billing period. Required if you set the value of the `billingPeriod` field to `Specific_Months` or `Specific_Weeks`.\n",
+                                                                    "format": "int64",
+                                                                    "type": "integer"
+                                                                },
+                                                                "specificEndDate": {
+                                                                    "description": "Defines when the charge ends after the charge trigger date.\n\n**note:**\n\n* This field is only applicable when the `endDateCondition` field is set to `Specific_End_Date`.\n\n* If the subscription ends before the specific end date, the charge ends when the subscription ends. But if the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge will end on the specific end date.\n",
+                                                                    "format": "date",
+                                                                    "type": "string"
+                                                                },
+                                                                "tiers": {
+                                                                    "description": "Container for Volume, Tiered, or Tiered with Overage charge models. Supports the following charge types:\n\n* One-time\n* Recurring\n* Usage-based\n",
+                                                                    "items": {
+                                                                        "properties": {
+                                                                            "endingUnit": {
+                                                                                "description": "End number of a range of units for the tier.\n",
+                                                                                "format": "decimal",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "price": {
+                                                                                "description": "Price of the tier if the charge is a flat fee, or the price of each unit in the tier if the charge model is tiered pricing.\n",
+                                                                                "format": "decimal",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "priceFormat": {
+                                                                                "description": "Indicates if pricing is a flat fee or is per unit.\n\nValues:\n\n* `FlatFee`\n* `PerUnit`\n",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "startingUnit": {
+                                                                                "description": "Starting number of a range of units for the tier.\n",
+                                                                                "format": "decimal",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "tier": {
+                                                                                "description": "Unique number that identifies the tier that the price applies to.\n",
+                                                                                "format": "int64",
+                                                                                "type": "integer"
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "tier",
+                                                                            "price"
+                                                                        ],
+                                                                        "title": "tiers",
+                                                                        "type": "object"
+                                                                    },
+                                                                    "type": "array"
+                                                                },
+                                                                "triggerDate": {
+                                                                    "description": "Specifies when to start billing the customer for the charge. Required if the `triggerEvent` field is set to `USD`.\n",
+                                                                    "format": "date",
+                                                                    "type": "string"
+                                                                },
+                                                                "triggerEvent": {
+                                                                    "description": "Specifies when to start billing the customer for the charge.\n\nValues:\n\n* `UCE`\n* `USA`\n* `UCA`\n* `USD`\n",
+                                                                    "type": "string"
+                                                                },
+                                                                "unusedUnitsCreditRates": {
+                                                                    "description": "Specifies the rate to credit a customer for unused units of usage. This field applies only for overage charge models when the `OverageUnusedUnitsCreditOption` field is set to `CreditBySpecificRate`.\n",
+                                                                    "format": "decimal",
+                                                                    "type": "string"
+                                                                },
+                                                                "upToPeriods": {
+                                                                    "description": "Specifies the length of the period during which the charge is active. If this period ends before the subscription ends, the charge ends when this period ends.\n\n**Note:** You must use this field together with the `upToPeriodsType` field to specify the time period.\n\n* This field is applicable only when the `endDateCondition` field is set to `Fixed_Period`. \n* If the subscription end date is subsequently changed through a Renewal, or Terms and Conditions amendment, the charge end date will change accordingly up to the original period end.\n",
+                                                                    "format": "int64",
+                                                                    "type": "integer"
+                                                                },
+                                                                "upToPeriodsType": {
+                                                                    "description": "\nThe period type used to define when the charge ends. \n\nValues:\n\n* `Billing_Periods`\n* `Days`\n* `Weeks`\n* `Months`\n* `Years`\n\nYou must use this field together with the `upToPeriods` field to specify the time period.\n\nThis field is applicable only when the `endDateCondition` field is set to `Fixed_Period`. \n",
+                                                                    "type": "string"
+                                                                },
+                                                                "weeklyBillCycleDay": {
+                                                                    "description": "Specifies which day of the week is the bill cycle day (BCD) for the charge. \n\nValues:\n\n* `Sunday`\n* `Monday`\n* `Tuesday`\n* `Wednesday`\n* `Thursday`\n* `Friday`\n* `Saturday`\n",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "productRatePlanChargeId"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        {
+                                                            "additionalProperties": {
+                                                                "description": "Custom fields of the Rate Plan Charge object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                                            },
+                                                            "description": "Container for custom fields of a Rate Plan Charge object.\n",
+                                                            "title": "ratePlanChargeFieldsCustom",
+                                                            "type": "object"
+                                                        }
+                                                    ],
+                                                    "title": "chargeOverrides"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "productRatePlanId": {
+                                                "description": "ID of a product rate plan for this subscription.\n",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "productRatePlanId"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": {
+                                            "description": "Custom fields of the Rate Plan object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                        },
+                                        "description": "Container for custom fields of a Rate Plan object.\n",
+                                        "title": "ratePlanFieldsCustom",
+                                        "type": "object"
+                                    }
+                                ],
+                                "title": "subscribeToRatePlans"
+                            },
+                            "type": "array"
+                        },
+                        "targetDate": {
+                            "description": "Date through which to calculate charges if an invoice is generated, as yyyy-mm-dd. Default is current date.\n\n**Note:** This field is in Zuora REST API version control. Supported minor versions are 207.0 or later. To use this field in the method, you must set the **zuora-version** parameter to the minor version number in the request header. See [Zuora REST API Versions](https://www.zuora.com/developer/api-reference/#section/API-Versions) for more information.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "termStartDate": {
+                            "description": "The date on which the subscription term begins, as yyyy-mm-dd. If this is a renewal subscription, this date is different from the subscription start date.\n",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "termType": {
+                            "description": "Possible values are: `TERMED`, `EVERGREEN`.\n",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "termType",
+                        "contractEffectiveDate",
+                        "subscribeToRatePlans"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Subscription object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Subscription object.\n",
+                    "title": "subscriptionFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "contractEffectiveDate": "2013-1-15",
+                "initialTerm": 12,
+                "initialTermPeriodType": "Week",
+                "invoiceTargetDate": "2013-12-31",
+                "previewAccountInfo": {
+                    "billCycleDay": 31,
+                    "billToContact": {
+                        "city": "Walnut Creek",
+                        "country": "United States",
+                        "county": "Contra Consta",
+                        "state": "California",
+                        "zipCode": "94549"
+                    },
+                    "currency": "USD"
+                },
+                "subscribeToRatePlans": [
+                    {
+                        "chargeOverrides": [
+                            {
+                                "productRatePlanChargeId": "ff8080811ca15d19011cddad8c953b53",
+                                "quantity": 100
+                            }
+                        ],
+                        "productRatePlanId": "ff8080811ca15d19011cdda9b0ad3b51"
+                    }
+                ],
+                "termType": "TERMED"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "zuora_version": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

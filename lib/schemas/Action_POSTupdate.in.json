@@ -1,0 +1,80 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "objects": [
+                    {
+                        "AccountNumber": "AN_1476935163869",
+                        "AutoPay": true,
+                        "Batch": "Batch1",
+                        "BillCycleDay": 1,
+                        "BillToId": "2c93808457d787030157e03220684fac",
+                        "CrmId": "crmid",
+                        "Currency": "USD",
+                        "DefaultPaymentMethodId": "2c93808457d787030157e03220ec4fad",
+                        "Id": "2c93808457d787030157e0321fdf4fab",
+                        "InvoiceTemplateId": "2c93808457d787030157e03208864f97",
+                        "Name": "AC_1476935163869",
+                        "Notes": "this is notes",
+                        "PaymentTerm": "Due Upon Receipt",
+                        "SoldToId": "2c93808457d787030157e03220684fac",
+                        "Status": "Active"
+                    }
+                ],
+                "type": "Account"
+            },
+            "properties": {
+                "objects": {
+                    "description": "",
+                    "items": {
+                        "allOf": [
+                            {
+                                "properties": {
+                                    "Id": {
+                                        "description": "",
+                                        "type": "string"
+                                    },
+                                    "fieldsToNull": {
+                                        "description": "",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "Id"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "additionalProperties": {
+                                    "description": "Field of the object.\n"
+                                },
+                                "type": "object"
+                            }
+                        ],
+                        "title": "zObject"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "objects",
+                "type"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

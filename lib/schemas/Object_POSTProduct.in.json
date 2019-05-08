@@ -1,0 +1,104 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "AllowFeatureChanges": {
+                            "description": " Controls whether to allow your users to add or remove features while creating or amending a subscription.\n**Character** **limit**: n/a\n**Values**: true, false (default) ",
+                            "type": "boolean"
+                        },
+                        "Category": {
+                            "description": " Category of the product. Used by Zuora Quotes Guided Product Selector.\n**Character** **limit**: 100\n**Values**: One of the following:\n\n- Base Products\n- Add On Services\n- Miscellaneous Products\n",
+                            "type": "string"
+                        },
+                        "Description": {
+                            "description": " A descriptionof the product. **Character limit**: 500 **Values**: a string of 500 characters or fewer ",
+                            "type": "string"
+                        },
+                        "EffectiveEndDate": {
+                            "description": "The date when the product expires and can't be subscribed to anymore, in `yyyy-mm-dd` format. **Character limit**: 29 ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "EffectiveStartDate": {
+                            "description": "The date when the product becomes available and can be subscribed to, in `yyyy-mm-dd` format. **Character limit**: 29 ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "Name": {
+                            "description": "The name of the product. This information is displayed in the product catalog pages in the web-based UI. **Character limit**: 100 **Values**: a string of 100 characters or fewer ",
+                            "type": "string"
+                        },
+                        "SKU": {
+                            "description": "The unique SKU for the product. **Character limit**: 50 **Values**: one of the following:\n\n- leave null for automatic generated\n- an alphanumeric string of 50 characters or fewer\n",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "EffectiveEndDate",
+                        "EffectiveStartDate",
+                        "Name"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "description": "Container for Product fields provided by the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                    "properties": {
+                        "IntegrationId__NS": {
+                            "description": "ID of the corresponding object in NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "IntegrationStatus__NS": {
+                            "description": "Status of the product's synchronization with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        },
+                        "ItemType__NS": {
+                            "description": "Type of item that is created in NetSuite for the product. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "enum": [
+                                "Inventory",
+                                "Non Inventory",
+                                "Service"
+                            ],
+                            "type": "string"
+                        },
+                        "SyncDate__NS": {
+                            "description": "Date when the product was synchronized with NetSuite. Only available if you have installed the [Zuora Connector for NetSuite](https://www.zuora.com/connect/app/?appId=265).\n",
+                            "maxLength": 255,
+                            "type": "string"
+                        }
+                    },
+                    "title": "productFieldsNS",
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Product object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Product object.\n",
+                    "title": "productFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "Description": "Create product via API",
+                "EffectiveEndDate": "2066-10-20",
+                "EffectiveStartDate": "1966-10-20",
+                "Name": "P_1476935173677",
+                "SKU": "API-SKU1476935173677"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

@@ -1,0 +1,108 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "AccountId": {
+                            "description": " The ID of the account that owns the invoice.\n**Character limit**: 32 **Values**: inherited from Account.ID for the invoice owner ",
+                            "type": "string"
+                        },
+                        "AccountingCode": {
+                            "description": "The accounting code for the invoice adjustment. ",
+                            "type": "string"
+                        },
+                        "AdjustmentDate": {
+                            "description": " The date when the invoice adjustment is applied. This date must be the same as the invoice's date or later.\n**Character limit**: 29 **Values**: Leave null to automatically generate the current date ",
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "AdjustmentNumber": {
+                            "description": " A unique string to identify an individual invoice adjustment.\n**Character limit**: 255 **Values**: automatically generated ",
+                            "type": "string"
+                        },
+                        "Amount": {
+                            "description": " The amount of the invoice adjustment.\n**Character limit**: 16 **Values**: a valid currency amount ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "Comments": {
+                            "description": " Use this field to record comments about the invoice adjustment.\n**Character limit**: 255 **Values**: a string of 255 characters or fewer ",
+                            "type": "string"
+                        },
+                        "CustomerName": {
+                            "description": " The name of the account that owns the associated invoice.\n**Character limit**: 50 **Values**: inherited from Account.Name ",
+                            "type": "string"
+                        },
+                        "CustomerNumber": {
+                            "description": " The unique account number of the customer's account.\n**Character limit**: 70 **Values**: inherited from Account.AccountNumber ",
+                            "type": "string"
+                        },
+                        "ImpactAmount": {
+                            "description": " The amount that changes the balance of the associated invoice.\n**Character limit**: 16 **Values**: automatically calculated ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "InvoiceId": {
+                            "description": " The ID of the invoice associated with the adjustment. This field is only required if you don't specify a value for the `InvoiceNumber` field.\n**Character limit**: 32 **Values**: a valid invoice ID ",
+                            "type": "string"
+                        },
+                        "InvoiceNumber": {
+                            "description": " The unique identification number for the associated invoice. This field is only required if you don't specify a value for the `InvoiceId` field.\n**Character limit**: 32 **Values**: a valid invoice number ",
+                            "type": "string"
+                        },
+                        "ReasonCode": {
+                            "description": " A code identifying the reason for the transaction. Must be an existing reason code or empty. If you do not specify a value, Zuora uses the default reason code.\n**Character limit**: 32 **V****alues**: a valid reason code ",
+                            "type": "string"
+                        },
+                        "ReferenceId": {
+                            "description": " A code to reference an object external to Zuora. For example, you can use this field to reference a case number in an external system.\n**Character limit**: 60 **Values**: a string of 60 characters or fewer ",
+                            "type": "string"
+                        },
+                        "Status": {
+                            "description": " The status of the invoice adjustment. This field is only required in the Query call, but is automatically generated in other calls.\n**Character limit**: 9 **Values**: `Canceled`, `Processed` ",
+                            "type": "string"
+                        },
+                        "Type": {
+                            "description": " Indicates whether the adjustment credits or debits the invoice amount.\n**Character limit**: 6 **Values**: `Credit`, `Charge` ",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Amount",
+                        "Type"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Invoice Adjustment object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of an Invoice Adjustment object.\n",
+                    "title": "invoiceAdjustmentFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "AccountingCode": "Accounts Receivable",
+                "AdjustmentDate": "2016-10-20",
+                "Amount": 1.2,
+                "Comments": "this is comments",
+                "InvoiceId": "2c93808457d787030157e030d10f3f64",
+                "InvoiceNumber": "INV00000001",
+                "ReferenceId": "refid-1476935078657",
+                "Type": "Credit"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

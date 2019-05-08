@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "displayName": "Acme-Italy",
+                "locale": "en_GB",
+                "name": "Acme-Italy",
+                "timezone": "Europe/Rome"
+            },
+            "properties": {
+                "displayName": {
+                    "description": "The display name of the entity that is shown in the Zuora UI and APIs\n\n**Note:** If you do not specify the display name in the request, the entity name is used as the display name.",
+                    "maxLength": 255,
+                    "type": "string"
+                },
+                "locale": {
+                    "description": "The locale that is used in this entity.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the entity that is the entity identifier and is unique across all entities in a multi-entity hierarchy.\n\n**Note:** Only alphanumeric characters (letters A–Z and a–z, and digits 0–9), space, period, and hyphen are allowed to be used in entity names. ",
+                    "maxLength": 255,
+                    "type": "string"
+                },
+                "timezone": {
+                    "description": "The time zone that is used in this entity.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

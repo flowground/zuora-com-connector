@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "pageSize": {
+            "required": false,
+            "type": "integer",
+            "maximum": 40,
+            "default": 20
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "object_type": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "account",
+                "invoice",
+                "subscription"
+            ]
+        },
+        "object_key": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

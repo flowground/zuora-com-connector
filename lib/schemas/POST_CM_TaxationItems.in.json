@@ -1,0 +1,148 @@
+{
+    "type": "object",
+    "properties": {
+        "creditMemoId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "taxationItems": [
+                    {
+                        "exemptAmount": 0,
+                        "financeInformation": {
+                            "onAccountAccountingCode": "Check",
+                            "salesTaxPayableAccountingCode": "Check"
+                        },
+                        "jurisdiction": "CALIFORNIA",
+                        "locationCode": "06",
+                        "memoItemId": "402890555a7e9791015a879f064d0055",
+                        "name": "STATE TAX",
+                        "sourceTaxItemId": "402890555a7d4022015a7db254e200c1",
+                        "taxAmount": 0.1,
+                        "taxCode": "ServiceTaxCode",
+                        "taxCodeDescription": "This is tax code description!",
+                        "taxDate": "2016-09-30",
+                        "taxRate": 0.0625,
+                        "taxRateDescription": "This is tax rate description!",
+                        "taxRateType": "Percentage"
+                    }
+                ]
+            },
+            "properties": {
+                "taxationItems": {
+                    "description": "Container for taxation items.\n",
+                    "items": {
+                        "allOf": [
+                            {
+                                "properties": {
+                                    "exemptAmount": {
+                                        "description": "The amount of taxes or VAT for which the customer has an exemption.\n",
+                                        "format": "double",
+                                        "type": "number"
+                                    },
+                                    "financeInformation": {
+                                        "description": "Container for the finance information related to the taxation item.\n",
+                                        "properties": {
+                                            "onAccountAccountingCode": {
+                                                "description": "The accounting code that maps to an on account in your accounting system.\n",
+                                                "maxLength": 100,
+                                                "minLength": 0,
+                                                "type": "string"
+                                            },
+                                            "salesTaxPayableAccountingCode": {
+                                                "description": "The accounting code for the sales taxes payable.\n",
+                                                "maxLength": 100,
+                                                "minLength": 0,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "jurisdiction": {
+                                        "description": "The jurisdiction that applies the tax or VAT. This value is typically a state, province, county, or city.\n",
+                                        "type": "string"
+                                    },
+                                    "locationCode": {
+                                        "description": "The identifier for the location based on the value of the `taxCode` field.\n",
+                                        "type": "string"
+                                    },
+                                    "memoItemId": {
+                                        "description": "The ID of the credit memo that the taxation item is created for.\n",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "The name of the taxation item.\n",
+                                        "type": "string"
+                                    },
+                                    "sourceTaxItemId": {
+                                        "description": "The ID of the taxation item of the invoice, which the credit memo is created from. \n\nIf you want to use this REST API to create taxation items for a credit memo created from an invoice, the taxation items of the invoice must be created or imported through the SOAP API call.\n\n**Note:** \n  - This field is only used if the credit memo is created from an invoice. \n  - If you do not contain this field in the request body, Zuora will automatically set a value for the `sourceTaxItemId` field based on the tax location code, tax jurisdiction, and tax rate.\n",
+                                        "type": "string"
+                                    },
+                                    "taxAmount": {
+                                        "description": "The amount of the tax applied to the credit memo.\n",
+                                        "format": "double",
+                                        "type": "number"
+                                    },
+                                    "taxCode": {
+                                        "description": "The tax code identifies which tax rules and tax rates to apply to a specific credit memo.\n",
+                                        "type": "string"
+                                    },
+                                    "taxCodeDescription": {
+                                        "description": "The description of the tax code.\n",
+                                        "type": "string"
+                                    },
+                                    "taxDate": {
+                                        "description": "The date when the tax is applied to the credit memo.\n",
+                                        "format": "date",
+                                        "type": "string"
+                                    },
+                                    "taxRate": {
+                                        "description": "The tax rate applied to the credit memo.\n",
+                                        "format": "double",
+                                        "type": "number"
+                                    },
+                                    "taxRateDescription": {
+                                        "description": "The description of the tax rate.\n",
+                                        "type": "string"
+                                    },
+                                    "taxRateType": {
+                                        "description": "The type of the tax rate applied to the credit memo.\n",
+                                        "enum": [
+                                            "Percentage",
+                                            "FlatFee"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "taxRate",
+                                    "jurisdiction",
+                                    "name",
+                                    "taxRateType",
+                                    "taxAmount"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "additionalProperties": {
+                                    "description": "Custom fields of the Taxation Item object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                },
+                                "description": "Container for custom fields of a Taxation Item object.\n",
+                                "title": "taxationItemFieldsCustom",
+                                "type": "object"
+                            }
+                        ],
+                        "title": "taxationItems"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "objects": [
+                    {
+                        "AccountingCode": "Accounts Receivable",
+                        "AdjustmentDate": "2016-10-20",
+                        "Amount": 1.2,
+                        "Comment": "this is comments",
+                        "InvoiceId": "2c93808457d787030157e03248c75142",
+                        "InvoiceNumber": "INV00000001",
+                        "ReferenceId": "refid-1476935174845",
+                        "SourceId": "2c93808457d787030157e03248c95144",
+                        "SourceType": "InvoiceDetail",
+                        "Type": "Credit"
+                    }
+                ],
+                "type": "InvoiceItemAdjustment"
+            },
+            "properties": {
+                "objects": {
+                    "description": "",
+                    "items": {
+                        "additionalProperties": {
+                            "description": "Field of the object.\n"
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "objects",
+                "type"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

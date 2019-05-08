@@ -1,0 +1,169 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "amount": {
+                            "description": "The revenue schedule amount, which is the sum of all revenue items. This field cannot be null and must be formatted based on the currency, such as `JPY 30` or `USD 30.15`. Test out the currency to ensure you are using the proper formatting otherwise, the response will fail and this error message is returned: `Allocation amount with wrong decimal places.`\n",
+                            "format": "decimal",
+                            "type": "string"
+                        },
+                        "deferredRevenueAccountingCode": {
+                            "description": "The accounting code for deferred revenue, such as Monthly Recurring Liability. Required only when `overrideChargeAccountingCodes` is `true`. Otherwise, this value is ignored.\n",
+                            "type": "string"
+                        },
+                        "deferredRevenueAccountingCodeType": {
+                            "description": "The type of the deferred revenue accounting code, such as Deferred Revenue. Required only when `overrideChargeAccountingCodes` is `true`. Otherwise, this value is ignored.\n",
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "Additional information about this record.\n\nCharacter Limit: 2,000\n",
+                            "type": "string"
+                        },
+                        "overrideChargeAccountingCodes": {
+                            "default": false,
+                            "description": "When overriding accounting codes from a charge, `recognizedRevenueAccountingCode` and `deferredRevenue AccountingCode` must be in the request body and can have the empty value.\n",
+                            "enum": [
+                                true,
+                                false
+                            ],
+                            "type": "boolean"
+                        },
+                        "recognizedRevenueAccountingCode": {
+                            "description": "The accounting code for recognized revenue, such as Monthly Recurring Charges or Overage Charges. Required only when `overrideChargeAccountingCodes` is `true`. Otherwise, the value is ignored.\n",
+                            "type": "string"
+                        },
+                        "recognizedRevenueAccountingCodeType": {
+                            "description": "The type of the recognized revenue accounting code, such as Sales Revenue or Sales Discount. Required only when `overrideChargeAccountingCodes` is `true`. Otherwise, this value is ignored.\n",
+                            "type": "string"
+                        },
+                        "referenceId": {
+                            "description": "Reference ID is used only in the custom unlimited rule to create a revenue schedule. In this scenario, the revenue schedule is not linked to an invoice item or invoice item adjustment.\n\nCharacter Limit: 60\n",
+                            "type": "string"
+                        },
+                        "revenueDistributions": {
+                            "description": "An array of revenue distributions. Represents how you want to distribute revenue for this revenue schedule. You can distribute revenue into a maximum of 250 accounting periods with one revenue schedule.\n\nThe sum of the newAmount fields must be equal to the amount field.\n",
+                            "items": {
+                                "properties": {
+                                    "accountingPeriodName": {
+                                        "description": "Name of the accounting period. The open-ended accounting period is named `Open-Ended`. \n\nThe accounting period must be open.\n",
+                                        "type": "string"
+                                    },
+                                    "newAmount": {
+                                        "description": "Amount of revenue you want to distribute into the accounting period.\n\nThe value must be formatted based on the currency, for example, `JPY 30` or `USD 30.15`. If the value is formatted incorrectly, the following error message is returned: `Allocation amount with wrong decimal places.`\n",
+                                        "format": "decimal",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "accountingPeriodName",
+                                    "newAmount"
+                                ],
+                                "title": "revenueDistributions",
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "revenueEvent": {
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "eventType": {
+                                            "description": "Label of the revenue event type. Revenue event type labels can be duplicated. You can configure your revenue event type labels by navigating to **Settings > Finance > Configure Revenue Event Types** in the Zuora UI.\n\nNote that `Credit Memo Posted` and `Debit Memo Posted` are only available if you enable the Invoice Settlement feature.\n",
+                                            "enum": [
+                                                "Invoice Posted",
+                                                "Invoice Item Adjustment Created",
+                                                "Invoice Canceled",
+                                                "Invoice Item Adjustment Canceled",
+                                                "Revenue Distributed",
+                                                "Credit Memo Posted",
+                                                "Debit Memo Posted"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "eventTypeSystemId": {
+                                            "description": "System ID of the revenue event type. Each eventType has a unique system ID. You can configure your revenue event type system IDs by navigating to **Settings > Finance > Configure Revenue Event Types** in the Zuora UI.\n",
+                                            "type": "string"
+                                        },
+                                        "notes": {
+                                            "description": "Additional information about this record.\n",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "eventTypeSystemId",
+                                        "eventType"
+                                    ],
+                                    "type": "object"
+                                },
+                                {
+                                    "additionalProperties": {
+                                        "description": "Custom fields of the Revenue Event object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                                    },
+                                    "description": "Container for custom fields of a Revenue Event object.\n",
+                                    "title": "revenueEventFieldsCustom",
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "Represents a change to a revenue schedule, such as posting an invoice or distributing revenue.\n",
+                            "title": "RevenueEvent"
+                        },
+                        "revenueScheduleDate": {
+                            "description": "The effective date of the revenue schedule. For example, the revenue schedule date for bookings-based revenue recognition is typically set to the order date or contract date.\n\nThe date cannot be in a closed accounting period. The date must be in `yyyy-mm-dd` format.\n",
+                            "format": "date",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "amount",
+                        "revenueScheduleDate"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Revenue Schedule object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Revenue Schedule object.\n",
+                    "title": "revenueScheduleFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "amount": "300",
+                "deferredRevenueAccountingCode": "Deferred Revenue",
+                "deferredRevenueAccountingCodeType": "Deferred Revenue",
+                "overrideChargeAccountingCodes": "true",
+                "recognizedRevenueAccountingCode": "Subscription Revenue",
+                "recognizedRevenueAccountingCodeType": "Sales Revenue",
+                "referenceId": "rs transaction ref",
+                "revenueDistributions": [
+                    {
+                        "accountingPeriodName": "Jan'2013",
+                        "newAmount": "100"
+                    },
+                    {
+                        "accountingPeriodName": "Feb'2013",
+                        "newAmount": "200"
+                    }
+                ],
+                "revenueEvent": {
+                    "eventType": "Revenue Distributed",
+                    "eventTypeSystemId": "1111111",
+                    "notes": "Manually distribute revenue by usage"
+                },
+                "revenueScheduleDate": "2013-01-01"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "charge_key": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

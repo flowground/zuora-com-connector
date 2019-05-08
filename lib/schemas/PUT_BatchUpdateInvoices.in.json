@@ -1,0 +1,63 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "invoices": [
+                    {
+                        "autoPay": false,
+                        "dueDate": "2017-12-16",
+                        "id": "2c93808457d787030157e031d86c4c57",
+                        "transferredToAccounting": "Yes"
+                    },
+                    {
+                        "autoPay": false,
+                        "dueDate": "2017-12-27",
+                        "id": "2c92c8955bd63cc1015bd7c151af02ab",
+                        "transferredToAccounting": "Yes"
+                    }
+                ]
+            },
+            "properties": {
+                "invoices": {
+                    "description": "Container for invoice update details.\n",
+                    "items": {
+                        "properties": {
+                            "autoPay": {
+                                "description": "Whether invoices are automatically picked up for processing in the corresponding payment run. \n\nBy default, invoices are automatically picked up for processing in the corresponding payment run.\n",
+                                "type": "boolean"
+                            },
+                            "dueDate": {
+                                "description": "The date by which the payment for this invoice is due. \n",
+                                "format": "date",
+                                "type": "string"
+                            },
+                            "id": {
+                                "description": "The ID of the invoice to be updated.\n",
+                                "type": "string"
+                            },
+                            "transferredToAccounting": {
+                                "description": "Whether the invoice was transferred to an external accounting system.\n",
+                                "enum": [
+                                    "Processing",
+                                    "Yes",
+                                    "Error",
+                                    "Ignore"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "title": "invoices",
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "accountKey": "A00000001",
+                "method": "POST",
+                "uri": "https://rest.zuora.com/v1/payment-methods/credit-cards"
+            },
+            "properties": {
+                "accountKey": {
+                    "description": "Customer account number or ID.\n\nSpecifies this field only when creating signatures for Create payment method.\n",
+                    "type": "string"
+                },
+                "method": {
+                    "description": "Possible values are: 'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'.\n",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Account name.\n\nSpecifies this field only when creating signatures for Create account.\n",
+                    "type": "string"
+                },
+                "pageId": {
+                    "description": "The page id of your Payment Pages 2.0 form. Click **Show Page Id** next to the Payment Page name in the Hosted Page List to retrieve the page id.\n\nSpecifies this field only when creating signatures for RSA Signatures.\n",
+                    "type": "string"
+                },
+                "uri": {
+                    "description": "The URI of the API object the customer will make a CORS enabled call to.\ne.g. \"https://rest.zuora.com/v1/payment-methods/credit-cards\"\n",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uri",
+                "method"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

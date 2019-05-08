@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "orderNumber": {
+            "required": true,
+            "type": "string",
+            "format": "string"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

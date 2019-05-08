@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

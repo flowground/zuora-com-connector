@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "paymentId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "accountId": "4028905f5a87c0ff015a88889fe500a8"
+            },
+            "properties": {
+                "accountId": {
+                    "description": "The ID of the customer account that the payment is transferred to.\n",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

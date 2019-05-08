@@ -1,0 +1,93 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "AccountId": {
+                            "description": " The ID of the account associated with the usage data. This field is only required if no value is specified for the `AccountNumber` field.\n**Character limit**: 32 **Values**: a valid account ID. ",
+                            "type": "string"
+                        },
+                        "AccountNumber": {
+                            "description": " The number of the account associated with the usage data. This field is only required if no value is specified for the `AccountId` field.\n**Character limit**: 50 **Values**: a valid account number. ",
+                            "type": "string"
+                        },
+                        "ChargeId": {
+                            "description": " The OrginalId of the rate plan charge related to the usage record, e.g., `2c9081a03c63c94c013c6873357a0117` **Character limit**: 32 **Values**: a valid rate plan charge OriginalID. ",
+                            "type": "string"
+                        },
+                        "EndDateTime": {
+                            "description": " The end date and time of a range of time when usage is tracked. Use this field for reporting; this field doesn't affect usage calculation.\n**Character limit**: 29 **Values**: a valid date and time value. ",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "Quantity": {
+                            "description": " Indicates the number of units used.\n**Character limit**: 16 **Values**: a valid decimal amount equal to or greater than 0 ",
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "RbeStatus": {
+                            "description": " Indicates if the rating and billing engine (RBE) processed usage data for an invoice.\n**Character limit**: 9 **Values**: automatically generated to be one of the following values: `Importing`, `Pending`, `Processed` ",
+                            "type": "string"
+                        },
+                        "StartDateTime": {
+                            "description": " The start date and time of a range of time when usage is tracked. Zuora uses this field value to determine the usage date. Unlike the `EndDateTime`, the `StartDateTime` field does affect usage calculation.\n**Character limit**: 29 **Values**: a valid date and time value ",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "SubmissionDateTime": {
+                            "description": " The date when usage was submitted.\n**Character limit**: 29 **Values**: automatically generated ",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "SubscriptionId": {
+                            "description": " The ID of the subscription that contains the fees related to the usage data.\n**Character limit**: 32 **Values**: a valid subscription ID ",
+                            "type": "string"
+                        },
+                        "UOM": {
+                            "description": " Specifies the units to measure usage. Units of measure are configured in the web-based UI. Your values depend on your configuration in **Billing Settings**.\n**Character limit**: **Values**: a valid unit of measure ",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Quantity",
+                        "StartDateTime",
+                        "UOM"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Usage object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a Usage object.\n",
+                    "title": "usageFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "AccountId": "2c93808457d787030157e02e07991cfc",
+                "AccountNumber": "AN_1476934895501",
+                "ChargeId": "2c93808457d787030157e02e07cc1d04",
+                "ChargeNumber": "C-00000001",
+                "Description": "this is desc",
+                "EndDateTime": "2016-11-20T04:41:36.000+01:00",
+                "Quantity": 9.9,
+                "StartDateTime": "2016-10-20T05:41:36.000+02:00",
+                "SubscriptionId": "2c93808457d787030157e02e07b11cff",
+                "SubscriptionNumber": "S_1476934895501",
+                "UOM": "Each"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "glAccountName": {
+                            "description": "Name of the account in your general ledger.\n\nField only available if you have Zuora Finance enabled. Maximum of 255 characters.\n",
+                            "type": "string"
+                        },
+                        "glAccountNumber": {
+                            "description": "Account number in your general ledger.\n\nField only available if you have Zuora Finance enabled. Maximum of 255 characters.\n",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Name of the accounting code.\n\nAccounting code name must be unique. Maximum of 100 characters.\n",
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "Maximum of 2,000 characters.\n",
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Accounting code type. You cannot create new accounting codes of type `AccountsReceivable`. \n\nNote that `On-Account Receivable` is only available if you enable the Invoice Settlement feature. \n",
+                            "enum": [
+                                "AccountsReceivable",
+                                "On-Account Receivable",
+                                "Cash",
+                                "OtherAssets",
+                                "CustomerCashOnAccount",
+                                "DeferredRevenue",
+                                "SalesTaxPayable",
+                                "OtherLiabilities",
+                                "SalesRevenue",
+                                "SalesDiscounts",
+                                "OtherRevenue",
+                                "OtherEquity",
+                                "BadDebt",
+                                "OtherExpenses"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "type"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the Accounting Code object. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of an Accounting Code object.\n",
+                    "title": "accountingCodeFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "name": "CASH",
+                "type": "Cash"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

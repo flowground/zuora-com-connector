@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "params": {
+                    "description": "Container for the following fields. You must format this parameter as a JSON object.\n\n* `actionType` (string, **Required**) - Type of mass action you want to perform. The following mass actions are supported: `UpdateAccountingCode`, `CreateRevenueSchedule`, `UpdateRevenueSchedule`, `DeleteRevenueSchedule`, `ImportFXRate`, and `MPU`.\n\n* `checksum` (string) - An MD5 checksum that is used to validate the integrity of\n  the uploaded file. The checksum is a 32-character string.\n",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "params"
+            ]
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

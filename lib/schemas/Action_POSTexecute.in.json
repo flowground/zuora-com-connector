@@ -1,0 +1,49 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "ids": [
+                    "2c93808457d787030157e031d5844c53"
+                ],
+                "synchronous": false,
+                "type": "InvoiceSplit"
+            },
+            "properties": {
+                "ids": {
+                    "description": "The ID of the object. **Values:** a valid InvoiceSplit object ID.\n",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "synchronous": {
+                    "description": "Indicates if the call is synchronous or asynchronous. **Values:** `false`\n",
+                    "type": "boolean"
+                },
+                "type": {
+                    "description": "Specifies the type of executed item. \n",
+                    "enum": [
+                        "InvoiceSplit"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "ids",
+                "synchronous"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "Active": true,
+                "DecimalPlaces": 9,
+                "DisplayedAs": "name_display_name_1476935033519",
+                "RoundingMode": "UP",
+                "UomName": "name_1476935033519"
+            },
+            "properties": {
+                "Active": {
+                    "description": " Indicates if the UOM is available for new product rate plans. The default value is `true`.\n**Character limit**: 5 **Values**: `true`, `false ` ",
+                    "type": "boolean"
+                },
+                "DecimalPlaces": {
+                    "description": "The number of digits to the right of the decimal point that you want to measure for the unit. To use whole numbers only, set this value to 0. You can't change this value after this `UOM` is used in any product, subscription, or usage. **Character limit**: 1 **Values**: an integer between 0 and 9, exclusive ",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "DisplayedAs": {
+                    "description": "The name of the UOM that you want displayed on invoices. The default value is the `UomName` field value. **Character limit**: 50 **Values**: A string of 50 characters or fewer ",
+                    "type": "string"
+                },
+                "RoundingMode": {
+                    "description": " Specifies whether to round the UOM value up or down when the value exceeds the `DecimalPlaces` field value. The default value is `Up`.\n**Character limit**: 4 **Values**: `Up`, `Down` ",
+                    "type": "string"
+                },
+                "UomName": {
+                    "description": " The name of the UOM, such as license or GB. This name is displayed in query results and in the web-based UI labels. If you want a different name to be displayed on invoices, then use the `DisplayedAs` field to provide the invoice label.\n**Character limit**: 50 **Values**: a string of 50 characters or fewer ",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "DecimalPlaces",
+                "UomName"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

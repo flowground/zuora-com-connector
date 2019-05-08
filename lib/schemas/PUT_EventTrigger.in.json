@@ -1,0 +1,67 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "required": true,
+            "type": "string"
+        },
+        "id": {
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        },
+        "requestBody": {
+            "example": {
+                "condition": "changeType == 'UPDATE' && Invoice.Status == 'Posted' && Invoice.Status_old != 'Posted' && Invoice.Amount > 5000",
+                "description": "Trigger an event when an invoice is posted with amount over 5000",
+                "eventType": {
+                    "description": "An invoice is posted with amount over 5000"
+                }
+            },
+            "properties": {
+                "active": {
+                    "description": "The status of the trigger.",
+                    "type": "boolean"
+                },
+                "condition": {
+                    "description": "The JEXL expression to be evaluated against object changes. See above for more information and an example.",
+                    "maxLength": 5000,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "description": {
+                    "description": "The description of the trigger.",
+                    "maxLength": 1000,
+                    "type": "string"
+                },
+                "eventType": {
+                    "description": "The type of events to be triggered.",
+                    "properties": {
+                        "description": {
+                            "description": "The description for the event type.",
+                            "maxLength": 1000,
+                            "type": "string"
+                        },
+                        "displayName": {
+                            "description": "The display name for the event type.",
+                            "maxLength": 500,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

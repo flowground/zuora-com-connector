@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "pageSize": {
+            "required": false,
+            "type": "integer",
+            "maximum": 300,
+            "default": 8
+        },
+        "account_key": {
+            "required": true,
+            "type": "string"
+        },
+        "charge_key": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

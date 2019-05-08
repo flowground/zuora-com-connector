@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "pageSize": {
+            "required": false,
+            "type": "integer",
+            "maximum": 40,
+            "default": 20
+        },
+        "endTime": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "startTime": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "objectId": {
+            "required": false,
+            "type": "string"
+        },
+        "failedOnly": {
+            "required": false,
+            "type": "boolean"
+        },
+        "eventCategory": {
+            "required": false,
+            "type": "string"
+        },
+        "includeResponseContent": {
+            "required": false,
+            "type": "boolean"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

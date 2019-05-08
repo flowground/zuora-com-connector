@@ -1,0 +1,40 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "ids": [
+                    "2c93808457d787030157e031fcd34e19"
+                ],
+                "type": "ProductRatePlanCharge"
+            },
+            "properties": {
+                "ids": {
+                    "description": "A list of one or more IDs for the objects you want to delete.\n",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "The type of object that you are deleting.\n",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "ids"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "Zuora_Track_Id": {
+            "required": false,
+            "type": "string",
+            "maxLength": 64
+        }
+    }
+}

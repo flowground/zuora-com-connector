@@ -1,0 +1,35 @@
+{
+    "type": "object",
+    "properties": {
+        "username": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "targetEntityIds": [
+                    "8a80825555a3c7a10155b46120d058e7",
+                    "8a80825556ff28a4015708b93df82ba7"
+                ]
+            },
+            "properties": {
+                "targetEntityIds": {
+                    "description": "The ID of the entities that the user wants to access.\n",
+                    "items": {
+                        "title": "Entity IDs",
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "targetEntityIds"
+            ],
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

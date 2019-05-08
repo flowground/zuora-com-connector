@@ -1,0 +1,113 @@
+{
+    "type": "object",
+    "properties": {
+        "orderNumber": {
+            "required": true,
+            "type": "string",
+            "format": "string"
+        },
+        "requestBody": {
+            "example": {
+                "subscriptions": [
+                    {
+                        "orderActions": [
+                            {
+                                "charges": [
+                                    {
+                                        "chargeNumber": "C-0000001",
+                                        "specificTriggerDate": "2016-09-01"
+                                    }
+                                ],
+                                "sequence": 0,
+                                "triggerDates": [
+                                    {
+                                        "name": "CustomerAcceptance",
+                                        "triggerDate": "2016-09-01"
+                                    }
+                                ]
+                            }
+                        ],
+                        "subscriptionNumber": "A-S00000009"
+                    }
+                ]
+            },
+            "properties": {
+                "subscriptions": {
+                    "items": {
+                        "properties": {
+                            "orderActions": {
+                                "items": {
+                                    "properties": {
+                                        "charges": {
+                                            "items": {
+                                                "properties": {
+                                                    "chargeNumber": {
+                                                        "description": "Charge number of the charge which needs the triggering date to be provided. The charge's `triggerEvent` must have been set as `SpecificDate`.",
+                                                        "type": "string"
+                                                    },
+                                                    "specificTriggerDate": {
+                                                        "description": "Date in YYYY-MM-DD format. The specific trigger date you are to set for the charge.",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "sequence": {
+                                            "description": "Identifies which order action will have its triggering dates updated. Currently, you can only update the triggering dates of `CreateSubscription` order actions. This means that you must set `sequence` to 0, as there is only one `CreateSubscription` order action that affects each subscription.\n",
+                                            "type": "integer"
+                                        },
+                                        "triggerDates": {
+                                            "description": "Container for the service activation and customer acceptance dates of the order action.",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "description": "Name of the trigger date of the order action.",
+                                                        "enum": [
+                                                            "ServiceActivation",
+                                                            "CustomerAcceptance"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "triggerDate": {
+                                                        "description": "Trigger date in YYYY-MM-DD format. The date you are to set as the service activation date or the customer acceptance date.\n",
+                                                        "format": "date",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "sequence"
+                                    ],
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "subscriptionNumber": {
+                                "description": "Subscription number of a `Pending Activation` or `Pending Acceptance` subscription in the `Pending` order for which you are to update the triggering dates. For example, A-S00000001.\n",
+                                "maxLength": 100,
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "subscriptionNumber"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

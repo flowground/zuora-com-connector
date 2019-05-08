@@ -1,0 +1,96 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "addressLine1": {
+                            "description": "First address line, 255 characters or less.\n",
+                            "type": "string"
+                        },
+                        "addressLine2": {
+                            "description": "Second address line, 255 characters or less.\n",
+                            "type": "string"
+                        },
+                        "cardHolderName": {
+                            "description": "The full name as it appears on the card, e.g., \"John J Smith\", 50 characters or less.\n",
+                            "type": "string"
+                        },
+                        "city": {
+                            "description": "City, 40 characters or less.\n",
+                            "type": "string"
+                        },
+                        "country": {
+                            "description": "Country; must be a valid country name or abbreviation.\n",
+                            "type": "string"
+                        },
+                        "defaultPaymentMethod": {
+                            "description": "Specify \"true\" to make this card the default payment method; otherwise, omit this parameter to keep the current default payment method.\n",
+                            "type": "boolean"
+                        },
+                        "email": {
+                            "description": "Card holder's email address, 80 characters or less.\n",
+                            "type": "string"
+                        },
+                        "expirationMonth": {
+                            "description": "One or two digit(s) expiration month (1-12).\n",
+                            "type": "string"
+                        },
+                        "expirationYear": {
+                            "description": "Four-digit expiration year.\n",
+                            "type": "string"
+                        },
+                        "numConsecutiveFailures": {
+                            "description": "The number of consecutive failed payments for this payment method. It is reset to `0` upon successful payment. \n",
+                            "format": "int32",
+                            "maximum": 100,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "phone": {
+                            "description": "Phone number, 40 characters or less.\n",
+                            "type": "string"
+                        },
+                        "securityCode": {
+                            "description": "The CVV or CVV2 security code for the credit card or debit card. Only required if changing expirationMonth, expirationYear, or cardHolderName. To ensure PCI compliance, this value isn't stored and can't be queried.\n\n",
+                            "type": "string"
+                        },
+                        "state": {
+                            "description": "State; must be a valid state name or 2-character abbreviation.\n",
+                            "type": "string"
+                        },
+                        "zipCode": {
+                            "description": "Zip code, 20 characters or less.\n",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "additionalProperties": {
+                        "description": "Custom fields of the payment method. The name of each custom field has the form <code>*customField*__c</code>. Custom field names are case sensitive. See [Manage Custom Fields](https://knowledgecenter.zuora.com/BB_Introducing_Z_Business/Manage_Custom_Fields) for more information.\n"
+                    },
+                    "description": "Container for custom fields of a payment method object.\n",
+                    "title": "paymentMethodFieldsCustom",
+                    "type": "object"
+                }
+            ],
+            "example": {
+                "cardHolderName": "Leo",
+                "expirationMonth": 8,
+                "expirationYear": 2015,
+                "numConsecutiveFailures": 5,
+                "securityCode": "111"
+            }
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        },
+        "payment_method_id": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

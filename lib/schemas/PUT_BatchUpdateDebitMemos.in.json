@@ -1,0 +1,45 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "example": {
+                "debitMemos": [
+                    {
+                        "dueDate": "2017-12-28",
+                        "id": "402890d25f9f083f015f9f28041d0008"
+                    },
+                    {
+                        "dueDate": "2017-12-20",
+                        "id": "402890555a87d7f5015a892f2ba10057"
+                    }
+                ]
+            },
+            "properties": {
+                "debitMemos": {
+                    "description": "Container for debit memo update details.\n",
+                    "items": {
+                        "properties": {
+                            "dueDate": {
+                                "description": "The date by which the payment for the debit memo is due, in `yyyy-mm-dd` format.\n",
+                                "format": "date",
+                                "type": "string"
+                            },
+                            "id": {
+                                "description": "The ID of the debit memo to be updated.\n",
+                                "type": "string"
+                            }
+                        },
+                        "title": "debitMemos",
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "Zuora_Entity_Ids": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
